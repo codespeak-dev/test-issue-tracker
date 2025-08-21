@@ -1,0 +1,20 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "issue-tracker"
+version = "0.1.0"
+description = "Issue tracker with external API integrations"
+dependencies = [
+    "slack-sdk",
+    "PyGithub",
+    "python-dotenv",
+]
+requires-python = ">=3.8"
+
+[project.scripts]
+validate-configuration = "src.external_apis.validate_configuration:validate_configuration"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
