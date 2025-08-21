@@ -78,6 +78,15 @@
                     "additional_id": null
                 },
                 "timestamp": "2025-08-21T16:09:56.649152+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "0a16365b-59ee-44dd-a977-db0d1dcca886",
+                    "phase_id": "CheckExternalApisConfigurationFile",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T16:09:56.715580+00:00",
+                "error": "Exception: The following parameters are not provided: [('github', 'github_access_token'), ('github', 'github_repository_owner'), ('github', 'github_repository_name')]"
             }
         ]
     }
