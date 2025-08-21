@@ -304,6 +304,14 @@
                     "additional_id": null
                 },
                 "timestamp": "2025-08-21T23:08:27.431972+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "c95e317c-5ef4-461c-8ed1-e7c4037a66f2",
+                    "phase_id": "Done",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T23:08:27.519060+00:00"
             }
         ],
         "skip_remaining": false
