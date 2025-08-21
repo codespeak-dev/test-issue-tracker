@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth import authenticate
 from django.core.exceptions import ValidationError
-from .models import User, Issue, Comment, Settings
+from .models import User, Issue, Comment, Settings, Tag
 
 
 class LoginForm(forms.Form):
@@ -49,7 +49,7 @@ class IssueForm(forms.ModelForm):
     
     class Meta:
         model = Issue
-        fields = ['summary', 'description', 'status', 'assignee']
+        fields = ['summary', 'description', 'status', 'assignee', 'tags']
         widgets = {
             'summary': forms.TextInput(attrs={
                 'class': 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500',
@@ -66,6 +66,9 @@ class IssueForm(forms.ModelForm):
             'assignee': forms.Select(attrs={
                 'class': 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
             }),
+            'tags': forms.CheckboxSelectMultiple(attrs={
+                'class': 'space-y-2'
+            }),
         }
     
     def __init__(self, *args, **kwargs):
@@ -73,6 +76,8 @@ class IssueForm(forms.ModelForm):
         # Make assignee optional
         self.fields['assignee'].empty_label = "Unassigned"
         self.fields['assignee'].required = False
+        # Make tags optional
+        self.fields['tags'].required = False
 
 
 class CommentForm(forms.ModelForm):
@@ -86,6 +91,24 @@ class CommentForm(forms.ModelForm):
                 'class': 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500',
                 'rows': 4,
                 'placeholder': 'Add a comment (Markdown supported)'
+            }),
+        }
+
+
+class TagForm(forms.ModelForm):
+    """Form for creating and editing tags"""
+    
+    class Meta:
+        model = Tag
+        fields = ['name', 'color']
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'class': 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500',
+                'placeholder': 'Tag name (e.g., "Bug", "Feature", "High Priority")'
+            }),
+            'color': forms.TextInput(attrs={
+                'type': 'color',
+                'class': 'mt-1 block w-16 h-10 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500',
             }),
         }
 

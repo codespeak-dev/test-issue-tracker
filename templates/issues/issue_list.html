@@ -18,40 +18,88 @@
     {% endif %}
 </div>
 
-<!-- Search Form -->
+<!-- Search and Filter Form -->
 <div class="mt-6">
-    <form method="GET" class="flex gap-4 items-center">
-        <div class="flex-1 max-w-md">
-            <label for="search" class="sr-only">Search issues</label>
-            <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 20 20" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
+    <form method="GET" class="space-y-4">
+        <!-- Search Input -->
+        <div class="flex gap-4 items-center">
+            <div class="flex-1 max-w-md">
+                <label for="search" class="sr-only">Search issues</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 20 20" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                    <input type="text" 
+                           name="search" 
+                           id="search"
+                           value="{{ search_query }}"
+                           placeholder="Search issues by summary or description..."
+                           class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
                 </div>
-                <input type="text" 
-                       name="search" 
-                       id="search"
-                       value="{{ search_query }}"
-                       placeholder="Search issues by summary or description..."
-                       class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
             </div>
+            <button type="submit" 
+                    class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                Search
+            </button>
+            {% if search_query or selected_tags %}
+                <a href="{% url 'issue_list' %}" 
+                   class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                    Clear All
+                </a>
+            {% endif %}
         </div>
-        <button type="submit" 
-                class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
-            Search
-        </button>
-        {% if search_query %}
-            <a href="{% url 'issue_list' %}" 
-               class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
-                Clear
-            </a>
+        
+        <!-- Tag Filter -->
+        {% if all_tags %}
+        <div class="flex flex-wrap gap-2 items-center">
+            <span class="text-sm font-medium text-gray-700">Filter by tags:</span>
+            {% for tag in all_tags %}
+                <label class="inline-flex items-center">
+                    <input type="checkbox" 
+                           name="tags" 
+                           value="{{ tag.id }}"
+                           {% if tag.id|stringformat:"s" in selected_tags %}checked{% endif %}
+                           onchange="this.form.submit()"
+                           class="rounded border-gray-300 text-primary-600 focus:ring-primary-500 mr-2">
+                    <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white" 
+                          style="background-color: {{ tag.color }};">
+                        {{ tag.name }}
+                    </span>
+                </label>
+            {% endfor %}
+            {% if user.is_authenticated %}
+                <a href="{% url 'tag_list' %}" 
+                   class="text-sm text-primary-600 hover:text-primary-500 ml-2">
+                    Manage Tags
+                </a>
+            {% endif %}
+        </div>
         {% endif %}
     </form>
-    {% if search_query %}
-        <p class="mt-2 text-sm text-gray-600">
-            Showing results for "<strong>{{ search_query }}</strong>"
-        </p>
+    
+    <!-- Status Messages -->
+    {% if search_query or selected_tags %}
+        <div class="mt-2 text-sm text-gray-600">
+            {% if search_query %}
+                Showing results for "<strong>{{ search_query }}</strong>"
+                {% if selected_tags %}and{% endif %}
+            {% endif %}
+            {% if selected_tags %}
+                filtered by 
+                {% for tag_id in selected_tags %}
+                    {% for tag in all_tags %}
+                        {% if tag.id|stringformat:"s" == tag_id %}
+                            <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium text-white mr-1" 
+                                  style="background-color: {{ tag.color }};">
+                                {{ tag.name }}
+                            </span>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+        </div>
     {% endif %}
 </div>
 
@@ -67,6 +115,9 @@
                             </th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 Status
+                            </th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                Tags
                             </th>
                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 Author
@@ -94,6 +145,18 @@
                                     <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5 {% if issue.status.is_open %}bg-green-100 text-green-800{% else %}bg-gray-100 text-gray-800{% endif %}">
                                         {{ issue.status.name }}
                                     </span>
+                                </td>
+                                <td class="px-3 py-4 text-sm text-gray-500">
+                                    <div class="flex flex-wrap gap-1">
+                                        {% for tag in issue.tags.all %}
+                                            <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium text-white" 
+                                                  style="background-color: {{ tag.color }};">
+                                                {{ tag.name }}
+                                            </span>
+                                        {% empty %}
+                                            <span class="text-gray-400 text-xs">No tags</span>
+                                        {% endfor %}
+                                    </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     {{ issue.author.name }}
