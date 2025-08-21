@@ -45,7 +45,7 @@
         },
         "external_apis": "external_apis.json",
         "methods_to_test": "methods_to_test.json",
-        "spec_diff": "--- +++ @@ -51,6 +51,7 @@   - if no registered, sign up\n - See list of issues\n   - summary, status, author, updated_at\n+ - filter by free-form text (match with summary and description)\n - Open issue\n   - see all the details and comments\n \n"
+        "spec_diff": "--- +++ @@ -17,6 +17,7 @@     - updated_at\n     - assignee\n     - comments\n+    - tags\n \n - Statuses\n     - name\n@@ -34,6 +35,9 @@     - created_at\n     - updated_at\n \n+ - Tags\n+     - name\n+     - color\n \n # Users and authentication\n \n@@ -64,6 +68,10 @@ - Edit issue\n   - not editable: author, created_at, updated_at\n - Edit comment\n+- Add tag\n+- Edit tag\n+- Remove tag\n+- Filter by tag\n \n # Integrations\n \n"
     },
     "phase_manager": {
         "history": [
@@ -232,6 +232,14 @@
                     "additional_id": null
                 },
                 "timestamp": "2025-08-21T22:31:08.036663+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "c95e317c-5ef4-461c-8ed1-e7c4037a66f2",
+                    "phase_id": "ProcessSpec",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:31:08.160816+00:00"
             }
         ],
         "skip_remaining": false
