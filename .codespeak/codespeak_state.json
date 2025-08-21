@@ -200,6 +200,14 @@
                     "additional_id": null
                 },
                 "timestamp": "2025-08-21T22:21:46.281636+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "ed711d67-46e1-4fee-a3b7-6b3509b5f433",
+                    "phase_id": "AnalyzeAndPlanTests",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:21:57.538006+00:00"
             }
         ],
         "skip_remaining": false
