@@ -17,7 +17,7 @@ Bugger is an issue tracking application.
     - updated_at
     - assignee
     - comments
-//    - tags
+    - tags
 
 - Statuses
     - name
@@ -35,9 +35,9 @@ Predifined statuses:
     - created_at
     - updated_at
 
-// - Tags
-//     - name
-//     - color
+ - Tags
+     - name
+     - color
 
 # Users and authentication
 
@@ -69,10 +69,10 @@ If the user is logged in, they see a "Log out" button in the top right corner ne
 - Edit issue
   - not editable: author, created_at, updated_at
 - Edit comment
-// - Add tag
-// - Edit tag
-// - Remove tag
-// Filter by tag
+- Add tag
+- Edit tag
+- Remove tag
+- Filter by tag
 
 # Integrations
 
