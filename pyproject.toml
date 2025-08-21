@@ -7,6 +7,8 @@ name = "issue-tracker"
 version = "0.1.0"
 description = "Issue tracker with external API integrations"
 dependencies = [
+    "django>=4.2,<5.0",
+    "markdown>=3.4",
     "slack-sdk",
     "PyGithub",
     "python-dotenv",
