@@ -18,11 +18,20 @@ logger = logging.getLogger('issues')
 
 def log_request_response(request, response):
     """Helper to log request-response pairs"""
+    # Safely get body size without causing RawPostDataException
+    body_size = 0
+    try:
+        if hasattr(request, 'body'):
+            body_size = len(request.body)
+    except Exception:
+        # If body has been consumed (e.g., by form processing), we can't access it
+        body_size = 0
+    
     log_data = {
         "method": request.method,
         "url": request.get_full_path(),
         "headers": dict(request.headers),
-        "body_size": len(request.body) if hasattr(request, 'body') else 0,
+        "body_size": body_size,
         "response_status": response.status_code,
         "response_headers": dict(response.items()),
         "response_size": len(response.content) if hasattr(response, 'content') else 0,
