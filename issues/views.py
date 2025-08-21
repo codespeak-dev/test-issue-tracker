@@ -8,6 +8,7 @@ from django.http import JsonResponse, HttpResponseForbidden
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
+from django.db.models import Q
 from .models import Issue, Comment, User, Status, Settings
 from .forms import LoginForm, RegisterForm, IssueForm, CommentForm, SettingsForm
 
@@ -35,11 +36,20 @@ def log_request_response(request, response):
 
 
 def issue_list(request):
-    """Homepage - list of all issues"""
+    """Homepage - list of all issues with optional search filtering"""
     issues = Issue.objects.select_related('status', 'author', 'assignee').all()
+    search_query = request.GET.get('search', '').strip()
+    
+    if search_query:
+        # Filter issues by search term in summary or description (case-insensitive)
+        issues = issues.filter(
+            Q(summary__icontains=search_query) | 
+            Q(description__icontains=search_query)
+        )
     
     response = render(request, 'issues/issue_list.html', {
-        'issues': issues
+        'issues': issues,
+        'search_query': search_query
     })
     log_request_response(request, response)
     return response

@@ -44,7 +44,8 @@
             "has_external_apis": true
         },
         "external_apis": "external_apis.json",
-        "methods_to_test": "methods_to_test.json"
+        "methods_to_test": "methods_to_test.json",
+        "spec_diff": "--- +++ @@ -51,6 +51,7 @@   - if no registered, sign up\n - See list of issues\n   - summary, status, author, updated_at\n+ - filter by free-form text (match with summary and description)\n - Open issue\n   - see all the details and comments\n \n"
     },
     "phase_manager": {
         "history": [
@@ -135,6 +136,94 @@
                     "additional_id": null
                 },
                 "timestamp": "2025-08-21T20:17:14.425831+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "ed711d67-46e1-4fee-a3b7-6b3509b5f433",
+                    "phase_id": "Init",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:02:05.207838+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "ed711d67-46e1-4fee-a3b7-6b3509b5f433",
+                    "phase_id": "ProcessSpec",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:02:05.327545+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "ed711d67-46e1-4fee-a3b7-6b3509b5f433",
+                    "phase_id": "EvaluateCriteria",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:02:17.157427+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "ed711d67-46e1-4fee-a3b7-6b3509b5f433",
+                    "phase_id": "AnalyzeExternalApis",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:02:38.064953+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "ed711d67-46e1-4fee-a3b7-6b3509b5f433",
+                    "phase_id": "CheckExternalApisConfigurationFile",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:02:38.138534+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "ed711d67-46e1-4fee-a3b7-6b3509b5f433",
+                    "phase_id": "GenerateExternalApisConfigValidation",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:03:35.426475+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "ed711d67-46e1-4fee-a3b7-6b3509b5f433",
+                    "phase_id": "ImplementSpecWithClaudeCode",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:21:45.171688+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "ed711d67-46e1-4fee-a3b7-6b3509b5f433",
+                    "phase_id": "FeedbackLoopWithClaudeCode",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:21:46.281636+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "ed711d67-46e1-4fee-a3b7-6b3509b5f433",
+                    "phase_id": "AnalyzeAndPlanTests",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:21:57.538006+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "ed711d67-46e1-4fee-a3b7-6b3509b5f433",
+                    "phase_id": "GenerateAndRunTests",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:26:06.906519+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "ed711d67-46e1-4fee-a3b7-6b3509b5f433",
+                    "phase_id": "Done",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:26:07.005238+00:00"
             }
         ],
         "skip_remaining": false

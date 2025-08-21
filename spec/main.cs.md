@@ -55,7 +55,7 @@ If the user is logged in, they see a "Log out" button in the top right corner ne
   - if no registered, sign up
 - See list of issues
   - summary, status, author, updated_at
-// - filter by free-form text
+ - filter by free-form text (match with summary and description)
 - Open issue
   - see all the details and comments
 

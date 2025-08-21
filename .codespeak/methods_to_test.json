@@ -1,21 +1,5 @@
 [
     {
-        "full_qualified_name": "LoginForm.clean_email",
-        "kind": "unit_tests"
-    },
-    {
-        "full_qualified_name": "RegisterForm.clean_email",
-        "kind": "unit_tests"
-    },
-    {
-        "full_qualified_name": "IssueForm.__init__",
-        "kind": "unit_tests"
-    },
-    {
-        "full_qualified_name": "notify_slack",
-        "kind": "external_api_tests"
-    },
-    {
         "full_qualified_name": "UserManager.create_user",
         "kind": "unit_tests"
     },
@@ -56,12 +40,24 @@
         "kind": "unit_tests"
     },
     {
-        "full_qualified_name": "RequestLoggingMiddleware.process_request",
+        "full_qualified_name": "issues.signals.issue_created",
         "kind": "unit_tests"
     },
     {
-        "full_qualified_name": "RequestLoggingMiddleware.process_response",
+        "full_qualified_name": "LoginForm.clean_email",
         "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "RegisterForm.clean_email",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "IssueForm.__init__",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "notify_slack",
+        "kind": "external_api_tests"
     },
     {
         "full_qualified_name": "load_configuration",
@@ -92,7 +88,11 @@
         "kind": "unit_tests"
     },
     {
-        "full_qualified_name": "issues.signals.issue_created",
+        "full_qualified_name": "RequestLoggingMiddleware.process_request",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "RequestLoggingMiddleware.process_response",
         "kind": "unit_tests"
     },
     {
