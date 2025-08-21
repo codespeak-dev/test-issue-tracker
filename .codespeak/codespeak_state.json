@@ -29,7 +29,9 @@
     },
     "phases_state": {
         "project_name": "issue-tracker",
-        "project_path": "/Users/abreslav/codespeak/dogfooding/issue-tracker"
+        "project_path": "/Users/abreslav/codespeak/dogfooding/issue-tracker",
+        "spec_file": "spec/main.cs.md",
+        "spec": "spec.processed.md"
     },
     "phase_manager": {
         "history": [
@@ -40,6 +42,14 @@
                     "additional_id": null
                 },
                 "timestamp": "2025-08-21T16:09:16.436611+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "0a16365b-59ee-44dd-a977-db0d1dcca886",
+                    "phase_id": "ProcessSpec",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T16:09:16.492376+00:00"
             }
         ]
     }
