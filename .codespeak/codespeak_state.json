@@ -31,7 +31,17 @@
         "project_name": "issue-tracker",
         "project_path": "/Users/abreslav/codespeak/dogfooding/issue-tracker",
         "spec_file": "spec/main.cs.md",
-        "spec": "spec.processed.md"
+        "spec": "spec.processed.md",
+        "criteria": {
+            "console_application": false,
+            "web_application": true,
+            "has_python": true,
+            "has_node_js": false,
+            "has_javascript": true,
+            "has_sql_database": true,
+            "has_django": true,
+            "has_server": true
+        }
     },
     "phase_manager": {
         "history": [
@@ -50,6 +60,14 @@
                     "additional_id": null
                 },
                 "timestamp": "2025-08-21T16:11:12.784515+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "edfd142a-ef51-4ea4-b813-fc38bc37f71e",
+                    "phase_id": "EvaluateCriteria",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T16:11:12.844509+00:00"
             }
         ]
     }
