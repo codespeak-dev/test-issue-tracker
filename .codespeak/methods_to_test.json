@@ -1,0 +1,146 @@
+[
+    {
+        "full_qualified_name": "LoginForm.clean_email",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "RegisterForm.clean_email",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "IssueForm.__init__",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "notify_slack",
+        "kind": "external_api_tests"
+    },
+    {
+        "full_qualified_name": "UserManager.create_user",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "UserManager.create_superuser",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "User.has_perm",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "User.has_module_perms",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "Issue.get_absolute_url",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "Issue.description_html",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "Comment.content_html",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "Settings.save",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "Settings.delete",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "Settings.load",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "RequestLoggingMiddleware.process_request",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "RequestLoggingMiddleware.process_response",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "load_configuration",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "validate_slack_configuration",
+        "kind": "external_api_tests"
+    },
+    {
+        "full_qualified_name": "validate_github_configuration",
+        "kind": "external_api_tests"
+    },
+    {
+        "full_qualified_name": "validate_configuration",
+        "kind": "other"
+    },
+    {
+        "full_qualified_name": "Command.handle",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "Command.poll_github",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "Command.process_commit",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "issues.signals.issue_created",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "log_request_response",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "issue_list",
+        "kind": "endpoint_tests"
+    },
+    {
+        "full_qualified_name": "issue_detail",
+        "kind": "endpoint_tests"
+    },
+    {
+        "full_qualified_name": "issue_create",
+        "kind": "endpoint_tests"
+    },
+    {
+        "full_qualified_name": "issue_edit",
+        "kind": "endpoint_tests"
+    },
+    {
+        "full_qualified_name": "issue_delete",
+        "kind": "endpoint_tests"
+    },
+    {
+        "full_qualified_name": "comment_create",
+        "kind": "endpoint_tests"
+    },
+    {
+        "full_qualified_name": "comment_edit",
+        "kind": "endpoint_tests"
+    },
+    {
+        "full_qualified_name": "login_view",
+        "kind": "endpoint_tests"
+    },
+    {
+        "full_qualified_name": "register_view",
+        "kind": "endpoint_tests"
+    },
+    {
+        "full_qualified_name": "logout_view",
+        "kind": "endpoint_tests"
+    },
+    {
+        "full_qualified_name": "settings_view",
+        "kind": "endpoint_tests"
+    }
+]

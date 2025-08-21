@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% block title %}Settings - Bugger Issue Tracker{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="bg-white shadow rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+            <div class="mb-6">
+                <h1 class="text-2xl font-bold text-gray-900">Application Settings</h1>
+                <p class="mt-1 text-sm text-gray-600">Configure external integrations for Slack and GitHub.</p>
+            </div>
+            
+            <form method="post" class="space-y-8">
+                {% csrf_token %}
+                
+                <!-- Slack Configuration -->
+                <div class="border-b border-gray-200 pb-8">
+                    <h3 class="text-lg font-medium text-gray-900">Slack Integration</h3>
+                    <p class="mt-1 text-sm text-gray-600">Configure Slack to receive notifications when new issues are created.</p>
+                    
+                    <div class="mt-6 grid grid-cols-1 gap-6">
+                        <div>
+                            <label for="{{ form.slack_bot_token.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                                {{ form.slack_bot_token.label }}
+                            </label>
+                            <div class="mt-1">
+                                {{ form.slack_bot_token }}
+                            </div>
+                            <p class="mt-2 text-sm text-gray-500">
+                                Bot token from your Slack app (starts with xoxb-)
+                            </p>
+                            {% if form.slack_bot_token.errors %}
+                                <p class="mt-2 text-sm text-red-600">{{ form.slack_bot_token.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                        
+                        <div>
+                            <label for="{{ form.slack_channel_id.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                                {{ form.slack_channel_id.label }}
+                            </label>
+                            <div class="mt-1">
+                                {{ form.slack_channel_id }}
+                            </div>
+                            <p class="mt-2 text-sm text-gray-500">
+                                Channel ID or channel URL where notifications should be sent
+                            </p>
+                            {% if form.slack_channel_id.errors %}
+                                <p class="mt-2 text-sm text-red-600">{{ form.slack_channel_id.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- GitHub Configuration -->
+                <div class="pb-8">
+                    <h3 class="text-lg font-medium text-gray-900">GitHub Integration</h3>
+                    <p class="mt-1 text-sm text-gray-600">Configure GitHub repository monitoring for automatic issue closure.</p>
+                    
+                    <div class="mt-6 grid grid-cols-1 gap-6">
+                        <div>
+                            <label for="{{ form.github_access_token.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                                {{ form.github_access_token.label }}
+                            </label>
+                            <div class="mt-1">
+                                {{ form.github_access_token }}
+                            </div>
+                            <p class="mt-2 text-sm text-gray-500">
+                                GitHub personal access token (starts with ghp_)
+                            </p>
+                            {% if form.github_access_token.errors %}
+                                <p class="mt-2 text-sm text-red-600">{{ form.github_access_token.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            <div>
+                                <label for="{{ form.github_repository_owner.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                                    {{ form.github_repository_owner.label }}
+                                </label>
+                                <div class="mt-1">
+                                    {{ form.github_repository_owner }}
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">
+                                    GitHub username or organization name
+                                </p>
+                                {% if form.github_repository_owner.errors %}
+                                    <p class="mt-2 text-sm text-red-600">{{ form.github_repository_owner.errors.0 }}</p>
+                                {% endif %}
+                            </div>
+                            
+                            <div>
+                                <label for="{{ form.github_repository_name.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                                    {{ form.github_repository_name.label }}
+                                </label>
+                                <div class="mt-1">
+                                    {{ form.github_repository_name }}
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">
+                                    Repository name to monitor
+                                </p>
+                                {% if form.github_repository_name.errors %}
+                                    <p class="mt-2 text-sm text-red-600">{{ form.github_repository_name.errors.0 }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-end">
+                    <button type="submit" 
+                            class="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500">
+                        Save Settings
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Information Section -->
+    <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-6">
+        <h3 class="text-lg font-medium text-blue-900">How to Set Up Integrations</h3>
+        <div class="mt-4 text-sm text-blue-800 space-y-4">
+            <div>
+                <h4 class="font-medium">Slack Integration:</h4>
+                <ul class="mt-2 ml-4 list-disc space-y-1">
+                    <li>Create a Slack app at <a href="https://api.slack.com/apps" class="underline">https://api.slack.com/apps</a></li>
+                    <li>Add the "chat:write" bot token scope</li>
+                    <li>Install the app to your workspace</li>
+                    <li>Copy the bot token and invite the bot to your desired channel</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-medium">GitHub Integration:</h4>
+                <ul class="mt-2 ml-4 list-disc space-y-1">
+                    <li>Create a personal access token at <a href="https://github.com/settings/tokens" class="underline">https://github.com/settings/tokens</a></li>
+                    <li>Grant "repo" permissions for private repositories or "public_repo" for public ones</li>
+                    <li>Commit messages with "#&lt;issue-id&gt; Fixed" will automatically close issues</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }} - Bugger Issue Tracker{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto">
+    <div class="bg-white shadow rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+            <div class="mb-6">
+                <h1 class="text-2xl font-bold text-gray-900">{{ title }}</h1>
+            </div>
+            
+            <form method="post" class="space-y-6">
+                {% csrf_token %}
+                
+                <div>
+                    <label for="{{ form.summary.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                        Summary *
+                    </label>
+                    <div class="mt-1">
+                        {{ form.summary }}
+                    </div>
+                    {% if form.summary.errors %}
+                        <p class="mt-2 text-sm text-red-600">{{ form.summary.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                
+                <div>
+                    <label for="{{ form.description.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                        Description
+                    </label>
+                    <div class="mt-1">
+                        {{ form.description }}
+                    </div>
+                    <p class="mt-2 text-sm text-gray-500">Markdown is supported for formatting.</p>
+                    {% if form.description.errors %}
+                        <p class="mt-2 text-sm text-red-600">{{ form.description.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    <div>
+                        <label for="{{ form.status.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                            Status *
+                        </label>
+                        <div class="mt-1">
+                            {{ form.status }}
+                        </div>
+                        {% if form.status.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.status.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <div>
+                        <label for="{{ form.assignee.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                            Assignee
+                        </label>
+                        <div class="mt-1">
+                            {{ form.assignee }}
+                        </div>
+                        {% if form.assignee.errors %}
+                            <p class="mt-2 text-sm text-red-600">{{ form.assignee.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="flex justify-end space-x-3">
+                    <a href="{% if issue %}{% url 'issue_detail' issue.pk %}{% else %}{% url 'issue_list' %}{% endif %}" 
+                       class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                        Cancel
+                    </a>
+                    <button type="submit" 
+                            class="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500">
+                        {% if issue %}Update Issue{% else %}Create Issue{% endif %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
