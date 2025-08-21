@@ -40,8 +40,10 @@
             "has_javascript": true,
             "has_sql_database": true,
             "has_django": true,
-            "has_server": true
-        }
+            "has_server": true,
+            "has_external_apis": true
+        },
+        "external_apis": "external_apis.json"
     },
     "phase_manager": {
         "history": [
@@ -68,6 +70,14 @@
                     "additional_id": null
                 },
                 "timestamp": "2025-08-21T15:55:44.468473+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "fb4a7239-8276-45cc-80c1-902f0102cf0a",
+                    "phase_id": "AnalyzeExternalApis",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T15:55:44.533650+00:00"
             }
         ]
     }
