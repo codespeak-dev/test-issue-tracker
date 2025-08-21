@@ -1,0 +1,46 @@
+{
+    "meta": {
+        "schema": {
+            "spec": {
+                "type": "file",
+                "relative_path": "spec.processed.md",
+                "format": "text",
+                "by_phase": "ProcessSpec"
+            },
+            "external_apis": {
+                "type": "file",
+                "relative_path": "external_apis.json",
+                "format": "json",
+                "by_phase": "AnalyzeExternalApis"
+            },
+            "methods_to_test": {
+                "type": "file",
+                "relative_path": "methods_to_test.json",
+                "format": "json",
+                "by_phase": "AnalyzeAndPlanTests"
+            },
+            "sha_to_checkpoint": {
+                "type": "file",
+                "relative_path": "sha_to_checkpoint.json",
+                "format": "json"
+            }
+        },
+        "version": "0.1.0"
+    },
+    "phases_state": {
+        "project_name": "issue-tracker",
+        "project_path": "/Users/abreslav/codespeak/dogfooding/issue-tracker"
+    },
+    "phase_manager": {
+        "history": [
+            {
+                "checkpoint": {
+                    "run_id": "edfd142a-ef51-4ea4-b813-fc38bc37f71e",
+                    "phase_id": "Init",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T16:11:12.727378+00:00"
+            }
+        ]
+    }
+}
