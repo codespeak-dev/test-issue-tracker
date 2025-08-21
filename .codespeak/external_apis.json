@@ -1,0 +1,67 @@
+[
+    {
+        "name": "slack",
+        "use_cases": [
+            {
+                "description": "Post a message to a configured Slack channel when a new issue is created",
+                "spec_source_quote": "When a new issue is created, a message is posted to the channel"
+            }
+        ],
+        "config_parameters": [
+            {
+                "type": "input",
+                "name": "slack_bot_token",
+                "guidance": "To obtain a Slack Bot Token:\n\n1. Go to https://api.slack.com/apps and click 'Create New App'\n2. Choose 'From scratch' and provide an app name (e.g., 'Bugger Issue Tracker')\n3. Select your workspace and click 'Create App'\n4. In the left sidebar, click 'OAuth & Permissions'\n5. Scroll down to 'Scopes' section and add the following Bot Token Scopes:\n   - chat:write (to post messages)\n   - chat:write.public (to post to public channels)\n6. Scroll up and click 'Install to Workspace'\n7. Review permissions and click 'Allow'\n8. Copy the 'Bot User OAuth Token' (starts with 'xoxb-')\n9. This token should be kept secure and used as the slack_bot_token parameter"
+            },
+            {
+                "type": "input",
+                "name": "slack_channel_id",
+                "guidance": "To obtain the Slack Channel ID:\n\n1. Open Slack in your web browser or desktop app\n2. Navigate to the channel where you want issue notifications to be posted\n3. Right-click on the channel name in the sidebar\n4. Select 'Copy link' from the context menu\n5. The link will look like: https://yourworkspace.slack.com/archives/C1234567890\n6. The Channel ID is the part after '/archives/' (e.g., 'C1234567890')\n7. Alternatively, you can find the Channel ID at the bottom of the channel details when you click on the channel name\n8. Use this Channel ID as the slack_channel_id parameter"
+            }
+        ],
+        "sdk_choice": {
+            "api_name": "slack",
+            "kind": "existing",
+            "uv_package_name": "slack-sdk"
+        }
+    },
+    {
+        "name": "github",
+        "use_cases": [
+            {
+                "description": "Poll GitHub API every 10 seconds to retrieve new commits from a repository",
+                "spec_source_quote": "We poll the Github API every 10 seconds for new commits."
+            },
+            {
+                "description": "Parse commit messages to identify issue references with pattern '#<issue-id> Fixed'",
+                "spec_source_quote": "When a commit is merged with `#<issue-id> Fixed` in the commit message, the issue is closed and a comment is added to the issue"
+            },
+            {
+                "description": "Retrieve commit details including commit message and commit URL for linking",
+                "spec_source_quote": "a comment is added to the issue with the commit message and a link to the commit"
+            }
+        ],
+        "config_parameters": [
+            {
+                "type": "input",
+                "name": "github_access_token",
+                "guidance": "To obtain a GitHub Personal Access Token:\n\n1. Go to https://github.com/settings/tokens\n2. Click 'Generate new token' and select 'Generate new token (classic)'\n3. Add a note describing the token (e.g., 'Bugger Issue Tracker Integration')\n4. Set expiration as needed (recommended: 90 days or custom)\n5. Select the following scopes:\n   - repo (Full control of private repositories) - needed to read commits from private repos\n   - public_repo (Access public repositories) - if you only need access to public repos\n6. Click 'Generate token'\n7. Copy the generated token immediately (it won't be shown again)\n8. Store this token securely and use it as the github_access_token parameter\n\nNote: If you're only working with public repositories, you can use just the 'public_repo' scope instead of 'repo'."
+            },
+            {
+                "type": "input",
+                "name": "github_repository_owner",
+                "guidance": "To find the GitHub Repository Owner:\n\n1. Navigate to your GitHub repository in a web browser\n2. Look at the URL: https://github.com/OWNER/REPOSITORY\n3. The OWNER part is what you need (e.g., if the URL is https://github.com/microsoft/vscode, then 'microsoft' is the owner)\n4. This can be either a username (for personal repositories) or an organization name\n5. Use this value as the github_repository_owner parameter"
+            },
+            {
+                "type": "input",
+                "name": "github_repository_name",
+                "guidance": "To find the GitHub Repository Name:\n\n1. Navigate to your GitHub repository in a web browser\n2. Look at the URL: https://github.com/OWNER/REPOSITORY\n3. The REPOSITORY part is what you need (e.g., if the URL is https://github.com/microsoft/vscode, then 'vscode' is the repository name)\n4. This is the exact name of the repository as it appears on GitHub\n5. Use this value as the github_repository_name parameter"
+            }
+        ],
+        "sdk_choice": {
+            "api_name": "github",
+            "kind": "existing",
+            "uv_package_name": "PyGithub"
+        }
+    }
+]
