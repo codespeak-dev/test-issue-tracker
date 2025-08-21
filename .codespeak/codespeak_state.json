@@ -78,6 +78,15 @@
                     "additional_id": null
                 },
                 "timestamp": "2025-08-21T16:11:12.914593+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "edfd142a-ef51-4ea4-b813-fc38bc37f71e",
+                    "phase_id": "CheckExternalApisConfigurationFile",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T16:11:12.979210+00:00",
+                "error": "Exception: Configuration file /Users/abreslav/codespeak/dogfooding/issue-tracker/.env.local does not exist. Created a stub in /Users/abreslav/codespeak/dogfooding/issue-tracker/.env.local. Fill it with the correct values and try again"
             }
         ]
     }
