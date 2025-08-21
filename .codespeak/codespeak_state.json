@@ -78,6 +78,14 @@
                     "additional_id": null
                 },
                 "timestamp": "2025-08-21T16:12:26.603390+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "ef36e4fe-d4e6-4ffa-bbbe-4b98093ed97f",
+                    "phase_id": "CheckExternalApisConfigurationFile",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T16:12:26.663472+00:00"
             }
         ]
     }
