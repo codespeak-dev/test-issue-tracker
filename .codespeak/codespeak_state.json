@@ -40,7 +40,8 @@
             "has_javascript": true,
             "has_sql_database": true,
             "has_django": true,
-            "has_server": true
+            "has_server": true,
+            "has_external_apis": true
         },
         "external_apis": "external_apis.json",
         "methods_to_test": "methods_to_test.json",
@@ -159,6 +160,14 @@
                     "additional_id": null
                 },
                 "timestamp": "2025-08-21T22:02:17.157427+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "ed711d67-46e1-4fee-a3b7-6b3509b5f433",
+                    "phase_id": "AnalyzeExternalApis",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:02:38.064953+00:00"
             }
         ],
         "skip_remaining": false
