@@ -143,6 +143,66 @@ class TestUser(TestCase):
         self.assertTrue(self.superuser.has_module_perms('any_app'))
 
 
+class TestIssueManager(TestCase):
+    """Test class for IssueManager unit tests"""
+    
+    def setUp(self):
+        """Set up test data"""
+        self.user = User.objects.create_user(
+            email='user@example.com',
+            name='Test User'
+        )
+        self.status = Status.objects.create(name='Open', is_open=True)
+        # Create regular issue
+        self.regular_issue = Issue.objects.create(
+            summary='Regular Issue',
+            description='Regular description',
+            status=self.status,
+            author=self.user
+        )
+        # Create deleted issue
+        self.deleted_issue = Issue.objects.create(
+            summary='Deleted Issue',
+            description='Deleted description',
+            status=self.status,
+            author=self.user
+        )
+        self.deleted_issue.soft_delete()
+    
+    @pytest.mark.timeout(30)
+    def test_get_queryset_excludes_deleted(self):
+        """
+        Test kind: unit_tests
+        Original method: IssueManager.get_queryset
+        """
+        issues = Issue.objects.all()
+        self.assertEqual(issues.count(), 1)
+        self.assertIn(self.regular_issue, issues)
+        self.assertNotIn(self.deleted_issue, issues)
+    
+    @pytest.mark.timeout(30)
+    def test_with_deleted_includes_all(self):
+        """
+        Test kind: unit_tests
+        Original method: IssueManager.with_deleted
+        """
+        issues = Issue.objects.with_deleted()
+        self.assertEqual(issues.count(), 2)
+        self.assertIn(self.regular_issue, issues)
+        self.assertIn(self.deleted_issue, issues)
+    
+    @pytest.mark.timeout(30)
+    def test_deleted_only_returns_deleted(self):
+        """
+        Test kind: unit_tests
+        Original method: IssueManager.deleted_only
+        """
+        issues = Issue.objects.deleted_only()
+        self.assertEqual(issues.count(), 1)
+        self.assertNotIn(self.regular_issue, issues)
+        self.assertIn(self.deleted_issue, issues)
+
+
 class TestIssue(TestCase):
     """Test class for Issue unit tests"""
     
@@ -207,6 +267,65 @@ class TestIssue(TestCase):
         )
         html = issue.description_html()
         self.assertEqual(html, '<p>Just plain text</p>')
+    
+    @pytest.mark.timeout(30)
+    def test_is_deleted_false_for_active_issue(self):
+        """
+        Test kind: unit_tests
+        Original method: Issue.is_deleted
+        """
+        self.assertFalse(self.issue.is_deleted())
+    
+    @pytest.mark.timeout(30)
+    def test_is_deleted_true_for_deleted_issue(self):
+        """
+        Test kind: unit_tests
+        Original method: Issue.is_deleted
+        """
+        self.issue.soft_delete()
+        self.assertTrue(self.issue.is_deleted())
+    
+    @pytest.mark.timeout(30)
+    def test_soft_delete_sets_deleted_at(self):
+        """
+        Test kind: unit_tests
+        Original method: Issue.soft_delete
+        """
+        # Initially not deleted
+        self.assertIsNone(self.issue.deleted_at)
+        self.assertFalse(self.issue.is_deleted())
+        
+        # Soft delete
+        self.issue.soft_delete()
+        
+        # Should now be marked as deleted
+        self.assertIsNotNone(self.issue.deleted_at)
+        self.assertTrue(self.issue.is_deleted())
+        
+        # Refresh from database to verify persistence
+        self.issue.refresh_from_db()
+        self.assertIsNotNone(self.issue.deleted_at)
+    
+    @pytest.mark.timeout(30)
+    def test_restore_clears_deleted_at(self):
+        """
+        Test kind: unit_tests
+        Original method: Issue.restore
+        """
+        # First soft delete
+        self.issue.soft_delete()
+        self.assertTrue(self.issue.is_deleted())
+        
+        # Then restore
+        self.issue.restore()
+        
+        # Should no longer be marked as deleted
+        self.assertIsNone(self.issue.deleted_at)
+        self.assertFalse(self.issue.is_deleted())
+        
+        # Refresh from database to verify persistence
+        self.issue.refresh_from_db()
+        self.assertIsNone(self.issue.deleted_at)
 
 
 class TestComment(TestCase):

@@ -11,6 +11,7 @@ from django.http import HttpResponse
 from django.utils import timezone
 from issues.middleware import RequestLoggingMiddleware
 from issues.views import log_request_response
+from issues.models import User, Issue
 from src.external_apis.validate_configuration import load_configuration
 
 
@@ -230,3 +231,112 @@ class TestLoadConfiguration(TestCase):
             'github_repository_name': 'test_repo'
         }
         self.assertEqual(result, expected_config)
+
+
+class TestTrackIssueChanges(TestCase):
+    """Test class for track_issue_changes utility function"""
+    
+    def setUp(self):
+        """Set up test data"""
+        self.user = User.objects.create_user(
+            email='editor@example.com',
+            name='Editor User'
+        )
+        self.author = User.objects.create_user(
+            email='author@example.com',
+            name='Author User'
+        )
+        from issues.models import Status
+        self.status = Status.objects.create(name='Open', is_open=True)
+        self.closed_status = Status.objects.create(name='Closed', is_open=False)
+        self.issue = Issue.objects.create(
+            summary='Test Issue',
+            description='Test description',
+            status=self.status,
+            author=self.author
+        )
+    
+    @pytest.mark.timeout(30)
+    def test_track_issue_changes_no_changes(self):
+        """
+        Test kind: unit_tests
+        Original method: track_issue_changes
+        """
+        from issues.forms import IssueForm
+        from issues.views import track_issue_changes
+        from issues.models import IssueEditHistory
+        
+        # Form with no changes
+        form = IssueForm(instance=self.issue, data={
+            'summary': self.issue.summary,
+            'description': self.issue.description,
+            'status': self.issue.status.id,
+            'assignee': None,
+            'tags': []
+        })
+        form.is_valid()
+        
+        initial_count = IssueEditHistory.objects.count()
+        track_issue_changes(self.issue, form, self.user)
+        
+        # Should not create any history records
+        self.assertEqual(IssueEditHistory.objects.count(), initial_count)
+    
+    @pytest.mark.timeout(30)
+    def test_track_issue_changes_summary_change(self):
+        """
+        Test kind: unit_tests
+        Original method: track_issue_changes
+        """
+        from issues.forms import IssueForm
+        from issues.views import track_issue_changes
+        from issues.models import IssueEditHistory
+        
+        # Form with summary change
+        form = IssueForm(instance=self.issue, data={
+            'summary': 'Updated Test Issue',
+            'description': self.issue.description,
+            'status': self.issue.status.id,
+            'assignee': None,
+            'tags': []
+        })
+        form.is_valid()
+        
+        track_issue_changes(self.issue, form, self.user)
+        
+        # Should create one history record
+        history = IssueEditHistory.objects.filter(issue=self.issue).first()
+        self.assertIsNotNone(history)
+        self.assertEqual(history.editor, self.user)
+        self.assertEqual(history.field_name, 'Summary')
+        self.assertEqual(history.old_value, 'Test Issue')
+        self.assertEqual(history.new_value, 'Updated Test Issue')
+    
+    @pytest.mark.timeout(30)
+    def test_track_issue_changes_status_change(self):
+        """
+        Test kind: unit_tests
+        Original method: track_issue_changes
+        """
+        from issues.forms import IssueForm
+        from issues.views import track_issue_changes
+        from issues.models import IssueEditHistory
+        
+        # Form with status change
+        form = IssueForm(instance=self.issue, data={
+            'summary': self.issue.summary,
+            'description': self.issue.description,
+            'status': self.closed_status.id,
+            'assignee': None,
+            'tags': []
+        })
+        form.is_valid()
+        
+        track_issue_changes(self.issue, form, self.user)
+        
+        # Should create one history record for status change
+        history = IssueEditHistory.objects.filter(issue=self.issue, field_name='Status').first()
+        self.assertIsNotNone(history)
+        self.assertEqual(history.editor, self.user)
+        self.assertEqual(history.old_value, str(self.status))
+        self.assertEqual(history.new_value, str(self.closed_status))

@@ -279,6 +279,58 @@ class TestEndpoints(TestCase):
         self.assertEqual(response.status_code, 403)
     
     @pytest.mark.timeout(30)
+    def test_issue_restore_anonymous(self):
+        """
+        Test kind: endpoint_tests
+        Original method: issue_restore
+        """
+        # First delete the issue
+        self.test_issue.soft_delete()
+        
+        response = self.client.post(reverse('issue_restore', args=[self.test_issue.pk]))
+        self.assertEqual(response.status_code, 302)  # Redirect to login
+    
+    @pytest.mark.timeout(30)
+    def test_issue_restore_authorized(self):
+        """
+        Test kind: endpoint_tests
+        Original method: issue_restore
+        """
+        # First delete the issue
+        self.test_issue.soft_delete()
+        
+        self.client.force_login(self.regular_user)
+        response = self.client.post(reverse('issue_restore', args=[self.test_issue.pk]))
+        self.assertEqual(response.status_code, 200)
+        
+        # Check response is JSON
+        data = response.json()
+        self.assertTrue(data['success'])
+        
+        # Check issue was restored
+        self.test_issue.refresh_from_db()
+        self.assertIsNone(self.test_issue.deleted_at)
+        self.assertFalse(self.test_issue.is_deleted())
+    
+    @pytest.mark.timeout(30)
+    def test_issue_restore_unauthorized(self):
+        """
+        Test kind: endpoint_tests
+        Original method: issue_restore
+        """
+        # First delete the issue
+        self.test_issue.soft_delete()
+        
+        other_user = User.objects.create_user(
+            email='other2@example.com',
+            name='Other User 2'
+        )
+        
+        self.client.force_login(other_user)
+        response = self.client.post(reverse('issue_restore', args=[self.test_issue.pk]))
+        self.assertEqual(response.status_code, 403)
+    
+    @pytest.mark.timeout(30)
     def test_comment_create_anonymous(self):
         """
         Test kind: endpoint_tests
