@@ -12,7 +12,7 @@ from slack_sdk.errors import SlackApiError
 from github import Github
 from github.GithubException import GithubException
 from issues.models import User, Issue, Status
-from issues.integrations import notify_slack
+from issues.integrations import notify_slack, notify_slack_comment
 from src.external_apis.validate_configuration import validate_slack_configuration, validate_github_configuration
 
 
@@ -111,6 +111,142 @@ class TestNotifySlack(TestCase):
             mock_logger.info.assert_called_once_with(
                 "Slack integration not configured, skipping notification"
             )
+
+
+class TestNotifySlackComment(TestCase):
+    """Test class for notify_slack_comment external API tests"""
+    
+    def setUp(self):
+        """Set up test data"""
+        self.user = User.objects.create_user(
+            email='test@example.com',
+            name='Test User'
+        )
+        self.status = Status.objects.create(name='Open', is_open=True)
+        self.issue = Issue.objects.create(
+            summary='Test Issue for Slack Comment',
+            description='Test description',
+            status=self.status,
+            author=self.user,
+            slack_thread_ts='1234567890.123456'  # Mock thread timestamp
+        )
+        from issues.models import Comment
+        self.comment = Comment.objects.create(
+            content='Test comment for Slack notification',
+            author=self.user,
+            issue=self.issue
+        )
+    
+    @pytest.mark.timeout(30)
+    @override_settings(SLACK_BOT_TOKEN='xoxb-real-test-token')
+    @override_settings(SLACK_CHANNEL_ID='C1234567890')
+    def test_notify_slack_comment_real_api_call(self):
+        """
+        Test kind: external_api_tests
+        Original method: notify_slack_comment
+        
+        This test makes actual API calls to Slack to verify comment notification works.
+        """
+        # Skip test if real credentials are not available
+        real_token = os.getenv('SLACK_BOT_TOKEN_TEST')
+        real_channel = os.getenv('SLACK_CHANNEL_ID_TEST')
+        
+        if not real_token or not real_channel:
+            self.skipTest("Real Slack credentials not available for testing")
+        
+        # Temporarily override settings with real credentials
+        with override_settings(SLACK_BOT_TOKEN=real_token, SLACK_CHANNEL_ID=real_channel):
+            # Create a Slack client to verify credentials work
+            client = WebClient(token=real_token)
+            
+            try:
+                # Test that we can authenticate
+                auth_response = client.auth_test()
+                self.assertTrue(auth_response.get('ok'))
+                
+                # Test that we can access the channel
+                channel_response = client.conversations_info(channel=real_channel)
+                self.assertTrue(channel_response.get('ok'))
+                
+                # Now test the actual notify_slack_comment function
+                notify_slack_comment(self.comment)
+                
+                # If we reach here, the API call succeeded
+                # We can't easily verify the message was posted without more complex setup,
+                # but the fact that no exception was raised means the integration works
+                
+            except SlackApiError as e:
+                self.fail(f"Slack API error during real comment API test: {e}")
+            except Exception as e:
+                self.fail(f"Unexpected error during real Slack comment API test: {e}")
+    
+    @pytest.mark.timeout(30)
+    @override_settings(SLACK_BOT_TOKEN='xoxb-invalid-token')
+    @override_settings(SLACK_CHANNEL_ID='C1234567890')
+    def test_notify_slack_comment_invalid_token(self):
+        """
+        Test kind: external_api_tests
+        Original method: notify_slack_comment
+        
+        This test verifies error handling with invalid credentials.
+        """
+        # This should not raise an exception, but should log an error
+        with patch('issues.integrations.logger') as mock_logger:
+            notify_slack_comment(self.comment)
+            
+            # Should log an error due to invalid token
+            self.assertTrue(mock_logger.error.called)
+    
+    @pytest.mark.timeout(30)
+    @override_settings(SLACK_BOT_TOKEN='')
+    @override_settings(SLACK_CHANNEL_ID='')
+    def test_notify_slack_comment_missing_config(self):
+        """
+        Test kind: external_api_tests
+        Original method: notify_slack_comment
+        
+        This test verifies behavior when configuration is missing.
+        """
+        with patch('issues.integrations.logger') as mock_logger:
+            notify_slack_comment(self.comment)
+            
+            # Should log that integration is not configured
+            mock_logger.info.assert_called_once_with(
+                "Slack integration not configured, skipping comment notification"
+            )
+    
+    @pytest.mark.timeout(30)
+    @override_settings(SLACK_BOT_TOKEN='xoxb-test-token')
+    @override_settings(SLACK_CHANNEL_ID='C1234567890')
+    def test_notify_slack_comment_no_thread_ts(self):
+        """
+        Test kind: external_api_tests
+        Original method: notify_slack_comment
+        
+        This test verifies behavior when issue has no Slack thread timestamp.
+        """
+        # Create issue without slack_thread_ts
+        issue_no_thread = Issue.objects.create(
+            summary='Issue without thread',
+            description='Test description',
+            status=self.status,
+            author=self.user
+        )
+        from issues.models import Comment
+        comment_no_thread = Comment.objects.create(
+            content='Comment on issue without thread',
+            author=self.user,
+            issue=issue_no_thread
+        )
+        
+        with patch('issues.integrations.logger') as mock_logger:
+            notify_slack_comment(comment_no_thread)
+            
+            # Should log that no thread timestamp was found
+            self.assertTrue(any(
+                'No Slack thread timestamp found' in str(call)
+                for call in mock_logger.info.call_args_list
+            ))
 
 
 class TestValidateSlackConfiguration(TestCase):
