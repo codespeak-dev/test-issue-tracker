@@ -352,6 +352,14 @@
                     "additional_id": null
                 },
                 "timestamp": "2025-08-22T07:12:37.324093+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "6b366e0f-a5aa-4f3c-83a8-847117b6b974",
+                    "phase_id": "GenerateExternalApisConfigValidation",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-22T07:14:20.728007+00:00"
             }
         ],
         "skip_remaining": false
