@@ -48,6 +48,19 @@
                         <span class="text-sm text-gray-900">{{ issue.assignee.name }}</span>
                     </div>
                 {% endif %}
+                {% if issue.tags.exists %}
+                    <div class="flex items-center">
+                        <span class="text-sm text-gray-500 mr-2">Tags:</span>
+                        <div class="flex flex-wrap gap-1">
+                            {% for tag in issue.tags.all %}
+                                <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium text-white" 
+                                      style="background-color: {{ tag.color }};">
+                                    {{ tag.name }}
+                                </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
             </div>
             
             {% if issue.description %}

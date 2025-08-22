@@ -9,8 +9,8 @@ from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
 from django.db.models import Q
-from .models import Issue, Comment, User, Status, Settings
-from .forms import LoginForm, RegisterForm, IssueForm, CommentForm, SettingsForm
+from .models import Issue, Comment, User, Status, Settings, Tag
+from .forms import LoginForm, RegisterForm, IssueForm, CommentForm, SettingsForm, TagForm
 
 
 logger = logging.getLogger('issues')
@@ -18,11 +18,20 @@ logger = logging.getLogger('issues')
 
 def log_request_response(request, response):
     """Helper to log request-response pairs"""
+    # Safely get body size without causing RawPostDataException
+    body_size = 0
+    try:
+        if hasattr(request, 'body'):
+            body_size = len(request.body)
+    except Exception:
+        # If body has been consumed (e.g., by form processing), we can't access it
+        body_size = 0
+    
     log_data = {
         "method": request.method,
         "url": request.get_full_path(),
         "headers": dict(request.headers),
-        "body_size": len(request.body) if hasattr(request, 'body') else 0,
+        "body_size": body_size,
         "response_status": response.status_code,
         "response_headers": dict(response.items()),
         "response_size": len(response.content) if hasattr(response, 'content') else 0,
@@ -36,9 +45,10 @@ def log_request_response(request, response):
 
 
 def issue_list(request):
-    """Homepage - list of all issues with optional search filtering"""
-    issues = Issue.objects.select_related('status', 'author', 'assignee').all()
+    """Homepage - list of all issues with optional search and tag filtering"""
+    issues = Issue.objects.select_related('status', 'author', 'assignee').prefetch_related('tags').all()
     search_query = request.GET.get('search', '').strip()
+    selected_tags = request.GET.getlist('tags')
     
     if search_query:
         # Filter issues by search term in summary or description (case-insensitive)
@@ -47,9 +57,18 @@ def issue_list(request):
             Q(description__icontains=search_query)
         )
     
+    if selected_tags:
+        # Filter issues by selected tags (OR logic - issues that have at least one of the selected tags)
+        issues = issues.filter(tags__id__in=selected_tags).distinct()
+    
+    # Get all tags for the filter dropdown
+    all_tags = Tag.objects.all()
+    
     response = render(request, 'issues/issue_list.html', {
         'issues': issues,
-        'search_query': search_query
+        'search_query': search_query,
+        'selected_tags': selected_tags,
+        'all_tags': all_tags,
     })
     log_request_response(request, response)
     return response
@@ -57,7 +76,7 @@ def issue_list(request):
 
 def issue_detail(request, pk):
     """Issue detail view with comments"""
-    issue = get_object_or_404(Issue.objects.select_related('status', 'author', 'assignee'), pk=pk)
+    issue = get_object_or_404(Issue.objects.select_related('status', 'author', 'assignee').prefetch_related('tags'), pk=pk)
     comments = issue.comments.select_related('author').all()
     
     comment_form = CommentForm() if request.user.is_authenticated else None
@@ -277,5 +296,80 @@ def settings_view(request):
         form = SettingsForm(instance=settings_obj)
         response = render(request, 'issues/settings.html', {'form': form})
     
+    log_request_response(request, response)
+    return response
+
+
+@login_required
+def tag_list(request):
+    """List all tags"""
+    tags = Tag.objects.all()
+    
+    response = render(request, 'issues/tag_list.html', {
+        'tags': tags
+    })
+    log_request_response(request, response)
+    return response
+
+
+@login_required
+def tag_create(request):
+    """Create new tag"""
+    if request.method == 'POST':
+        form = TagForm(request.POST)
+        if form.is_valid():
+            tag = form.save()
+            messages.success(request, f'Tag "{tag.name}" created successfully!')
+            response = redirect('tag_list')
+        else:
+            response = render(request, 'issues/tag_form.html', {'form': form, 'title': 'Create Tag'})
+    else:
+        form = TagForm()
+        response = render(request, 'issues/tag_form.html', {'form': form, 'title': 'Create Tag'})
+    
+    log_request_response(request, response)
+    return response
+
+
+@login_required
+def tag_edit(request, pk):
+    """Edit existing tag"""
+    tag = get_object_or_404(Tag, pk=pk)
+    
+    if request.method == 'POST':
+        form = TagForm(request.POST, instance=tag)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Tag "{tag.name}" updated successfully!')
+            response = redirect('tag_list')
+        else:
+            response = render(request, 'issues/tag_form.html', {
+                'form': form, 
+                'title': 'Edit Tag',
+                'tag': tag
+            })
+    else:
+        form = TagForm(instance=tag)
+        response = render(request, 'issues/tag_form.html', {
+            'form': form, 
+            'title': 'Edit Tag',
+            'tag': tag
+        })
+    
+    log_request_response(request, response)
+    return response
+
+
+@login_required
+@require_http_methods(["DELETE"])
+def tag_delete(request, pk):
+    """Delete tag (AJAX endpoint)"""
+    tag = get_object_or_404(Tag, pk=pk)
+    
+    tag_name = tag.name
+    tag.delete()
+    messages.success(request, f'Tag "{tag_name}" deleted successfully!')
+    
+    response = JsonResponse({'success': True})
     log_request_response(request, response)
     return response

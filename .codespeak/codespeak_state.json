@@ -45,7 +45,7 @@
         },
         "external_apis": "external_apis.json",
         "methods_to_test": "methods_to_test.json",
-        "spec_diff": "--- +++ @@ -51,6 +51,7 @@   - if no registered, sign up\n - See list of issues\n   - summary, status, author, updated_at\n+ - filter by free-form text (match with summary and description)\n - Open issue\n   - see all the details and comments\n \n"
+        "spec_diff": "--- +++ @@ -79,6 +79,7 @@ \n - Configured in Settings\n - When a new issue is created, a message is posted to the channel\n+  - when a comment is added, a message is posted to the thread started by the issue creation notification\n \n ## Github\n \n"
     },
     "phase_manager": {
         "history": [
@@ -224,6 +224,182 @@
                     "additional_id": null
                 },
                 "timestamp": "2025-08-21T22:26:07.005238+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "c95e317c-5ef4-461c-8ed1-e7c4037a66f2",
+                    "phase_id": "Init",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:31:08.036663+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "c95e317c-5ef4-461c-8ed1-e7c4037a66f2",
+                    "phase_id": "ProcessSpec",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:31:08.160816+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "c95e317c-5ef4-461c-8ed1-e7c4037a66f2",
+                    "phase_id": "EvaluateCriteria",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:31:21.183767+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "c95e317c-5ef4-461c-8ed1-e7c4037a66f2",
+                    "phase_id": "AnalyzeExternalApis",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:31:41.270061+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "c95e317c-5ef4-461c-8ed1-e7c4037a66f2",
+                    "phase_id": "CheckExternalApisConfigurationFile",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:31:41.355597+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "c95e317c-5ef4-461c-8ed1-e7c4037a66f2",
+                    "phase_id": "GenerateExternalApisConfigValidation",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T22:55:55.054102+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "c95e317c-5ef4-461c-8ed1-e7c4037a66f2",
+                    "phase_id": "ImplementSpecWithClaudeCode",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T23:03:46.693222+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "c95e317c-5ef4-461c-8ed1-e7c4037a66f2",
+                    "phase_id": "FeedbackLoopWithClaudeCode",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T23:03:47.768298+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "c95e317c-5ef4-461c-8ed1-e7c4037a66f2",
+                    "phase_id": "AnalyzeAndPlanTests",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T23:04:01.049268+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "c95e317c-5ef4-461c-8ed1-e7c4037a66f2",
+                    "phase_id": "GenerateAndRunTests",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T23:08:27.431972+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "c95e317c-5ef4-461c-8ed1-e7c4037a66f2",
+                    "phase_id": "Done",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-21T23:08:27.519060+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "6b366e0f-a5aa-4f3c-83a8-847117b6b974",
+                    "phase_id": "Init",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-22T07:12:03.625989+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "6b366e0f-a5aa-4f3c-83a8-847117b6b974",
+                    "phase_id": "ProcessSpec",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-22T07:12:03.745142+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "6b366e0f-a5aa-4f3c-83a8-847117b6b974",
+                    "phase_id": "EvaluateCriteria",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-22T07:12:16.745791+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "6b366e0f-a5aa-4f3c-83a8-847117b6b974",
+                    "phase_id": "AnalyzeExternalApis",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-22T07:12:37.231615+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "6b366e0f-a5aa-4f3c-83a8-847117b6b974",
+                    "phase_id": "CheckExternalApisConfigurationFile",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-22T07:12:37.324093+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "6b366e0f-a5aa-4f3c-83a8-847117b6b974",
+                    "phase_id": "GenerateExternalApisConfigValidation",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-22T07:14:20.728007+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "6b366e0f-a5aa-4f3c-83a8-847117b6b974",
+                    "phase_id": "ImplementSpecWithClaudeCode",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-22T07:21:48.379772+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "6b366e0f-a5aa-4f3c-83a8-847117b6b974",
+                    "phase_id": "FeedbackLoopWithClaudeCode",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-22T07:21:49.588648+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "6b366e0f-a5aa-4f3c-83a8-847117b6b974",
+                    "phase_id": "AnalyzeAndPlanTests",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-22T07:22:01.049112+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "6b366e0f-a5aa-4f3c-83a8-847117b6b974",
+                    "phase_id": "GenerateAndRunTests",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-22T07:26:03.952453+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "6b366e0f-a5aa-4f3c-83a8-847117b6b974",
+                    "phase_id": "Done",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-22T07:26:04.029662+00:00"
             }
         ],
         "skip_remaining": false

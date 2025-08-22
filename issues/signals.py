@@ -6,8 +6,8 @@ import json
 import logging
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from .models import Issue
-from .integrations import notify_slack
+from .models import Issue, Comment
+from .integrations import notify_slack, notify_slack_comment
 
 
 logger = logging.getLogger('issues')
@@ -17,13 +17,32 @@ logger = logging.getLogger('issues')
 def issue_created(sender, instance, created, **kwargs):
     """Signal handler for when an issue is created"""
     if created:
-        # Send Slack notification for new issues
-        notify_slack(instance)
+        # Send Slack notification for new issues and store thread timestamp
+        thread_ts = notify_slack(instance)
+        if thread_ts and isinstance(thread_ts, str):
+            # Update the field directly in the database to avoid infinite signal recursion
+            Issue.objects.filter(pk=instance.pk).update(slack_thread_ts=thread_ts)
         
         # Log issue creation
         logger.info(json.dumps({
             "event": "issue_created", 
             "issue_id": instance.id, 
             "summary": instance.summary,
+            "author": instance.author.email
+        }))
+
+
+@receiver(post_save, sender=Comment)
+def comment_created(sender, instance, created, **kwargs):
+    """Signal handler for when a comment is created"""
+    if created:
+        # Send Slack notification for new comments
+        notify_slack_comment(instance)
+        
+        # Log comment creation
+        logger.info(json.dumps({
+            "event": "comment_created", 
+            "comment_id": instance.id, 
+            "issue_id": instance.issue.id,
             "author": instance.author.email
         }))
