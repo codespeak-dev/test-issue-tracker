@@ -45,7 +45,7 @@
         },
         "external_apis": "external_apis.json",
         "methods_to_test": "methods_to_test.json",
-        "spec_diff": "--- +++ @@ -17,6 +17,7 @@     - updated_at\n     - assignee\n     - comments\n+    - tags\n \n - Statuses\n     - name\n@@ -34,6 +35,9 @@     - created_at\n     - updated_at\n \n+ - Tags\n+     - name\n+     - color\n \n # Users and authentication\n \n@@ -64,6 +68,10 @@ - Edit issue\n   - not editable: author, created_at, updated_at\n - Edit comment\n+- Add tag\n+- Edit tag\n+- Remove tag\n+- Filter by tag\n \n # Integrations\n \n"
+        "spec_diff": "--- +++ @@ -79,6 +79,7 @@ \n - Configured in Settings\n - When a new issue is created, a message is posted to the channel\n+  - when a comment is added, a message is posted to the thread started by the issue creation notification\n \n ## Github\n \n"
     },
     "phase_manager": {
         "history": [
@@ -320,6 +320,14 @@
                     "additional_id": null
                 },
                 "timestamp": "2025-08-22T07:12:03.625989+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "6b366e0f-a5aa-4f3c-83a8-847117b6b974",
+                    "phase_id": "ProcessSpec",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-22T07:12:03.745142+00:00"
             }
         ],
         "skip_remaining": false

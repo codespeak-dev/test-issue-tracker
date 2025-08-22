@@ -79,6 +79,7 @@ If the user is logged in, they see a "Log out" button in the top right corner ne
 
 - Configured in Settings
 - When a new issue is created, a message is posted to the channel
+  - when a comment is added, a message is posted to the thread started by the issue creation notification
 
 ## Github
 
