@@ -209,7 +209,7 @@ class TestEndpoints(TestCase):
         
         self.client.force_login(other_user)
         response = self.client.get(reverse('issue_edit', args=[self.test_issue.pk]))
-        self.assertEqual(response.status_code, 403)  # Forbidden
+        self.assertEqual(response.status_code, 200)  # Now anyone can edit
     
     @pytest.mark.timeout(30)
     def test_issue_edit_post_valid(self):

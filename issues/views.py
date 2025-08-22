@@ -9,7 +9,7 @@ from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
 from django.db.models import Q
-from .models import Issue, Comment, User, Status, Settings, Tag
+from .models import Issue, Comment, User, Status, Settings, Tag, IssueEditHistory
 from .forms import LoginForm, RegisterForm, IssueForm, CommentForm, SettingsForm, TagForm
 
 
@@ -76,15 +76,18 @@ def issue_list(request):
 
 def issue_detail(request, pk):
     """Issue detail view with comments"""
-    issue = get_object_or_404(Issue.objects.select_related('status', 'author', 'assignee').prefetch_related('tags'), pk=pk)
+    # Use with_deleted to show deleted issues too (but they will be marked as such)
+    issue = get_object_or_404(Issue.objects.with_deleted().select_related('status', 'author', 'assignee').prefetch_related('tags'), pk=pk)
     comments = issue.comments.select_related('author').all()
+    edit_history = issue.edit_history.select_related('editor').all()[:10]  # Show last 10 edits
     
     comment_form = CommentForm() if request.user.is_authenticated else None
     
     response = render(request, 'issues/issue_detail.html', {
         'issue': issue,
         'comments': comments,
-        'comment_form': comment_form
+        'comment_form': comment_form,
+        'edit_history': edit_history
     })
     log_request_response(request, response)
     return response
@@ -115,18 +118,15 @@ def issue_create(request):
 
 @login_required
 def issue_edit(request, pk):
-    """Edit existing issue"""
-    issue = get_object_or_404(Issue, pk=pk)
-    
-    # Only author can edit issue
-    if issue.author != request.user:
-        response = HttpResponseForbidden("You can only edit your own issues.")
-        log_request_response(request, response)
-        return response
+    """Edit existing issue - anyone can edit"""
+    # Use with_deleted to allow editing deleted issues too
+    issue = get_object_or_404(Issue.objects.with_deleted(), pk=pk)
     
     if request.method == 'POST':
         form = IssueForm(request.POST, instance=issue)
         if form.is_valid():
+            # Track changes before saving
+            track_issue_changes(issue, form, request.user)
             form.save()
             messages.success(request, 'Issue updated successfully!')
             response = redirect('issue_detail', pk=issue.pk)
@@ -151,7 +151,7 @@ def issue_edit(request, pk):
 @login_required
 @require_http_methods(["DELETE"])
 def issue_delete(request, pk):
-    """Delete issue (AJAX endpoint)"""
+    """Soft delete issue (AJAX endpoint)"""
     issue = get_object_or_404(Issue, pk=pk)
     
     # Only author can delete issue
@@ -160,8 +160,28 @@ def issue_delete(request, pk):
         log_request_response(request, response)
         return response
     
-    issue.delete()
+    issue.soft_delete()
     messages.success(request, 'Issue deleted successfully!')
+    
+    response = JsonResponse({'success': True})
+    log_request_response(request, response)
+    return response
+
+
+@login_required
+@require_http_methods(["POST"])
+def issue_restore(request, pk):
+    """Restore soft-deleted issue (AJAX endpoint)"""
+    issue = get_object_or_404(Issue.objects.deleted_only(), pk=pk)
+    
+    # Only author can restore issue
+    if issue.author != request.user:
+        response = JsonResponse({'error': 'You can only restore your own issues.'}, status=403)
+        log_request_response(request, response)
+        return response
+    
+    issue.restore()
+    messages.success(request, 'Issue restored successfully!')
     
     response = JsonResponse({'success': True})
     log_request_response(request, response)
@@ -171,7 +191,7 @@ def issue_delete(request, pk):
 @login_required
 def comment_create(request, issue_pk):
     """Add comment to issue"""
-    issue = get_object_or_404(Issue, pk=issue_pk)
+    issue = get_object_or_404(Issue.objects.with_deleted(), pk=issue_pk)
     
     if request.method == 'POST':
         form = CommentForm(request.POST)
@@ -373,3 +393,48 @@ def tag_delete(request, pk):
     response = JsonResponse({'success': True})
     log_request_response(request, response)
     return response
+
+
+def track_issue_changes(issue, form, editor):
+    """Track changes made to an issue"""
+    if not form.has_changed():
+        return
+    
+    # Map form fields to display names
+    field_display_names = {
+        'summary': 'Summary',
+        'description': 'Description', 
+        'status': 'Status',
+        'assignee': 'Assignee',
+        'tags': 'Tags'
+    }
+    
+    for field_name in form.changed_data:
+        old_value = ''
+        new_value = ''
+        
+        if field_name == 'tags':
+            # Handle ManyToMany field specially
+            old_tags = list(issue.tags.all())
+            new_tags = form.cleaned_data['tags']
+            old_value = ', '.join([tag.name for tag in old_tags])
+            new_value = ', '.join([tag.name for tag in new_tags])
+        else:
+            # Get old value
+            old_field_value = getattr(issue, field_name)
+            if old_field_value is not None:
+                old_value = str(old_field_value)
+            
+            # Get new value
+            new_field_value = form.cleaned_data.get(field_name)
+            if new_field_value is not None:
+                new_value = str(new_field_value)
+        
+        # Create history record
+        IssueEditHistory.objects.create(
+            issue=issue,
+            editor=editor,
+            field_name=field_display_names.get(field_name, field_name),
+            old_value=old_value,
+            new_value=new_value
+        )
