@@ -1,5 +1,21 @@
 [
     {
+        "full_qualified_name": "issues.signals.issue_created",
+        "kind": "other"
+    },
+    {
+        "full_qualified_name": "issues.signals.comment_created",
+        "kind": "other"
+    },
+    {
+        "full_qualified_name": "notify_slack",
+        "kind": "external_api_tests"
+    },
+    {
+        "full_qualified_name": "notify_slack_comment",
+        "kind": "external_api_tests"
+    },
+    {
         "full_qualified_name": "LoginForm.clean_email",
         "kind": "unit_tests"
     },
@@ -9,6 +25,14 @@
     },
     {
         "full_qualified_name": "IssueForm.__init__",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "RequestLoggingMiddleware.process_request",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "RequestLoggingMiddleware.process_response",
         "kind": "unit_tests"
     },
     {
@@ -56,11 +80,35 @@
         "kind": "unit_tests"
     },
     {
+        "full_qualified_name": "IssueManager.get_queryset",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "IssueManager.with_deleted",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "IssueManager.deleted_only",
+        "kind": "unit_tests"
+    },
+    {
         "full_qualified_name": "Issue.get_absolute_url",
         "kind": "unit_tests"
     },
     {
         "full_qualified_name": "Issue.description_html",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "Issue.is_deleted",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "Issue.soft_delete",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "Issue.restore",
         "kind": "unit_tests"
     },
     {
@@ -77,30 +125,6 @@
     },
     {
         "full_qualified_name": "Settings.load",
-        "kind": "unit_tests"
-    },
-    {
-        "full_qualified_name": "notify_slack",
-        "kind": "external_api_tests"
-    },
-    {
-        "full_qualified_name": "notify_slack_comment",
-        "kind": "external_api_tests"
-    },
-    {
-        "full_qualified_name": "issues.signals.issue_created",
-        "kind": "other"
-    },
-    {
-        "full_qualified_name": "issues.signals.comment_created",
-        "kind": "other"
-    },
-    {
-        "full_qualified_name": "RequestLoggingMiddleware.process_request",
-        "kind": "unit_tests"
-    },
-    {
-        "full_qualified_name": "RequestLoggingMiddleware.process_response",
         "kind": "unit_tests"
     },
     {
@@ -125,6 +149,10 @@
     },
     {
         "full_qualified_name": "issue_delete",
+        "kind": "endpoint_tests"
+    },
+    {
+        "full_qualified_name": "issue_restore",
         "kind": "endpoint_tests"
     },
     {
@@ -166,5 +194,9 @@
     {
         "full_qualified_name": "tag_delete",
         "kind": "endpoint_tests"
+    },
+    {
+        "full_qualified_name": "track_issue_changes",
+        "kind": "unit_tests"
     }
 ]
