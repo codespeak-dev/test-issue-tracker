@@ -511,6 +511,15 @@
                     "additional_id": null
                 },
                 "timestamp": "2025-08-22T09:06:35.896764+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "d1b11830-2f6a-43ac-a8f8-335429e4987b",
+                    "phase_id": "AnalyzeExternalApis",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-22T09:06:50.149504+00:00",
+                "error": "KeyboardInterrupt: "
             }
         ],
         "skip_remaining": false
