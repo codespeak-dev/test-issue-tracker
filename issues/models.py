@@ -89,6 +89,7 @@ class Issue(models.Model):
         related_name='assigned_issues'
     )
     tags = models.ManyToManyField(Tag, blank=True, related_name='issues')
+    slack_thread_ts = models.CharField(max_length=50, blank=True, null=True, help_text="Slack thread timestamp for notifications")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
