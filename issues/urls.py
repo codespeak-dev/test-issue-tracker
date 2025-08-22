@@ -20,4 +20,10 @@ urlpatterns = [
     
     # Settings view
     path('settings/', views.settings_view, name='settings'),
+    
+    # Tag management views
+    path('tags/', views.tag_list, name='tag_list'),
+    path('tags/new/', views.tag_create, name='tag_create'),
+    path('tags/<int:pk>/edit/', views.tag_edit, name='tag_edit'),
+    path('tags/<int:pk>/delete/', views.tag_delete, name='tag_delete'),
 ]

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, Status, Issue, Comment, Settings
+from .models import User, Status, Issue, Comment, Settings, Tag
 
 
 @admin.register(User)
@@ -16,16 +16,28 @@ class StatusAdmin(admin.ModelAdmin):
     list_filter = ('is_open',)
 
 
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ('name', 'color', 'issue_count')
+    search_fields = ('name',)
+    ordering = ('name',)
+    
+    def issue_count(self, obj):
+        return obj.issues.count()
+    issue_count.short_description = 'Issues'
+
+
 @admin.register(Issue)
 class IssueAdmin(admin.ModelAdmin):
     list_display = ('summary', 'status', 'author', 'assignee', 'created_at', 'updated_at')
-    list_filter = ('status', 'created_at', 'updated_at')
+    list_filter = ('status', 'tags', 'created_at', 'updated_at')
     search_fields = ('summary', 'description')
     raw_id_fields = ('author', 'assignee')
     readonly_fields = ('created_at', 'updated_at')
+    filter_horizontal = ('tags',)
     
     def get_queryset(self, request):
-        return super().get_queryset(request).select_related('status', 'author', 'assignee')
+        return super().get_queryset(request).select_related('status', 'author', 'assignee').prefetch_related('tags')
 
 
 @admin.register(Comment)

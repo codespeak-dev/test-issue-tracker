@@ -61,6 +61,19 @@ class Status(models.Model):
         return self.name
 
 
+class Tag(models.Model):
+    """Tag model for categorizing issues"""
+    
+    name = models.CharField(max_length=50, unique=True)
+    color = models.CharField(max_length=7, default='#6B7280')  # Hex color code
+    
+    class Meta:
+        ordering = ['name']
+    
+    def __str__(self):
+        return self.name
+
+
 class Issue(models.Model):
     """Issue model"""
     
@@ -75,6 +88,7 @@ class Issue(models.Model):
         blank=True, 
         related_name='assigned_issues'
     )
+    tags = models.ManyToManyField(Tag, blank=True, related_name='issues')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     

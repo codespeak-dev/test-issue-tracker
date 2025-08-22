@@ -64,6 +64,24 @@
                     </div>
                 </div>
                 
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">
+                        Tags
+                    </label>
+                    <div class="mt-2 space-y-2">
+                        {{ form.tags }}
+                    </div>
+                    {% if form.tags.errors %}
+                        <p class="mt-2 text-sm text-red-600">{{ form.tags.errors.0 }}</p>
+                    {% endif %}
+                    <p class="mt-2 text-sm text-gray-500">
+                        Select tags to categorize this issue.
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'tag_create' %}" class="text-primary-600 hover:text-primary-500">Create new tag</a>
+                        {% endif %}
+                    </p>
+                </div>
+                
                 <div class="flex justify-end space-x-3">
                     <a href="{% if issue %}{% url 'issue_detail' issue.pk %}{% else %}{% url 'issue_list' %}{% endif %}" 
                        class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
