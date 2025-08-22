@@ -440,6 +440,14 @@
                     "additional_id": null
                 },
                 "timestamp": "2025-08-22T07:32:04.741369+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "9d7b8235-e5b5-4595-87c8-5aed6f4b962a",
+                    "phase_id": "GenerateExternalApisConfigValidation",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-22T07:32:35.299098+00:00"
             }
         ],
         "skip_remaining": false
