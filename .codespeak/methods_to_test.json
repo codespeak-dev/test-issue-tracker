@@ -1,6 +1,26 @@
 [
     {
-        "full_qualified_name": "issues.signals.issue_created",
+        "full_qualified_name": "LoginForm.clean_email",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "RegisterForm.clean_email",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "IssueForm.__init__",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "Command.handle",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "Command.poll_github",
+        "kind": "unit_tests"
+    },
+    {
+        "full_qualified_name": "Command.process_commit",
         "kind": "unit_tests"
     },
     {
@@ -18,30 +38,6 @@
     {
         "full_qualified_name": "validate_configuration",
         "kind": "other"
-    },
-    {
-        "full_qualified_name": "notify_slack",
-        "kind": "external_api_tests"
-    },
-    {
-        "full_qualified_name": "Command.handle",
-        "kind": "unit_tests"
-    },
-    {
-        "full_qualified_name": "Command.poll_github",
-        "kind": "unit_tests"
-    },
-    {
-        "full_qualified_name": "Command.process_commit",
-        "kind": "unit_tests"
-    },
-    {
-        "full_qualified_name": "RequestLoggingMiddleware.process_request",
-        "kind": "unit_tests"
-    },
-    {
-        "full_qualified_name": "RequestLoggingMiddleware.process_response",
-        "kind": "unit_tests"
     },
     {
         "full_qualified_name": "UserManager.create_user",
@@ -84,15 +80,31 @@
         "kind": "unit_tests"
     },
     {
-        "full_qualified_name": "LoginForm.clean_email",
+        "full_qualified_name": "notify_slack",
+        "kind": "external_api_tests"
+    },
+    {
+        "full_qualified_name": "notify_slack_comment",
+        "kind": "external_api_tests"
+    },
+    {
+        "full_qualified_name": "issues.signals.issue_created",
+        "kind": "other"
+    },
+    {
+        "full_qualified_name": "issues.signals.comment_created",
+        "kind": "other"
+    },
+    {
+        "full_qualified_name": "RequestLoggingMiddleware.process_request",
         "kind": "unit_tests"
     },
     {
-        "full_qualified_name": "RegisterForm.clean_email",
+        "full_qualified_name": "RequestLoggingMiddleware.process_response",
         "kind": "unit_tests"
     },
     {
-        "full_qualified_name": "IssueForm.__init__",
+        "full_qualified_name": "log_request_response",
         "kind": "unit_tests"
     },
     {
