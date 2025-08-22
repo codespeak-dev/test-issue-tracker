@@ -74,6 +74,22 @@ class Tag(models.Model):
         return self.name
 
 
+class IssueManager(models.Manager):
+    """Custom manager for Issue model to handle soft deletes"""
+    
+    def get_queryset(self):
+        """Return only non-deleted issues by default"""
+        return super().get_queryset().filter(deleted_at__isnull=True)
+    
+    def with_deleted(self):
+        """Return all issues including deleted ones"""
+        return super().get_queryset()
+    
+    def deleted_only(self):
+        """Return only deleted issues"""
+        return super().get_queryset().filter(deleted_at__isnull=False)
+
+
 class Issue(models.Model):
     """Issue model"""
     
@@ -90,14 +106,18 @@ class Issue(models.Model):
     )
     tags = models.ManyToManyField(Tag, blank=True, related_name='issues')
     slack_thread_ts = models.CharField(max_length=50, blank=True, null=True, help_text="Slack thread timestamp for notifications")
+    deleted_at = models.DateTimeField(null=True, blank=True, help_text="Timestamp when issue was deleted (null = not deleted)")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    objects = IssueManager()
     
     class Meta:
         ordering = ['-updated_at']
     
     def __str__(self):
-        return self.summary
+        prefix = "[DELETED] " if self.deleted_at else ""
+        return f"{prefix}{self.summary}"
     
     def get_absolute_url(self):
         return reverse('issue_detail', args=[self.id])
@@ -105,6 +125,21 @@ class Issue(models.Model):
     def description_html(self):
         """Convert markdown description to HTML"""
         return markdown.markdown(self.description, safe_mode='escape')
+    
+    def is_deleted(self):
+        """Check if issue is deleted"""
+        return self.deleted_at is not None
+    
+    def soft_delete(self):
+        """Soft delete the issue"""
+        from django.utils import timezone
+        self.deleted_at = timezone.now()
+        self.save(update_fields=['deleted_at'])
+    
+    def restore(self):
+        """Restore a soft-deleted issue"""
+        self.deleted_at = None
+        self.save(update_fields=['deleted_at'])
 
 
 class Comment(models.Model):
@@ -125,6 +160,23 @@ class Comment(models.Model):
     def content_html(self):
         """Convert markdown content to HTML"""
         return markdown.markdown(self.content, safe_mode='escape')
+
+
+class IssueEditHistory(models.Model):
+    """Track issue edit history"""
+    
+    issue = models.ForeignKey(Issue, on_delete=models.CASCADE, related_name='edit_history')
+    editor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='issue_edits')
+    field_name = models.CharField(max_length=100, help_text="Name of the field that was edited")
+    old_value = models.TextField(blank=True, help_text="Previous value of the field")
+    new_value = models.TextField(blank=True, help_text="New value of the field")
+    edited_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-edited_at']
+    
+    def __str__(self):
+        return f'{self.editor.name} edited {self.field_name} on {self.issue.summary}'
 
 
 class Settings(models.Model):

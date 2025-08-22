@@ -64,10 +64,11 @@ If the user is logged in, they see a "Log out" button in the top right corner ne
 - Create new issue
   - default status is Open
 - Delete issue
-//  - only the author can delete the issue
+  - Restore deteled issue
 - Add comment
 - Edit issue
   - not editable: author, created_at, updated_at
+  - anyone can edit an issue, but the history of who edited and when is preserved
 - Edit comment
 - Add tag
 - Edit tag

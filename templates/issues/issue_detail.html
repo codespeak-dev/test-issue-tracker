@@ -10,7 +10,22 @@
         <div class="px-4 py-5 sm:p-6">
             <div class="flex items-start justify-between">
                 <div class="flex-1">
-                    <h1 class="text-2xl font-bold text-gray-900">{{ issue.summary }}</h1>
+                    {% if issue.is_deleted %}
+                        <div class="mb-3 rounded-md bg-red-50 p-4">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" /></svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm text-red-800">
+                                        This issue has been deleted on {{ issue.deleted_at|date:"M d, Y \a\t H:i" }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <h1 class="text-2xl font-bold {% if issue.is_deleted %}text-gray-500 line-through{% else %}text-gray-900{% endif %}">{{ issue.summary }}</h1>
                     <div class="mt-2 flex items-center space-x-4 text-sm text-gray-500">
                         <span>#{{ issue.id }}</span>
                         <span>•</span>
@@ -21,16 +36,23 @@
                         {% endif %}
                     </div>
                 </div>
-                {% if user.is_authenticated and issue.author == user %}
+                {% if user.is_authenticated %}
                     <div class="ml-4 flex space-x-2">
                         <a href="{% url 'issue_edit' issue.pk %}" 
                            class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                             Edit
                         </a>
-                        <button onclick="deleteIssue({{ issue.id }})" 
-                                class="inline-flex items-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500">
-                            Delete
-                        </button>
+                        {% if issue.is_deleted and issue.author == user %}
+                            <button onclick="restoreIssue({{ issue.id }})" 
+                                    class="inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500">
+                                Restore
+                            </button>
+                        {% elif not issue.is_deleted and issue.author == user %}
+                            <button onclick="deleteIssue({{ issue.id }})" 
+                                    class="inline-flex items-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500">
+                                Delete
+                            </button>
+                        {% endif %}
                     </div>
                 {% endif %}
             </div>
@@ -73,6 +95,47 @@
             {% endif %}
         </div>
     </div>
+
+    <!-- Edit History section -->
+    {% if edit_history %}
+        <div class="bg-white shadow rounded-lg">
+            <div class="px-4 py-5 sm:p-6">
+                <h3 class="text-lg font-medium text-gray-900">
+                    Edit History
+                </h3>
+                <div class="mt-4 space-y-3">
+                    {% for edit in edit_history %}
+                        <div class="flex items-start justify-between border-l-4 border-blue-200 pl-4">
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-2 text-sm">
+                                    <span class="font-medium text-gray-900">{{ edit.editor.name }}</span>
+                                    <span class="text-gray-500">edited</span>
+                                    <span class="font-medium text-blue-600">{{ edit.field_name }}</span>
+                                    <span class="text-gray-500">on {{ edit.edited_at|date:"M d, Y \a\t H:i" }}</span>
+                                </div>
+                                {% if edit.old_value or edit.new_value %}
+                                    <div class="mt-2 text-sm">
+                                        {% if edit.old_value %}
+                                            <div class="mb-1">
+                                                <span class="text-gray-500">From:</span>
+                                                <span class="text-red-600 bg-red-50 px-2 py-1 rounded">{{ edit.old_value|truncatechars:100 }}</span>
+                                            </div>
+                                        {% endif %}
+                                        {% if edit.new_value %}
+                                            <div>
+                                                <span class="text-gray-500">To:</span>
+                                                <span class="text-green-600 bg-green-50 px-2 py-1 rounded">{{ edit.new_value|truncatechars:100 }}</span>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
 
     <!-- Comments section -->
     <div class="bg-white shadow rounded-lg">

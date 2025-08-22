@@ -8,6 +8,7 @@ urlpatterns = [
     path('issue/new/', views.issue_create, name='issue_create'),
     path('issue/<int:pk>/edit/', views.issue_edit, name='issue_edit'),
     path('issue/<int:pk>/delete/', views.issue_delete, name='issue_delete'),
+    path('issue/<int:pk>/restore/', views.issue_restore, name='issue_restore'),
     
     # Comment views
     path('issue/<int:issue_pk>/comment/', views.comment_create, name='comment_create'),
