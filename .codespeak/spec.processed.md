@@ -75,6 +75,13 @@ If the user is logged in, they see a "Log out" button in the top right corner ne
 - Remove tag
 - Filter by tag
 
+## Settings
+
+- Slack
+- GitHub
+- Users
+  - admin rights
+
 # Integrations
 
 ## Slack

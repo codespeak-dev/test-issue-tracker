@@ -45,7 +45,7 @@
         },
         "external_apis": "external_apis.json",
         "methods_to_test": "methods_to_test.json",
-        "spec_diff": "--- +++ @@ -64,9 +64,11 @@ - Create new issue\n   - default status is Open\n - Delete issue\n+  - Restore deteled issue\n - Add comment\n - Edit issue\n   - not editable: author, created_at, updated_at\n+  - anyone can edit an issue, but the history of who edited and when is preserved\n - Edit comment\n - Add tag\n - Edit tag\n"
+        "spec_diff": "--- +++ @@ -75,6 +75,13 @@ - Remove tag\n - Filter by tag\n \n+## Settings\n+\n+- Slack\n+- GitHub\n+- Users\n+  - admin rights\n+\n # Integrations\n \n ## Slack\n"
     },
     "phase_manager": {
         "history": [
@@ -496,6 +496,14 @@
                     "additional_id": null
                 },
                 "timestamp": "2025-08-22T09:06:23.787709+00:00"
+            },
+            {
+                "checkpoint": {
+                    "run_id": "d1b11830-2f6a-43ac-a8f8-335429e4987b",
+                    "phase_id": "ProcessSpec",
+                    "additional_id": null
+                },
+                "timestamp": "2025-08-22T09:06:23.909567+00:00"
             }
         ],
         "skip_remaining": false
