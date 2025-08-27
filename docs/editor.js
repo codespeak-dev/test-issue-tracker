@@ -114,6 +114,9 @@
     function handleEditKeydown(e) {
         if (e.key === 'Escape') {
             stopEditing();
+        } else if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault();
+            stopEditing();
         }
     }
     
