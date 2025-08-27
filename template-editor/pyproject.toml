@@ -1,0 +1,23 @@
+[project]
+name = "template-editor"
+version = "0.1.0"
+description = "WYSIWYG Django template editor"
+authors = [{name = "Claude", email = "claude@anthropic.com"}]
+requires-python = ">=3.9"
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "django>=4.2.0",
+    "beautifulsoup4>=4.12.0",
+    "google-generativeai>=0.3.0",
+    "python-dotenv>=1.0.0",
+    "lxml>=4.9.0",
+    "jinja2>=3.1.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = []
