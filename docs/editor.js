@@ -4,6 +4,7 @@
     let isEditMode = false;
     let editIcon = null;
     let currentHighlighted = null;
+    let currentEditor = null;
     
     function createEditIcon() {
         editIcon = document.createElement('div');
@@ -39,12 +40,15 @@
             editIcon.style.color = '#fff';
             document.addEventListener('mousemove', highlightElement);
             document.addEventListener('mouseleave', clearHighlight);
+            document.addEventListener('click', handleElementClick);
         } else {
             editIcon.style.background = '#fff';
             editIcon.style.color = '#333';
             document.removeEventListener('mousemove', highlightElement);
             document.removeEventListener('mouseleave', clearHighlight);
+            document.removeEventListener('click', handleElementClick);
             clearHighlight();
+            closeEditor();
         }
     }
     
@@ -66,6 +70,71 @@
             currentHighlighted.style.outline = '';
             currentHighlighted.style.outlineOffset = '';
             currentHighlighted = null;
+        }
+    }
+    
+    function handleElementClick(e) {
+        if (!isEditMode || !currentHighlighted) return;
+        if (e.target === editIcon || currentEditor) return;
+        
+        e.preventDefault();
+        e.stopPropagation();
+        
+        openEditor(currentHighlighted);
+    }
+    
+    function openEditor(element) {
+        closeEditor();
+        
+        const rect = element.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+        
+        currentEditor = document.createElement('textarea');
+        currentEditor.value = element.innerHTML;
+        currentEditor.style.cssText = `
+            position: absolute;
+            top: ${rect.top + scrollTop}px;
+            left: ${rect.left + scrollLeft}px;
+            width: ${rect.width}px;
+            height: ${rect.height}px;
+            font-family: 'Courier New', Consolas, monospace;
+            font-size: 12px;
+            border: 3px solid #007bff;
+            border-radius: 4px;
+            background: #fff;
+            z-index: 9999;
+            resize: none;
+            outline: none;
+            padding: 8px;
+            box-sizing: border-box;
+        `;
+        
+        const targetElement = element;
+        
+        currentEditor.addEventListener('blur', function() {
+            targetElement.innerHTML = currentEditor.value;
+            closeEditor();
+        });
+        
+        currentEditor.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeEditor();
+            } else if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+                targetElement.innerHTML = currentEditor.value;
+                closeEditor();
+            }
+        });
+        
+        document.body.appendChild(currentEditor);
+        currentEditor.focus();
+        currentEditor.select();
+    }
+    
+    function closeEditor() {
+        if (currentEditor) {
+            document.body.removeChild(currentEditor);
+            currentEditor = null;
         }
     }
     
