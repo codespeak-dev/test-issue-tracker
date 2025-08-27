@@ -71,7 +71,8 @@
 
                 <!-- Page content -->
                 <div class="px-4 py-6 sm:px-0">
-                    <div class="sm:flex sm:items-center">
+                    
+<div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
         <h1 class="text-base font-semibold leading-6 text-gray-900">Edit Tag</h1>
     </div>
@@ -80,10 +81,10 @@
 <div class="mt-8">
     <div class="max-w-md">
         <form method="post" class="space-y-6">
-            <input type="hidden" name="csrfmiddlewaretoken" value="mock-csrf-token-12345" />
+            <input type="hidden" name="csrfmiddlewaretoken" value="&lt;input type=&quot;hidden&quot; name=&quot;csrfmiddlewaretoken&quot; value=&quot;mock-csrf-token-12345&quot; /&gt;">
             
             <div>
-                <label for="id_name" class="block text-sm font-medium leading-6 text-gray-900">
+                <label for="" class="block text-sm font-medium leading-6 text-gray-900">
                     Tag Name
                 </label>
                 <div class="mt-2">
@@ -94,7 +95,7 @@
             </div>
 
             <div>
-                <label for="id_color" class="block text-sm font-medium leading-6 text-gray-900">
+                <label for="" class="block text-sm font-medium leading-6 text-gray-900">
                     Color
                 </label>
                 <div class="mt-2 flex items-center space-x-3">
@@ -102,7 +103,7 @@
                     <div class="flex items-center">
                         <span class="text-sm text-gray-500">Preview:</span>
                         <span id="color-preview" class="ml-2 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white"
-                              style="background-color: '#6B7280';">
+                              style="background-color: #6B7280;">
                             Sample Tag
                         </span>
                     </div>
@@ -127,7 +128,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const colorInput = document.getElementById('id_color');
+    const colorInput = document.getElementById('');
     const preview = document.getElementById('color-preview');
     
     if (colorInput && preview) {
@@ -137,6 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+
                 </div>
             </div>
         </main>

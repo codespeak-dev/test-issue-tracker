@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Bugger Issue Tracker{% endblock %}</title>
+    <title>Bugger Issue Tracker</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -75,21 +75,21 @@
                 
                     <div class="mb-6">
                         
-                            <div class="rounded-md bg-blue-50 border border-blue-200 p-4 mb-4">
+                            <div class="rounded-md bg-green-50 border border-green-200 p-4 mb-4">
                                 <div class="flex">
                                     <div class="ml-3">
-                                        <p class="text-sm text-blue-800">
-                                            {'tags': 'success', 'message': 'Issue created successfully!'}
+                                        <p class="text-sm text-green-800">
+                                            Issue created successfully!
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         
-                            <div class="rounded-md bg-blue-50 border border-blue-200 p-4 mb-4">
+                            <div class="rounded-md bg-green-50 border border-green-200 p-4 mb-4">
                                 <div class="flex">
                                     <div class="ml-3">
-                                        <p class="text-sm text-blue-800">
-                                            {'tags': 'success', 'message': 'Settings saved successfully!'}
+                                        <p class="text-sm text-green-800">
+                                            Settings saved successfully!
                                         </p>
                                     </div>
                                 </div>
@@ -100,8 +100,8 @@
 
                 <!-- Page content -->
                 <div class="px-4 py-6 sm:px-0">
-                    {% block content %}
-                    {% endblock %}
+                    
+                    
                 </div>
             </div>
         </main>
@@ -173,7 +173,7 @@
         }
     </script>
 
-    {% block extra_js %}
-    {% endblock %}
+    
+    
 </body>
 </html>

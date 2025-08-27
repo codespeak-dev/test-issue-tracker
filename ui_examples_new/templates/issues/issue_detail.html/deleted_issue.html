@@ -71,7 +71,8 @@
 
                 <!-- Page content -->
                 <div class="px-4 py-6 sm:px-0">
-                    <div class="space-y-6">
+                    
+<div class="space-y-6">
     <!-- Issue header -->
     <div class="bg-white shadow rounded-lg">
         <div class="px-4 py-5 sm:p-6">
@@ -86,7 +87,7 @@
                                 </div>
                                 <div class="ml-3">
                                     <p class="text-sm text-red-800">
-                                        This issue has been deleted on Jan 09, 2024 at 08:20
+                                        This issue has been deleted on 
                                     </p>
                                 </div>
                             </div>
@@ -96,10 +97,10 @@
                     <div class="mt-2 flex items-center space-x-4 text-sm text-gray-500">
                         <span>#7</span>
                         <span>•</span>
-                        <span>Created by Alice Cooper on Jan 08, 2024</span>
+                        <span>Created by Alice Cooper on </span>
                         
                             <span>•</span>
-                            <span>Updated Jan 09, 2024</span>
+                            <span>Updated </span>
                         
                     </div>
                 </div>
@@ -148,14 +149,14 @@
             
             <!-- Add comment form -->
             
-                <form method="post" action="/issue/{issue_pk}/comment/" class="mt-6">
-                    <input type="hidden" name="csrfmiddlewaretoken" value="mock-csrf-token-12345" />
+                <form method="post" action="/issue/7/comment/" class="mt-6">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="&lt;input type=&quot;hidden&quot; name=&quot;csrfmiddlewaretoken&quot; value=&quot;mock-csrf-token-12345&quot; /&gt;">
                     <div>
                         <label for="" class="block text-sm font-medium text-gray-700">
                             Add a comment
                         </label>
                         <div class="mt-1">
-                            <textarea name="content" cols="40" rows="4" placeholder="Add a comment (Markdown supported)" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required id="id_content"></textarea>
+                            &lt;textarea name=&quot;content&quot; cols=&quot;40&quot; rows=&quot;4&quot; placeholder=&quot;Add a comment (Markdown supported)&quot; class=&quot;mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500&quot; required id=&quot;id_content&quot;&gt;&lt;/textarea&gt;
                         </div>
                         
                     </div>
@@ -177,7 +178,7 @@
                                 <div class="flex-1">
                                     <div class="flex items-center space-x-2">
                                         <span class="font-medium text-gray-900">Alice Cooper</span>
-                                        <span class="text-sm text-gray-500">Jan 09, 2024 at 08:18</span>
+                                        <span class="text-sm text-gray-500"></span>
                                         
                                     </div>
                                     <div class="mt-2 prose prose-sm max-w-none text-gray-700" id="comment-content-5">
@@ -216,6 +217,7 @@
         </div>
     </div>
 </div>
+
                 </div>
             </div>
         </main>
@@ -287,7 +289,8 @@
         }
     </script>
 
-    <script>
+    
+<script>
     let currentCommentId = null;
 
     function editComment(commentId) {
@@ -344,5 +347,6 @@
         });
     }
 </script>
+
 </body>
 </html>
