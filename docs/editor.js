@@ -42,6 +42,7 @@
             document.addEventListener('mousemove', highlightElement);
             document.addEventListener('mouseleave', clearHighlight);
             document.addEventListener('click', handleElementClick);
+            window.addEventListener('beforeunload', handleBeforeUnload);
         } else {
             editIcon.innerHTML = '✏️';
             editIcon.style.background = '#fff';
@@ -49,6 +50,7 @@
             document.removeEventListener('mousemove', highlightElement);
             document.removeEventListener('mouseleave', clearHighlight);
             document.removeEventListener('click', handleElementClick);
+            window.removeEventListener('beforeunload', handleBeforeUnload);
             clearHighlight();
             stopEditing();
         }
@@ -119,6 +121,14 @@
         } else if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
             e.preventDefault();
             stopEditing();
+        }
+    }
+    
+    function handleBeforeUnload(e) {
+        if (isEditMode) {
+            e.preventDefault();
+            e.returnValue = '';
+            return '';
         }
     }
     
