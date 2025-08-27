@@ -27,7 +27,9 @@ Read the templates and identify key UI states and the inputs that determine whic
   ...
 }
 </output_spec>
-Make sure you do this for every template and for every branch in its logic. E.g. if there is an `if` in the template, make sure to include both branches as separate states. If there is a `for` loop, make sure to include at least the cases for 0 and multiple items (5+).
+Make sure you do this for every template and for every branch in its logic. E.g. if there is an `if` in the template, make sure to include both branches as separate states. If there is a `for` loop, make sure to include at least the cases for 0 and multiple items (5+). 
+
+IMPORTANT: Always populate non-empty lists with at least 5 items, unless absolutely necessary to instantiate the state.
 </todo>
 
 <todo index="2" input="state_descriptions">

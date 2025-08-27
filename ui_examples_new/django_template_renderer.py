@@ -167,7 +167,7 @@ class DjangoTemplateRenderer:
                 context[key] = MockQuerySet([MockModel(item) for item in value])
             elif key == 'issue' and isinstance(value, dict):
                 context[key] = MockModel(value)
-            elif key == 'form' and isinstance(value, dict):
+            elif key in ['form', 'comment_form'] and isinstance(value, dict):
                 # Handle form data - keep as dict but mark HTML fields as safe
                 form_data = {}
                 for field_name, field_value in value.items():
