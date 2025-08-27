@@ -1,16 +1,25 @@
 #!/usr/bin/env python3
 
+"""
+python -m http.server 8000
+open http://localhost:8000/ui_examples_index.html#
+"""
+
 import os
 import json
 from pathlib import Path
 from urllib.parse import quote
 
 def find_html_files(base_dir):
-    """Find all HTML files in the ui_examples_new directory"""
+    """Find all HTML files in the directory, excluding folder listings"""
     html_files = []
     base_path = Path(base_dir)
     
     for html_file in base_path.glob('**/*.html'):
+        # Skip if this is a directory (folder listing)
+        if html_file.is_dir():
+            continue
+            
         # Get relative path from base directory
         rel_path = html_file.relative_to(base_path)
         html_files.append(str(rel_path))
@@ -101,8 +110,11 @@ def generate_index_html(base_dir):
             categories[category] = []
         categories[category].append(file_path)
     
-    # Generate navigation
+    # Generate navigation - only for categories that have files
     for category, files in categories.items():
+        if not files:  # Skip empty categories
+            continue
+            
         html_content += f'''
                 <div class="mb-4">
                     <h3 class="px-4 py-2 text-sm font-semibold text-gray-600 uppercase tracking-wider">{category}</h3>
