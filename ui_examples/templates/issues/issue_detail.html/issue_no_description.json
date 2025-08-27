@@ -1,0 +1,44 @@
+{
+  "user": {
+    "is_authenticated": true,
+    "name": "John Doe",
+    "id": 1
+  },
+  "issue": {
+    "id": 4,
+    "pk": 4,
+    "summary": "Quick fix needed for CSS alignment",
+    "description": "",
+    "status": {
+      "name": "Open",
+      "is_open": true
+    },
+    "author": {
+      "name": "John Doe",
+      "id": 1
+    },
+    "assignee": null,
+    "tags": {
+      "all": [
+        {
+          "name": "CSS",
+          "color": "#3b82f6"
+        }
+      ],
+      "exists": true
+    },
+    "created_at": "2024-01-16T09:00:00Z",
+    "updated_at": "2024-01-16T09:00:00Z",
+    "deleted_at": null,
+    "is_deleted": false,
+    "description_html": ""
+  },
+  "comments": [],
+  "edit_history": [],
+  "comment_form": {
+    "content": {
+      "id_for_label": "id_content",
+      "errors": []
+    }
+  }
+}

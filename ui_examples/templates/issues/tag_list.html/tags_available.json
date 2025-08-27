@@ -1,0 +1,58 @@
+{
+  "tags": [
+    {
+      "id": 1,
+      "pk": 1,
+      "name": "Bug",
+      "color": "#ef4444",
+      "issues": {
+        "count": 5
+      }
+    },
+    {
+      "id": 2,
+      "pk": 2,
+      "name": "Feature",
+      "color": "#10b981",
+      "issues": {
+        "count": 3
+      }
+    },
+    {
+      "id": 3,
+      "pk": 3,
+      "name": "UI",
+      "color": "#8b5cf6",
+      "issues": {
+        "count": 7
+      }
+    },
+    {
+      "id": 4,
+      "pk": 4,
+      "name": "Performance",
+      "color": "#f59e0b",
+      "issues": {
+        "count": 2
+      }
+    },
+    {
+      "id": 5,
+      "pk": 5,
+      "name": "High Priority",
+      "color": "#dc2626",
+      "issues": {
+        "count": 1
+      }
+    },
+    {
+      "id": 6,
+      "pk": 6,
+      "name": "Documentation",
+      "color": "#6b7280",
+      "issues": {
+        "count": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Bugger Issue Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="h-full">
+    <div class="min-h-full">
+        <!-- Navigation -->
+        <nav class="bg-white shadow">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex h-16 justify-between">
+                    <div class="flex">
+                        <div class="flex flex-shrink-0 items-center">
+                            <a href="/" class="text-xl font-bold text-primary-600">🐛 Bugger</a>
+                        </div>
+                        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                            <a href="/" 
+                               class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                                Issues
+                            </a>
+                            
+                            
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        
+                            <a href="/login/" 
+                               class="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500">
+                                Log in
+                            </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <main>
+            <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+                <!-- Messages -->
+                bg-blue-50 border border-blue-200 p-4 mb-4">
+                                <div class="flex">
+                                    <div class="ml-3">
+                                        <p class="text-sm text-blue-800">
+                                            
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                    </div>
+                
+
+                <!-- Page content -->
+                <div class="px-4 py-6 sm:px-0">
+                    <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        <div class="text-center">
+            <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+                Sign in to your account
+            </h2>
+            <p class="mt-2 text-center text-sm text-gray-600">
+                Or
+                <a href="/register/" class="font-medium text-primary-600 hover:text-primary-500">
+                    create a new account
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            <form method="post" class="space-y-6">
+                <input type="hidden" name="csrfmiddlewaretoken" value="csrf_token_placeholder">
+                
+                <div>
+                    <label for="id_email" class="block text-sm font-medium text-gray-700">
+                        Email address
+                    </label>
+                    <div class="mt-1">
+                        <__main__.create_mock_context.<locals>.MockObject object at 0x1048622d0>
+                    </div>
+                    
+                </div>
+
+                <div>
+                    <button type="submit" 
+                            class="flex w-full justify-center rounded-md bg-primary-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
+                        Sign in
+                    </button>
+                </div>
+            </form>
+
+            <div class="mt-6">
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-300"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="bg-white px-2 text-gray-500">No password required</span>
+                    </div>
+                </div>
+                
+                <div class="mt-6">
+                    <p class="text-center text-sm text-gray-600">
+                        Simply enter your email address to sign in. If you don't have an account, 
+                        <a href="/register/" class="font-medium text-primary-600 hover:text-primary-500">
+                            register first
+                        </a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript for AJAX calls -->
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function deleteIssue(issueId) {
+            if (confirm('Are you sure you want to delete this issue? It can be restored later.')) {
+                fetch(`/issue/${issueId}/delete/`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken'),
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload(); // Reload to show deleted state
+                    } else {
+                        alert(data.error || 'Failed to delete issue');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to delete issue');
+                });
+            }
+        }
+
+        function restoreIssue(issueId) {
+            if (confirm('Are you sure you want to restore this issue?')) {
+                fetch(`/issue/${issueId}/restore/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken'),
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload(); // Reload to show restored state
+                    } else {
+                        alert(data.error || 'Failed to restore issue');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to restore issue');
+                });
+            }
+        }
+    </script>
+
+    
+</body>
+</html>

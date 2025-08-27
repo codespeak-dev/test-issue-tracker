@@ -1,0 +1,8 @@
+{
+  "form": {
+    "email": {
+      "id_for_label": "id_email",
+      "errors": ["No account found with this email. Please register first."]
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "title": "Create Issue",
+  "form": {
+    "summary": {
+      "id_for_label": "id_summary",
+      "errors": []
+    },
+    "description": {
+      "id_for_label": "id_description",
+      "errors": []
+    },
+    "status": {
+      "id_for_label": "id_status",
+      "errors": []
+    },
+    "assignee": {
+      "id_for_label": "id_assignee",
+      "errors": []
+    },
+    "tags": {
+      "errors": []
+    }
+  },
+  "issue": null,
+  "user": {
+    "is_authenticated": true
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "user": {
+    "is_authenticated": true,
+    "name": "John Doe",
+    "is_staff": false
+  },
+  "issues": [
+    {
+      "id": 1,
+      "pk": 1,
+      "summary": "Login page not responsive on mobile devices",
+      "status": {
+        "name": "Open",
+        "is_open": true
+      },
+      "author": {
+        "name": "John Doe"
+      },
+      "assignee": {
+        "name": "Jane Smith"
+      },
+      "tags": {
+        "all": [
+          {
+            "name": "Bug",
+            "color": "#ef4444"
+          },
+          {
+            "name": "UI",
+            "color": "#8b5cf6"
+          }
+        ]
+      },
+      "updated_at": "2024-01-15T10:30:00Z"
+    }
+  ],
+  "search_query": "responsive",
+  "selected_tags": ["1", "3"],
+  "all_tags": [
+    {
+      "id": 1,
+      "name": "Bug",
+      "color": "#ef4444"
+    },
+    {
+      "id": 2,
+      "name": "Feature",
+      "color": "#10b981"
+    },
+    {
+      "id": 3,
+      "name": "UI",
+      "color": "#8b5cf6"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "title": "Edit Issue",
+  "form": {
+    "summary": {
+      "id_for_label": "id_summary",
+      "errors": []
+    },
+    "description": {
+      "id_for_label": "id_description",
+      "errors": []
+    },
+    "status": {
+      "id_for_label": "id_status",
+      "errors": []
+    },
+    "assignee": {
+      "id_for_label": "id_assignee",
+      "errors": []
+    },
+    "tags": {
+      "errors": []
+    }
+  },
+  "issue": {
+    "pk": 1,
+    "summary": "Login page not responsive on mobile devices",
+    "description": "The login page doesn't render properly on mobile devices."
+  },
+  "user": {
+    "is_authenticated": true
+  }
+}

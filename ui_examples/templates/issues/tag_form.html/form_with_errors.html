@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Tag - Bugger Issue Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="h-full">
+    <div class="min-h-full">
+        <!-- Navigation -->
+        <nav class="bg-white shadow">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex h-16 justify-between">
+                    <div class="flex">
+                        <div class="flex flex-shrink-0 items-center">
+                            <a href="/" class="text-xl font-bold text-primary-600">🐛 Bugger</a>
+                        </div>
+                        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                            <a href="/" 
+                               class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                                Issues
+                            </a>
+                            
+                            
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        
+                            <a href="/login/" 
+                               class="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500">
+                                Log in
+                            </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <main>
+            <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+                <!-- Messages -->
+                bg-blue-50 border border-blue-200 p-4 mb-4">
+                                <div class="flex">
+                                    <div class="ml-3">
+                                        <p class="text-sm text-blue-800">
+                                            
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                    </div>
+                
+
+                <!-- Page content -->
+                <div class="px-4 py-6 sm:px-0">
+                    <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+        <h1 class="text-base font-semibold leading-6 text-gray-900">Create Tag</h1>
+    </div>
+</div>
+
+<div class="mt-8">
+    <div class="max-w-md">
+        <form method="post" class="space-y-6">
+            <input type="hidden" name="csrfmiddlewaretoken" value="csrf_token_placeholder">
+            
+            <div>
+                <label for="id_name" class="block text-sm font-medium leading-6 text-gray-900">
+                    Tag Name
+                </label>
+                <div class="mt-2">
+                    <__main__.create_mock_context.<locals>.MockObject object at 0x104873990>
+                    
+                </div>
+                <p class="mt-2 text-sm text-gray-500">Choose a descriptive name for your tag.</p>
+            </div>
+
+            <div>
+                <label for="id_color" class="block text-sm font-medium leading-6 text-gray-900">
+                    Color
+                </label>
+                <div class="mt-2 flex items-center space-x-3">
+                    <__main__.create_mock_context.<locals>.MockObject object at 0x104873b10>
+                    <div class="flex items-center">
+                        <span class="text-sm text-gray-500">Preview:</span>
+                        <span id="color-preview" class="ml-2 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white"
+                              style="background-color: #6B7280;">
+                            Sample Tag
+                        </span>
+                    </div>
+                </div>
+                
+                <p class="mt-2 text-sm text-gray-500">Select a color for your tag.</p>
+            </div>
+
+            <div class="flex items-center justify-between pt-4">
+                <a href="/tags/" 
+                   class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    Cancel
+                </a>
+                <button type="submit" 
+                        class="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
+                    Create Tag
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const colorInput = document.getElementById('id_color');
+    const preview = document.getElementById('color-preview');
+    
+    if (colorInput && preview) {
+        colorInput.addEventListener('input', function() {
+            preview.style.backgroundColor = this.value;
+        });
+    }
+});
+</script>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript for AJAX calls -->
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function deleteIssue(issueId) {
+            if (confirm('Are you sure you want to delete this issue? It can be restored later.')) {
+                fetch(`/issue/${issueId}/delete/`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken'),
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload(); // Reload to show deleted state
+                    } else {
+                        alert(data.error || 'Failed to delete issue');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to delete issue');
+                });
+            }
+        }
+
+        function restoreIssue(issueId) {
+            if (confirm('Are you sure you want to restore this issue?')) {
+                fetch(`/issue/${issueId}/restore/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken'),
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload(); // Reload to show restored state
+                    } else {
+                        alert(data.error || 'Failed to restore issue');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to restore issue');
+                });
+            }
+        }
+    </script>
+
+    
+</body>
+</html>

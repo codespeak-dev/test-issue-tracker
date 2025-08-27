@@ -1,0 +1,103 @@
+{
+  "user": {
+    "is_authenticated": true,
+    "name": "John Doe",
+    "id": 1
+  },
+  "issue": {
+    "id": 1,
+    "pk": 1,
+    "summary": "Login page not responsive on mobile devices",
+    "description": "The login page doesn't render properly on mobile devices with screen widths below 768px. The form elements are cut off and the submit button is not accessible.\n\n## Steps to Reproduce\n1. Open the login page on mobile device\n2. Try to fill in credentials\n3. Notice the layout issues\n\n## Expected Behavior\nThe login form should be fully responsive and accessible on all device sizes.",
+    "status": {
+      "name": "Open",
+      "is_open": true
+    },
+    "author": {
+      "name": "John Doe",
+      "id": 1
+    },
+    "assignee": {
+      "name": "Jane Smith"
+    },
+    "tags": {
+      "all": [
+        {
+          "name": "Bug",
+          "color": "#ef4444"
+        },
+        {
+          "name": "UI",
+          "color": "#8b5cf6"
+        }
+      ],
+      "exists": true
+    },
+    "created_at": "2024-01-10T09:00:00Z",
+    "updated_at": "2024-01-15T10:30:00Z",
+    "deleted_at": null,
+    "is_deleted": false,
+    "description_html": "<p>The login page doesn't render properly on mobile devices with screen widths below 768px. The form elements are cut off and the submit button is not accessible.</p>\n<h2>Steps to Reproduce</h2>\n<ol>\n<li>Open the login page on mobile device</li>\n<li>Try to fill in credentials</li>\n<li>Notice the layout issues</li>\n</ol>\n<h2>Expected Behavior</h2>\n<p>The login form should be fully responsive and accessible on all device sizes.</p>"
+  },
+  "comments": [
+    {
+      "id": 1,
+      "author": {
+        "name": "Jane Smith",
+        "id": 2
+      },
+      "content": "I can reproduce this issue on iPhone 12. The submit button is completely hidden below the fold.",
+      "content_html": "<p>I can reproduce this issue on iPhone 12. The submit button is completely hidden below the fold.</p>",
+      "created_at": "2024-01-10T14:30:00Z",
+      "updated_at": "2024-01-10T14:30:00Z"
+    },
+    {
+      "id": 2,
+      "author": {
+        "name": "Bob Johnson",
+        "id": 3
+      },
+      "content": "Same issue on Android devices. I'll work on a fix for this.",
+      "content_html": "<p>Same issue on Android devices. I'll work on a fix for this.</p>",
+      "created_at": "2024-01-11T10:15:00Z",
+      "updated_at": "2024-01-11T10:15:00Z"
+    },
+    {
+      "id": 3,
+      "author": {
+        "name": "John Doe",
+        "id": 1
+      },
+      "content": "Thanks for confirming! Let me know if you need any additional details or testing.",
+      "content_html": "<p>Thanks for confirming! Let me know if you need any additional details or testing.</p>",
+      "created_at": "2024-01-12T08:45:00Z",
+      "updated_at": "2024-01-12T08:45:00Z"
+    }
+  ],
+  "edit_history": [
+    {
+      "editor": {
+        "name": "John Doe"
+      },
+      "field_name": "Description",
+      "old_value": "The login page doesn't render properly on mobile devices.",
+      "new_value": "The login page doesn't render properly on mobile devices with screen widths below 768px. The form elements are cut off and the submit button is not accessible.\n\n## Steps to Reproduce\n1. Open the login page on mobile device\n2. Try to fill in credentials\n3. Notice the layout issues\n\n## Expected Behavior\nThe login form should be fully responsive and accessible on all device sizes.",
+      "edited_at": "2024-01-10T11:00:00Z"
+    },
+    {
+      "editor": {
+        "name": "John Doe"
+      },
+      "field_name": "Tags",
+      "old_value": "Bug",
+      "new_value": "Bug, UI",
+      "edited_at": "2024-01-10T15:00:00Z"
+    }
+  ],
+  "comment_form": {
+    "content": {
+      "id_for_label": "id_content",
+      "errors": []
+    }
+  }
+}

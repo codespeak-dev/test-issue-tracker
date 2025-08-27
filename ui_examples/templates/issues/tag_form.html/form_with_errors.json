@@ -1,0 +1,15 @@
+{
+  "title": "Create Tag",
+  "form": {
+    "name": {
+      "id_for_label": "id_name",
+      "errors": ["This field is required.", "Tag with this name already exists."]
+    },
+    "color": {
+      "id_for_label": "id_color",
+      "value": "#6B7280",
+      "errors": []
+    }
+  },
+  "tag": null
+}

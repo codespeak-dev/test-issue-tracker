@@ -1,0 +1,164 @@
+{
+  "user": {
+    "is_authenticated": true,
+    "name": "John Doe",
+    "is_staff": false
+  },
+  "issues": [
+    {
+      "id": 1,
+      "pk": 1,
+      "summary": "Login page not responsive on mobile devices",
+      "status": {
+        "name": "Open",
+        "is_open": true
+      },
+      "author": {
+        "name": "John Doe"
+      },
+      "assignee": {
+        "name": "Jane Smith"
+      },
+      "tags": {
+        "all": [
+          {
+            "name": "Bug",
+            "color": "#ef4444"
+          },
+          {
+            "name": "UI",
+            "color": "#8b5cf6"
+          }
+        ]
+      },
+      "updated_at": "2024-01-15T10:30:00Z"
+    },
+    {
+      "id": 2,
+      "pk": 2,
+      "summary": "Add dark mode theme support",
+      "status": {
+        "name": "In Progress",
+        "is_open": true
+      },
+      "author": {
+        "name": "Jane Smith"
+      },
+      "assignee": null,
+      "tags": {
+        "all": [
+          {
+            "name": "Feature",
+            "color": "#10b981"
+          },
+          {
+            "name": "UI",
+            "color": "#8b5cf6"
+          }
+        ]
+      },
+      "updated_at": "2024-01-14T16:45:00Z"
+    },
+    {
+      "id": 3,
+      "pk": 3,
+      "summary": "Performance issue with large datasets",
+      "status": {
+        "name": "Open",
+        "is_open": true
+      },
+      "author": {
+        "name": "Bob Johnson"
+      },
+      "assignee": {
+        "name": "John Doe"
+      },
+      "tags": {
+        "all": [
+          {
+            "name": "Performance",
+            "color": "#f59e0b"
+          },
+          {
+            "name": "High Priority",
+            "color": "#dc2626"
+          }
+        ]
+      },
+      "updated_at": "2024-01-13T09:15:00Z"
+    },
+    {
+      "id": 4,
+      "pk": 4,
+      "summary": "Update documentation for API endpoints",
+      "status": {
+        "name": "Closed",
+        "is_open": false
+      },
+      "author": {
+        "name": "Alice Brown"
+      },
+      "assignee": null,
+      "tags": {
+        "all": [
+          {
+            "name": "Documentation",
+            "color": "#6b7280"
+          }
+        ]
+      },
+      "updated_at": "2024-01-12T14:20:00Z"
+    },
+    {
+      "id": 5,
+      "pk": 5,
+      "summary": "Issue with tag filtering not working correctly",
+      "status": {
+        "name": "Open",
+        "is_open": true
+      },
+      "author": {
+        "name": "John Doe"
+      },
+      "assignee": null,
+      "tags": {
+        "all": []
+      },
+      "updated_at": "2024-01-11T11:00:00Z"
+    }
+  ],
+  "search_query": "",
+  "selected_tags": [],
+  "all_tags": [
+    {
+      "id": 1,
+      "name": "Bug",
+      "color": "#ef4444"
+    },
+    {
+      "id": 2,
+      "name": "Feature",
+      "color": "#10b981"
+    },
+    {
+      "id": 3,
+      "name": "UI",
+      "color": "#8b5cf6"
+    },
+    {
+      "id": 4,
+      "name": "Performance",
+      "color": "#f59e0b"
+    },
+    {
+      "id": 5,
+      "name": "High Priority",
+      "color": "#dc2626"
+    },
+    {
+      "id": 6,
+      "name": "Documentation",
+      "color": "#6b7280"
+    }
+  ]
+}

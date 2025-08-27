@@ -1,0 +1,46 @@
+{
+  "user": {
+    "is_authenticated": true,
+    "name": "John Doe",
+    "id": 1
+  },
+  "issue": {
+    "id": 2,
+    "pk": 2,
+    "summary": "Add dark mode theme support",
+    "description": "Users have requested a dark mode theme option for better usability in low-light environments.",
+    "status": {
+      "name": "In Progress",
+      "is_open": true
+    },
+    "author": {
+      "name": "John Doe",
+      "id": 1
+    },
+    "assignee": {
+      "name": "Alice Brown"
+    },
+    "tags": {
+      "all": [
+        {
+          "name": "Feature",
+          "color": "#10b981"
+        }
+      ],
+      "exists": true
+    },
+    "created_at": "2024-01-12T14:00:00Z",
+    "updated_at": "2024-01-14T16:45:00Z",
+    "deleted_at": null,
+    "is_deleted": false,
+    "description_html": "<p>Users have requested a dark mode theme option for better usability in low-light environments.</p>"
+  },
+  "comments": [],
+  "edit_history": [],
+  "comment_form": {
+    "content": {
+      "id_for_label": "id_content",
+      "errors": []
+    }
+  }
+}

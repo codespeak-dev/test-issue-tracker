@@ -1,0 +1,19 @@
+{
+  "title": "Edit Tag",
+  "form": {
+    "name": {
+      "id_for_label": "id_name",
+      "errors": []
+    },
+    "color": {
+      "id_for_label": "id_color",
+      "value": "#ef4444",
+      "errors": []
+    }
+  },
+  "tag": {
+    "pk": 1,
+    "name": "Bug",
+    "color": "#ef4444"
+  }
+}

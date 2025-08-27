@@ -1,0 +1,15 @@
+{
+  "title": "Create Tag",
+  "form": {
+    "name": {
+      "id_for_label": "id_name",
+      "errors": []
+    },
+    "color": {
+      "id_for_label": "id_color",
+      "value": "#6B7280",
+      "errors": []
+    }
+  },
+  "tag": null
+}

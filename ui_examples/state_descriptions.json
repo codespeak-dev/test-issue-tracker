@@ -1,0 +1,264 @@
+{
+  "templates/issues/issue_list.html": {
+    "authenticated_with_issues": {
+      "description": "Authenticated user viewing issue list with multiple issues, no search/filter",
+      "relevant_inputs": [
+        "user: authenticated user object",
+        "issues: queryset with multiple issues",
+        "search_query: empty string",
+        "selected_tags: empty list",
+        "all_tags: list of available tags"
+      ]
+    },
+    "unauthenticated_with_issues": {
+      "description": "Unauthenticated user viewing issue list with multiple issues",
+      "relevant_inputs": [
+        "user: anonymous user",
+        "issues: queryset with multiple issues",
+        "search_query: empty string",
+        "selected_tags: empty list",
+        "all_tags: list of available tags"
+      ]
+    },
+    "no_issues_authenticated": {
+      "description": "Authenticated user viewing empty issue list",
+      "relevant_inputs": [
+        "user: authenticated user object",
+        "issues: empty queryset",
+        "search_query: empty string",
+        "selected_tags: empty list",
+        "all_tags: list of available tags"
+      ]
+    },
+    "no_issues_unauthenticated": {
+      "description": "Unauthenticated user viewing empty issue list",
+      "relevant_inputs": [
+        "user: anonymous user",
+        "issues: empty queryset",
+        "search_query: empty string",
+        "selected_tags: empty list",
+        "all_tags: list of available tags"
+      ]
+    },
+    "search_results": {
+      "description": "Search results with query and filtered issues",
+      "relevant_inputs": [
+        "user: authenticated user object",
+        "issues: filtered queryset matching search",
+        "search_query: search term string",
+        "selected_tags: empty list",
+        "all_tags: list of available tags"
+      ]
+    },
+    "tag_filtered": {
+      "description": "Issues filtered by selected tags",
+      "relevant_inputs": [
+        "user: authenticated user object",
+        "issues: filtered queryset by tags",
+        "search_query: empty string",
+        "selected_tags: list of selected tag IDs",
+        "all_tags: list of available tags"
+      ]
+    },
+    "search_and_tag_filtered": {
+      "description": "Issues filtered by both search and tags",
+      "relevant_inputs": [
+        "user: authenticated user object",
+        "issues: filtered queryset by search and tags",
+        "search_query: search term string",
+        "selected_tags: list of selected tag IDs",
+        "all_tags: list of available tags"
+      ]
+    },
+    "no_tags_available": {
+      "description": "Issue list when no tags exist in system",
+      "relevant_inputs": [
+        "user: authenticated user object",
+        "issues: queryset with issues",
+        "search_query: empty string",
+        "selected_tags: empty list",
+        "all_tags: empty list"
+      ]
+    }
+  },
+  "templates/issues/issue_detail.html": {
+    "normal_issue_with_comments": {
+      "description": "Normal issue detail view with comments and edit history",
+      "relevant_inputs": [
+        "user: authenticated user object (author)",
+        "issue: issue object with tags and assignee",
+        "comments: list of comments",
+        "edit_history: list of edit history entries",
+        "comment_form: comment form object"
+      ]
+    },
+    "normal_issue_no_comments": {
+      "description": "Normal issue detail view without comments",
+      "relevant_inputs": [
+        "user: authenticated user object (author)",
+        "issue: issue object with tags and assignee",
+        "comments: empty list",
+        "edit_history: empty list",
+        "comment_form: comment form object"
+      ]
+    },
+    "deleted_issue": {
+      "description": "Deleted issue detail view showing deletion notice",
+      "relevant_inputs": [
+        "user: authenticated user object (author)",
+        "issue: deleted issue object (deleted_at is set)",
+        "comments: list of comments",
+        "edit_history: empty list",
+        "comment_form: comment form object"
+      ]
+    },
+    "issue_not_author": {
+      "description": "Issue viewed by user who is not the author",
+      "relevant_inputs": [
+        "user: authenticated user object (not author)",
+        "issue: issue object",
+        "comments: list of comments",
+        "edit_history: list of edit history entries",
+        "comment_form: comment form object"
+      ]
+    },
+    "unauthenticated_view": {
+      "description": "Issue viewed by unauthenticated user",
+      "relevant_inputs": [
+        "user: anonymous user",
+        "issue: issue object",
+        "comments: list of comments",
+        "edit_history: list of edit history entries",
+        "comment_form: null"
+      ]
+    },
+    "issue_no_description": {
+      "description": "Issue without description field",
+      "relevant_inputs": [
+        "user: authenticated user object (author)",
+        "issue: issue object with empty description",
+        "comments: list of comments",
+        "edit_history: empty list",
+        "comment_form: comment form object"
+      ]
+    },
+    "issue_no_assignee_no_tags": {
+      "description": "Issue without assignee or tags",
+      "relevant_inputs": [
+        "user: authenticated user object (author)",
+        "issue: issue object without assignee or tags",
+        "comments: list of comments",
+        "edit_history: empty list",
+        "comment_form: comment form object"
+      ]
+    }
+  },
+  "templates/issues/issue_form.html": {
+    "create_issue": {
+      "description": "Create new issue form",
+      "relevant_inputs": [
+        "title: 'Create Issue'",
+        "form: issue form with initial data",
+        "issue: null"
+      ]
+    },
+    "edit_issue": {
+      "description": "Edit existing issue form",
+      "relevant_inputs": [
+        "title: 'Edit Issue'",
+        "form: issue form with issue data",
+        "issue: existing issue object"
+      ]
+    },
+    "form_with_errors": {
+      "description": "Form with validation errors",
+      "relevant_inputs": [
+        "title: 'Create Issue'",
+        "form: issue form with errors",
+        "issue: null"
+      ]
+    }
+  },
+  "templates/issues/settings.html": {
+    "settings_form": {
+      "description": "Settings form with current configuration",
+      "relevant_inputs": [
+        "form: settings form with current values"
+      ]
+    },
+    "settings_form_with_errors": {
+      "description": "Settings form with validation errors",
+      "relevant_inputs": [
+        "form: settings form with errors"
+      ]
+    }
+  },
+  "templates/issues/tag_list.html": {
+    "tags_available": {
+      "description": "Tag list with multiple tags",
+      "relevant_inputs": [
+        "tags: list of tag objects with issue counts"
+      ]
+    },
+    "no_tags": {
+      "description": "Empty tag list",
+      "relevant_inputs": [
+        "tags: empty list"
+      ]
+    }
+  },
+  "templates/issues/tag_form.html": {
+    "create_tag": {
+      "description": "Create new tag form",
+      "relevant_inputs": [
+        "title: 'Create Tag'",
+        "form: tag form",
+        "tag: null"
+      ]
+    },
+    "edit_tag": {
+      "description": "Edit existing tag form",
+      "relevant_inputs": [
+        "title: 'Edit Tag'",
+        "form: tag form with tag data",
+        "tag: existing tag object"
+      ]
+    },
+    "form_with_errors": {
+      "description": "Tag form with validation errors",
+      "relevant_inputs": [
+        "title: 'Create Tag'",
+        "form: tag form with errors",
+        "tag: null"
+      ]
+    }
+  },
+  "templates/registration/login.html": {
+    "login_form": {
+      "description": "Login form for unauthenticated user",
+      "relevant_inputs": [
+        "form: login form"
+      ]
+    },
+    "login_form_with_errors": {
+      "description": "Login form with validation errors",
+      "relevant_inputs": [
+        "form: login form with errors"
+      ]
+    }
+  },
+  "templates/registration/register.html": {
+    "register_form": {
+      "description": "Registration form for new user",
+      "relevant_inputs": [
+        "form: registration form"
+      ]
+    },
+    "register_form_with_errors": {
+      "description": "Registration form with validation errors",
+      "relevant_inputs": [
+        "form: registration form with errors"
+      ]
+    }
+  }
+}

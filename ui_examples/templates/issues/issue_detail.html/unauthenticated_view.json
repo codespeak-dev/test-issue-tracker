@@ -1,0 +1,51 @@
+{
+  "user": {
+    "is_authenticated": false
+  },
+  "issue": {
+    "id": 1,
+    "pk": 1,
+    "summary": "Login page not responsive on mobile devices",
+    "description": "The login page doesn't render properly on mobile devices with screen widths below 768px.",
+    "status": {
+      "name": "Open",
+      "is_open": true
+    },
+    "author": {
+      "name": "John Doe",
+      "id": 1
+    },
+    "assignee": {
+      "name": "Jane Smith"
+    },
+    "tags": {
+      "all": [
+        {
+          "name": "Bug",
+          "color": "#ef4444"
+        }
+      ],
+      "exists": true
+    },
+    "created_at": "2024-01-10T09:00:00Z",
+    "updated_at": "2024-01-15T10:30:00Z",
+    "deleted_at": null,
+    "is_deleted": false,
+    "description_html": "<p>The login page doesn't render properly on mobile devices with screen widths below 768px.</p>"
+  },
+  "comments": [
+    {
+      "id": 1,
+      "author": {
+        "name": "Jane Smith",
+        "id": 2
+      },
+      "content": "I can reproduce this issue on iPhone 12.",
+      "content_html": "<p>I can reproduce this issue on iPhone 12.</p>",
+      "created_at": "2024-01-10T14:30:00Z",
+      "updated_at": "2024-01-10T14:30:00Z"
+    }
+  ],
+  "edit_history": [],
+  "comment_form": null
+}

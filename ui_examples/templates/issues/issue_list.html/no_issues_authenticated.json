@@ -1,0 +1,22 @@
+{
+  "user": {
+    "is_authenticated": true,
+    "name": "John Doe",
+    "is_staff": false
+  },
+  "issues": [],
+  "search_query": "",
+  "selected_tags": [],
+  "all_tags": [
+    {
+      "id": 1,
+      "name": "Bug",
+      "color": "#ef4444"
+    },
+    {
+      "id": 2,
+      "name": "Feature",
+      "color": "#10b981"
+    }
+  ]
+}

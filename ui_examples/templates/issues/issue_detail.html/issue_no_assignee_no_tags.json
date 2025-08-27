@@ -1,0 +1,39 @@
+{
+  "user": {
+    "is_authenticated": true,
+    "name": "John Doe",
+    "id": 1
+  },
+  "issue": {
+    "id": 5,
+    "pk": 5,
+    "summary": "Simple issue without assignee or tags",
+    "description": "This is a basic issue that doesn't have an assignee or any tags assigned to it.",
+    "status": {
+      "name": "Open",
+      "is_open": true
+    },
+    "author": {
+      "name": "John Doe",
+      "id": 1
+    },
+    "assignee": null,
+    "tags": {
+      "all": [],
+      "exists": false
+    },
+    "created_at": "2024-01-16T11:00:00Z",
+    "updated_at": "2024-01-16T11:00:00Z",
+    "deleted_at": null,
+    "is_deleted": false,
+    "description_html": "<p>This is a basic issue that doesn't have an assignee or any tags assigned to it.</p>"
+  },
+  "comments": [],
+  "edit_history": [],
+  "comment_form": {
+    "content": {
+      "id_for_label": "id_content",
+      "errors": []
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "form": {
+    "name": {
+      "id_for_label": "id_name",
+      "errors": ["This field is required."]
+    },
+    "email": {
+      "id_for_label": "id_email",
+      "errors": ["An account with this email already exists. Please login instead."]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "form": {
+    "slack_bot_token": {
+      "id_for_label": "id_slack_bot_token",
+      "label": "Slack Bot Token",
+      "errors": []
+    },
+    "slack_channel_id": {
+      "id_for_label": "id_slack_channel_id",
+      "label": "Slack Channel ID",
+      "errors": []
+    },
+    "github_access_token": {
+      "id_for_label": "id_github_access_token",
+      "label": "GitHub Access Token",
+      "errors": []
+    },
+    "github_repository_owner": {
+      "id_for_label": "id_github_repository_owner",
+      "label": "GitHub Repository Owner",
+      "errors": []
+    },
+    "github_repository_name": {
+      "id_for_label": "id_github_repository_name",
+      "label": "GitHub Repository Name",
+      "errors": []
+    }
+  }
+}

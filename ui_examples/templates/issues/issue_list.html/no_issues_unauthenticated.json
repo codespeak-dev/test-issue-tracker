@@ -1,0 +1,9 @@
+{
+  "user": {
+    "is_authenticated": false
+  },
+  "issues": [],
+  "search_query": "",
+  "selected_tags": [],
+  "all_tags": []
+}
