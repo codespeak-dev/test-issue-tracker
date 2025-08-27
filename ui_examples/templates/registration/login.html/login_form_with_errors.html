@@ -83,11 +83,11 @@
                 <input type="hidden" name="csrfmiddlewaretoken" value="dummy_csrf_token">
                 
                 <div>
-                    <label for="id_email" class="block text-sm font-medium text-gray-700">
+                    <label for="" class="block text-sm font-medium text-gray-700">
                         Email address
                     </label>
                     <div class="mt-1">
-                        {'id_for_label': 'id_email', 'errors': ['No account found with this email. Please register first.']}
+                        <input type="email" name="email" class="mt-1 block w-full rounded-md border-red-300 shadow-sm focus:border-red-500 focus:ring-red-500" placeholder="Enter your email" required id="id_email">
                     </div>
                     
                         <p class="mt-2 text-sm text-red-600">No account found with this email. Please register first.</p>

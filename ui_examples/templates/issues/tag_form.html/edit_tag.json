@@ -1,15 +1,8 @@
 {
   "title": "Edit Tag",
   "form": {
-    "name": {
-      "id_for_label": "id_name",
-      "errors": []
-    },
-    "color": {
-      "id_for_label": "id_color",
-      "value": "#ef4444",
-      "errors": []
-    }
+    "name": "<input type=\"text\" name=\"name\" value=\"Bug\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500\" placeholder=\"Tag name (e.g., 'Bug', 'Feature', 'High Priority')\" required id=\"id_name\">",
+    "color": "<input type=\"color\" name=\"color\" value=\"#ef4444\" class=\"mt-1 block w-16 h-10 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500\" id=\"id_color\">"
   },
   "tag": {
     "pk": 1,

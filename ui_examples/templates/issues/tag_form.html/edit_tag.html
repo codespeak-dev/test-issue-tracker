@@ -74,26 +74,26 @@
             <input type="hidden" name="csrfmiddlewaretoken" value="dummy_csrf_token">
             
             <div>
-                <label for="id_name" class="block text-sm font-medium leading-6 text-gray-900">
+                <label for="" class="block text-sm font-medium leading-6 text-gray-900">
                     Tag Name
                 </label>
                 <div class="mt-2">
-                    {'id_for_label': 'id_name', 'errors': []}
+                    <input type="text" name="name" value="Bug" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Tag name (e.g., 'Bug', 'Feature', 'High Priority')" required id="id_name">
                     
                 </div>
                 <p class="mt-2 text-sm text-gray-500">Choose a descriptive name for your tag.</p>
             </div>
 
             <div>
-                <label for="id_color" class="block text-sm font-medium leading-6 text-gray-900">
+                <label for="" class="block text-sm font-medium leading-6 text-gray-900">
                     Color
                 </label>
                 <div class="mt-2 flex items-center space-x-3">
-                    {'id_for_label': 'id_color', 'value': '#ef4444', 'errors': []}
+                    <input type="color" name="color" value="#ef4444" class="mt-1 block w-16 h-10 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="id_color">
                     <div class="flex items-center">
                         <span class="text-sm text-gray-500">Preview:</span>
                         <span id="color-preview" class="ml-2 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white"
-                              style="background-color: #ef4444;">
+                              style="background-color: ;">
                             Sample Tag
                         </span>
                     </div>
@@ -118,7 +118,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const colorInput = document.getElementById('id_color');
+    const colorInput = document.getElementById('');
     const preview = document.getElementById('color-preview');
     
     if (colorInput && preview) {

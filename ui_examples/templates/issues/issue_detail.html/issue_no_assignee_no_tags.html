@@ -144,11 +144,11 @@
                 <form method="post" action="/issues/5/comments/" class="mt-6">
                     <input type="hidden" name="csrfmiddlewaretoken" value="dummy_csrf_token">
                     <div>
-                        <label for="id_content" class="block text-sm font-medium text-gray-700">
+                        <label for="" class="block text-sm font-medium text-gray-700">
                             Add a comment
                         </label>
                         <div class="mt-1">
-                            {'id_for_label': 'id_content', 'errors': []}
+                            <textarea name="content" cols="40" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Add a comment (Markdown supported)" required id="id_content"></textarea>
                         </div>
                         
             

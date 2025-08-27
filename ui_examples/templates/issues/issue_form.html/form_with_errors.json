@@ -1,28 +1,17 @@
 {
   "title": "Create Issue",
   "form": {
-    "summary": {
-      "id_for_label": "id_summary",
-      "errors": ["This field is required."]
-    },
-    "description": {
-      "id_for_label": "id_description",
-      "errors": []
-    },
-    "status": {
-      "id_for_label": "id_status",
-      "errors": ["This field is required."]
-    },
-    "assignee": {
-      "id_for_label": "id_assignee",
-      "errors": []
-    },
-    "tags": {
-      "errors": []
-    }
+    "summary": "<input type=\"text\" name=\"summary\" class=\"mt-1 block w-full rounded-md border-red-300 shadow-sm focus:border-red-500 focus:ring-red-500\" placeholder=\"Brief summary of the issue\" required id=\"id_summary\">",
+    "description": "<textarea name=\"description\" cols=\"40\" rows=\"6\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500\" placeholder=\"Detailed description (Markdown supported)\" id=\"id_description\"></textarea>",
+    "status": "<select name=\"status\" class=\"mt-1 block w-full rounded-md border-red-300 shadow-sm focus:border-red-500 focus:ring-red-500\" required id=\"id_status\"><option value=\"\" selected>---------</option><option value=\"1\">Open</option><option value=\"2\">In Progress</option><option value=\"3\">Closed</option></select>",
+    "assignee": "<select name=\"assignee\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500\" id=\"id_assignee\"><option value=\"\" selected>Unassigned</option><option value=\"1\">John Doe</option><option value=\"2\">Jane Smith</option><option value=\"3\">Bob Johnson</option></select>",
+    "tags": "<div class=\"space-y-2\"><label class=\"flex items-center\"><input type=\"checkbox\" name=\"tags\" value=\"1\" class=\"rounded border-gray-300 text-primary-600 focus:ring-primary-500\"> <span class=\"ml-2\">Bug</span></label><label class=\"flex items-center\"><input type=\"checkbox\" name=\"tags\" value=\"2\" class=\"rounded border-gray-300 text-primary-600 focus:ring-primary-500\"> <span class=\"ml-2\">Feature</span></label><label class=\"flex items-center\"><input type=\"checkbox\" name=\"tags\" value=\"3\" class=\"rounded border-gray-300 text-primary-600 focus:ring-primary-500\"> <span class=\"ml-2\">UI</span></label></div>",
+    "summary_errors": ["This field is required."],
+    "status_errors": ["This field is required."]
   },
   "issue": null,
   "user": {
-    "is_authenticated": true
+    "is_authenticated": true,
+    "name": "John Doe"
   }
 }

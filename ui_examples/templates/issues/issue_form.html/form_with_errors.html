@@ -51,7 +51,7 @@
                     </div>
                     <div class="flex items-center space-x-4">
                         
-                            <span class="text-sm text-gray-700">Hello, !</span>
+                            <span class="text-sm text-gray-700">Hello, John Doe!</span>
                             <a href="/logout/" 
                                class="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500">
                                 Log out
@@ -82,11 +82,11 @@
                 <input type="hidden" name="csrfmiddlewaretoken" value="dummy_csrf_token">
                 
                 <div>
-                    <label for="id_summary" class="block text-sm font-medium text-gray-700">
+                    <label for="" class="block text-sm font-medium text-gray-700">
                         Summary *
                     </label>
                     <div class="mt-1">
-                        {'id_for_label': 'id_summary', 'errors': ['This field is required.']}
+                        <input type="text" name="summary" class="mt-1 block w-full rounded-md border-red-300 shadow-sm focus:border-red-500 focus:ring-red-500" placeholder="Brief summary of the issue" required id="id_summary">
                     </div>
                     
                         <p class="mt-2 text-sm text-red-600">This field is required.</p>
@@ -94,11 +94,11 @@
                 </div>
                 
                 <div>
-                    <label for="id_description" class="block text-sm font-medium text-gray-700">
+                    <label for="" class="block text-sm font-medium text-gray-700">
                         Description
                     </label>
                     <div class="mt-1">
-                        {'id_for_label': 'id_description', 'errors': []}
+                        <textarea name="description" cols="40" rows="6" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Detailed description (Markdown supported)" id="id_description"></textarea>
                     </div>
                     <p class="mt-2 text-sm text-gray-500">Markdown is supported for formatting.</p>
                     
@@ -106,11 +106,11 @@
                 
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <div>
-                        <label for="id_status" class="block text-sm font-medium text-gray-700">
+                        <label for="" class="block text-sm font-medium text-gray-700">
                             Status *
                         </label>
                         <div class="mt-1">
-                            {'id_for_label': 'id_status', 'errors': ['This field is required.']}
+                            <select name="status" class="mt-1 block w-full rounded-md border-red-300 shadow-sm focus:border-red-500 focus:ring-red-500" required id="id_status"><option value="" selected>---------</option><option value="1">Open</option><option value="2">In Progress</option><option value="3">Closed</option></select>
                         </div>
                         
                             <p class="mt-2 text-sm text-red-600">This field is required.</p>
@@ -118,11 +118,11 @@
                     </div>
                     
                     <div>
-                        <label for="id_assignee" class="block text-sm font-medium text-gray-700">
+                        <label for="" class="block text-sm font-medium text-gray-700">
                             Assignee
                         </label>
                         <div class="mt-1">
-                            {'id_for_label': 'id_assignee', 'errors': []}
+                            <select name="assignee" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="id_assignee"><option value="" selected>Unassigned</option><option value="1">John Doe</option><option value="2">Jane Smith</option><option value="3">Bob Johnson</option></select>
                         </div>
                         
                     </div>
@@ -133,7 +133,7 @@
                         Tags
                     </label>
                     <div class="mt-2 space-y-2">
-                        {'errors': []}
+                        <div class="space-y-2"><label class="flex items-center"><input type="checkbox" name="tags" value="1" class="rounded border-gray-300 text-primary-600 focus:ring-primary-500"> <span class="ml-2">Bug</span></label><label class="flex items-center"><input type="checkbox" name="tags" value="2" class="rounded border-gray-300 text-primary-600 focus:ring-primary-500"> <span class="ml-2">Feature</span></label><label class="flex items-center"><input type="checkbox" name="tags" value="3" class="rounded border-gray-300 text-primary-600 focus:ring-primary-500"> <span class="ml-2">UI</span></label></div>
                     </div>
                     
                     <p class="mt-2 text-sm text-gray-500">

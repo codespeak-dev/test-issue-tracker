@@ -75,7 +75,12 @@ def evaluate_condition(condition, context):
     elif condition == 'comment_form':
         return bool(get_nested_value(context, 'comment_form'))
     elif condition.startswith('form.') and '.errors' in condition:
-        errors = get_nested_value(context, condition, [])
+        # Try the new error format first (field_name_errors)
+        field_name = condition.replace('form.', '').replace('.errors', '')
+        errors = get_nested_value(context, f'form.{field_name}_errors', [])
+        if not errors:
+            # Fall back to old format
+            errors = get_nested_value(context, condition, [])
         return bool(errors) and len(errors) > 0
     elif 'and issue.author == user' in condition:
         issue_author_id = get_nested_value(context, 'issue.author.id')
@@ -231,6 +236,14 @@ def render_template_content(template_content, context):
                 return str(value).upper()
             
             return str(value) if value else ''
+        
+        # Handle form error access like form.field.errors.0
+        if var_expression.startswith('form.') and '.errors.0' in var_expression:
+            field_name = var_expression.replace('form.', '').replace('.errors.0', '')
+            errors = get_nested_value(context, f'form.{field_name}_errors', [])
+            if errors and len(errors) > 0:
+                return str(errors[0])
+            return ''
         
         value = get_nested_value(context, var_expression, '')
         # If this looks like HTML (starts with <), return it as-is

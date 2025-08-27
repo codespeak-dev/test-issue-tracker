@@ -1,8 +1,5 @@
 {
   "form": {
-    "email": {
-      "id_for_label": "id_email",
-      "errors": []
-    }
+    "email": "<input type=\"email\" name=\"email\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500\" placeholder=\"Enter your email\" required id=\"id_email\">"
   }
 }
