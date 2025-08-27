@@ -57,22 +57,12 @@
         <main>
             <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
                 <!-- Messages -->
-                bg-blue-50 border border-blue-200 p-4 mb-4">
-                                <div class="flex">
-                                    <div class="ml-3">
-                                        <p class="text-sm text-blue-800">
-                                            
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                    </div>
                 
 
                 <!-- Page content -->
                 <div class="px-4 py-6 sm:px-0">
-                    <div class="max-w-4xl mx-auto">
+                    
+<div class="max-w-4xl mx-auto">
     <div class="bg-white shadow rounded-lg">
         <div class="px-4 py-5 sm:p-6">
             <div class="mb-6">
@@ -81,7 +71,7 @@
             </div>
             
             <form method="post" class="space-y-8">
-                <input type="hidden" name="csrfmiddlewaretoken" value="csrf_token_placeholder">
+                <input type="hidden" name="csrfmiddlewaretoken" value="dummy_csrf_token">
                 
                 <!-- Slack Configuration -->
                 <div class="border-b border-gray-200 pb-8">
@@ -94,7 +84,7 @@
                                 Slack Bot Token
                             </label>
                             <div class="mt-1">
-                                <__main__.create_mock_context.<locals>.MockObject object at 0x1048735d0>
+                                {'id_for_label': 'id_slack_bot_token', 'label': 'Slack Bot Token', 'errors': []}
                             </div>
                             <p class="mt-2 text-sm text-gray-500">
                                 Bot token from your Slack app (starts with xoxb-)
@@ -107,7 +97,7 @@
                                 Slack Channel ID
                             </label>
                             <div class="mt-1">
-                                <__main__.create_mock_context.<locals>.MockObject object at 0x1048736d0>
+                                {'id_for_label': 'id_slack_channel_id', 'label': 'Slack Channel ID', 'errors': []}
                             </div>
                             <p class="mt-2 text-sm text-gray-500">
                                 Channel ID or channel URL where notifications should be sent
@@ -128,7 +118,7 @@
                                 GitHub Access Token
                             </label>
                             <div class="mt-1">
-                                <__main__.create_mock_context.<locals>.MockObject object at 0x104873b10>
+                                {'id_for_label': 'id_github_access_token', 'label': 'GitHub Access Token', 'errors': []}
                             </div>
                             <p class="mt-2 text-sm text-gray-500">
                                 GitHub personal access token (starts with ghp_)
@@ -142,7 +132,7 @@
                                     GitHub Repository Owner
                                 </label>
                                 <div class="mt-1">
-                                    <__main__.create_mock_context.<locals>.MockObject object at 0x104873290>
+                                    {'id_for_label': 'id_github_repository_owner', 'label': 'GitHub Repository Owner', 'errors': []}
                                 </div>
                                 <p class="mt-2 text-sm text-gray-500">
                                     GitHub username or organization name
@@ -155,7 +145,7 @@
                                     GitHub Repository Name
                                 </label>
                                 <div class="mt-1">
-                                    <__main__.create_mock_context.<locals>.MockObject object at 0x104870650>
+                                    {'id_for_label': 'id_github_repository_name', 'label': 'GitHub Repository Name', 'errors': []}
                                 </div>
                                 <p class="mt-2 text-sm text-gray-500">
                                     Repository name to monitor
@@ -200,6 +190,7 @@
         </div>
     </div>
 </div>
+
                 </div>
             </div>
         </main>
@@ -271,6 +262,7 @@
         }
     </script>
 
+    
     
 </body>
 </html>

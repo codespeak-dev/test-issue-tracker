@@ -47,12 +47,6 @@
                                     Tags
                                 </a>
                                 
-                                    <a href="/settings/" 
-                                       class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                                        Settings
-                                    </a>
-                                
-                            
                         </div>
                     </div>
                     <div class="flex items-center space-x-4">
@@ -72,22 +66,12 @@
         <main>
             <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
                 <!-- Messages -->
-                bg-blue-50 border border-blue-200 p-4 mb-4">
-                                <div class="flex">
-                                    <div class="ml-3">
-                                        <p class="text-sm text-blue-800">
-                                            
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                    </div>
                 
 
                 <!-- Page content -->
                 <div class="px-4 py-6 sm:px-0">
-                    <div class="sm:flex sm:items-center">
+                    
+<div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
         <h1 class="text-base font-semibold leading-6 text-gray-900">Issues</h1>
         <p class="mt-2 text-sm text-gray-700">A list of all issues in the system.</p>
@@ -137,11 +121,45 @@
         
         <!-- Tag Filter -->
         
+        <div class="flex flex-wrap gap-2 items-center">
+            <span class="text-sm font-medium text-gray-700">Filter by tags:</span>
+            
+                <label class="inline-flex items-center">
+                    <input type="checkbox" 
+                           name="tags" 
+                           value="1"
+                           
                            onchange="this.form.submit()"
                            class="rounded border-gray-300 text-primary-600 focus:ring-primary-500 mr-2">
                     <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white" 
-                          style="background-color: ;">
-                        
+                          style="background-color: #ef4444;">
+                        Bug
+                    </span>
+                </label>
+            
+                <label class="inline-flex items-center">
+                    <input type="checkbox" 
+                           name="tags" 
+                           value="2"
+                           
+                           onchange="this.form.submit()"
+                           class="rounded border-gray-300 text-primary-600 focus:ring-primary-500 mr-2">
+                    <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white" 
+                          style="background-color: #10b981;">
+                        Feature
+                    </span>
+                </label>
+            
+                <label class="inline-flex items-center">
+                    <input type="checkbox" 
+                           name="tags" 
+                           value="3"
+                           
+                           onchange="this.form.submit()"
+                           class="rounded border-gray-300 text-primary-600 focus:ring-primary-500 mr-2">
+                    <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white" 
+                          style="background-color: #8b5cf6;">
+                        UI
                     </span>
                 </label>
             
@@ -159,12 +177,6 @@
     
         <div class="mt-2 text-sm text-gray-600">
             
-                Showing results for "<strong>login responsive</strong>"
-                and
-            
-            
-                    
-                
             
         </div>
     
@@ -202,15 +214,15 @@
                                         <div>
                                             <a href="/issues/1/" 
                                                class="font-medium text-primary-600 hover:text-primary-500">
-                                                
+                                                Login page not responsive on mobile devices
                                             </a>
-                                            <div class="text-gray-500">#</div>
+                                            <div class="text-gray-500">#1</div>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5 bg-green-100 text-green-800">
-                                        
+                                    <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5 bg-gray-100 text-gray-800">
+                                        Open
                                     </span>
                                 </td>
                                 <td class="px-3 py-4 text-sm text-gray-500">
@@ -234,28 +246,12 @@
                     </tbody>
                 </table>
             
-                <div class="text-center py-12">
-                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <h3 class="mt-2 text-sm font-semibold text-gray-900">No issues</h3>
-                    <p class="mt-1 text-sm text-gray-500">Get started by creating a new issue.</p>
-                    
-                        <div class="mt-6">
-                            <a href="/issues/new/" 
-                               class="inline-flex items-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500">
-                                <svg class="-ml-0.5 mr-1.5 h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                </svg>
-                                New Issue
-                            </a>
-                        </div>
-                    
                 </div>
             
         </div>
     </div>
 </div>
+
                 </div>
             </div>
         </main>
@@ -327,6 +323,7 @@
         }
     </script>
 
+    
     
 </body>
 </html>

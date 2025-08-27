@@ -57,22 +57,12 @@
         <main>
             <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
                 <!-- Messages -->
-                bg-blue-50 border border-blue-200 p-4 mb-4">
-                                <div class="flex">
-                                    <div class="ml-3">
-                                        <p class="text-sm text-blue-800">
-                                            
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                    </div>
                 
 
                 <!-- Page content -->
                 <div class="px-4 py-6 sm:px-0">
-                    <div class="sm:flex sm:items-center">
+                    
+<div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
         <h1 class="text-base font-semibold leading-6 text-gray-900">Tags</h1>
         <p class="mt-2 text-sm text-gray-700">Manage tags to categorize issues.</p>
@@ -108,24 +98,24 @@
                     </thead>
                     <tbody class="divide-y divide-gray-200">
                         
-                            <tr class="hover:bg-gray-50" id="tag-">
+                            <tr class="hover:bg-gray-50" id="tag-1">
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
                                     <div class="flex items-center">
                                         <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white" 
-                                              style="background-color: ;">
-                                            
+                                              style="background-color: #ef4444;">
+                                            Bug
                                         </span>
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     <div class="flex items-center">
                                         <div class="w-6 h-6 rounded border border-gray-300" 
-                                             style="background-color: ;"></div>
-                                        <span class="ml-2 font-mono text-xs"></span>
+                                             style="background-color: #ef4444;"></div>
+                                        <span class="ml-2 font-mono text-xs">#EF4444</span>
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    
+                                    5
                                 </td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                                     <div class="flex justify-end space-x-2">
@@ -134,7 +124,7 @@
                                             Edit
                                         </a>
                                         <button type="button" 
-                                                onclick="deleteTag(, '')"
+                                                onclick="deleteTag(1, 'Bug')"
                                                 class="text-red-600 hover:text-red-900">
                                             Delete
                                         </button>
@@ -142,33 +132,33 @@
                                 </td>
                             </tr>
                         
-                            <tr class="hover:bg-gray-50" id="tag-">
+                            <tr class="hover:bg-gray-50" id="tag-2">
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
                                     <div class="flex items-center">
                                         <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white" 
-                                              style="background-color: ;">
-                                            
+                                              style="background-color: #10b981;">
+                                            Feature
                                         </span>
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     <div class="flex items-center">
                                         <div class="w-6 h-6 rounded border border-gray-300" 
-                                             style="background-color: ;"></div>
-                                        <span class="ml-2 font-mono text-xs"></span>
+                                             style="background-color: #10b981;"></div>
+                                        <span class="ml-2 font-mono text-xs">#10B981</span>
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    
+                                    3
                                 </td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                                     <div class="flex justify-end space-x-2">
-                                        <a href="/tags/1/edit/" 
+                                        <a href="/tags/2/edit/" 
                                            class="text-primary-600 hover:text-primary-900">
                                             Edit
                                         </a>
                                         <button type="button" 
-                                                onclick="deleteTag(, '')"
+                                                onclick="deleteTag(2, 'Feature')"
                                                 class="text-red-600 hover:text-red-900">
                                             Delete
                                         </button>
@@ -176,33 +166,33 @@
                                 </td>
                             </tr>
                         
-                            <tr class="hover:bg-gray-50" id="tag-">
+                            <tr class="hover:bg-gray-50" id="tag-3">
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
                                     <div class="flex items-center">
                                         <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white" 
-                                              style="background-color: ;">
-                                            
+                                              style="background-color: #8b5cf6;">
+                                            UI
                                         </span>
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     <div class="flex items-center">
                                         <div class="w-6 h-6 rounded border border-gray-300" 
-                                             style="background-color: ;"></div>
-                                        <span class="ml-2 font-mono text-xs"></span>
+                                             style="background-color: #8b5cf6;"></div>
+                                        <span class="ml-2 font-mono text-xs">#8B5CF6</span>
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    
+                                    7
                                 </td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                                     <div class="flex justify-end space-x-2">
-                                        <a href="/tags/1/edit/" 
+                                        <a href="/tags/3/edit/" 
                                            class="text-primary-600 hover:text-primary-900">
                                             Edit
                                         </a>
                                         <button type="button" 
-                                                onclick="deleteTag(, '')"
+                                                onclick="deleteTag(3, 'UI')"
                                                 class="text-red-600 hover:text-red-900">
                                             Delete
                                         </button>
@@ -210,33 +200,33 @@
                                 </td>
                             </tr>
                         
-                            <tr class="hover:bg-gray-50" id="tag-">
+                            <tr class="hover:bg-gray-50" id="tag-4">
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
                                     <div class="flex items-center">
                                         <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white" 
-                                              style="background-color: ;">
-                                            
+                                              style="background-color: #f59e0b;">
+                                            Performance
                                         </span>
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     <div class="flex items-center">
                                         <div class="w-6 h-6 rounded border border-gray-300" 
-                                             style="background-color: ;"></div>
-                                        <span class="ml-2 font-mono text-xs"></span>
+                                             style="background-color: #f59e0b;"></div>
+                                        <span class="ml-2 font-mono text-xs">#F59E0B</span>
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    
+                                    2
                                 </td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                                     <div class="flex justify-end space-x-2">
-                                        <a href="/tags/1/edit/" 
+                                        <a href="/tags/4/edit/" 
                                            class="text-primary-600 hover:text-primary-900">
                                             Edit
                                         </a>
                                         <button type="button" 
-                                                onclick="deleteTag(, '')"
+                                                onclick="deleteTag(4, 'Performance')"
                                                 class="text-red-600 hover:text-red-900">
                                             Delete
                                         </button>
@@ -244,33 +234,33 @@
                                 </td>
                             </tr>
                         
-                            <tr class="hover:bg-gray-50" id="tag-">
+                            <tr class="hover:bg-gray-50" id="tag-5">
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
                                     <div class="flex items-center">
                                         <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white" 
-                                              style="background-color: ;">
-                                            
+                                              style="background-color: #dc2626;">
+                                            High Priority
                                         </span>
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     <div class="flex items-center">
                                         <div class="w-6 h-6 rounded border border-gray-300" 
-                                             style="background-color: ;"></div>
-                                        <span class="ml-2 font-mono text-xs"></span>
+                                             style="background-color: #dc2626;"></div>
+                                        <span class="ml-2 font-mono text-xs">#DC2626</span>
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    
+                                    1
                                 </td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                                     <div class="flex justify-end space-x-2">
-                                        <a href="/tags/1/edit/" 
+                                        <a href="/tags/5/edit/" 
                                            class="text-primary-600 hover:text-primary-900">
                                             Edit
                                         </a>
                                         <button type="button" 
-                                                onclick="deleteTag(, '')"
+                                                onclick="deleteTag(5, 'High Priority')"
                                                 class="text-red-600 hover:text-red-900">
                                             Delete
                                         </button>
@@ -278,20 +268,20 @@
                                 </td>
                             </tr>
                         
-                            <tr class="hover:bg-gray-50" id="tag-">
+                            <tr class="hover:bg-gray-50" id="tag-6">
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
                                     <div class="flex items-center">
                                         <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white" 
-                                              style="background-color: ;">
-                                            
+                                              style="background-color: #6b7280;">
+                                            Documentation
                                         </span>
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     <div class="flex items-center">
                                         <div class="w-6 h-6 rounded border border-gray-300" 
-                                             style="background-color: ;"></div>
-                                        <span class="ml-2 font-mono text-xs"></span>
+                                             style="background-color: #6b7280;"></div>
+                                        <span class="ml-2 font-mono text-xs">#6B7280</span>
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -299,12 +289,12 @@
                                 </td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                                     <div class="flex justify-end space-x-2">
-                                        <a href="/tags/1/edit/" 
+                                        <a href="/tags/6/edit/" 
                                            class="text-primary-600 hover:text-primary-900">
                                             Edit
                                         </a>
                                         <button type="button" 
-                                                onclick="deleteTag(, '')"
+                                                onclick="deleteTag(6, 'Documentation')"
                                                 class="text-red-600 hover:text-red-900">
                                             Delete
                                         </button>
@@ -349,7 +339,8 @@ function deleteTag(tagId, tagName) {
 }
 </script>
 
-<input type="hidden" name="csrfmiddlewaretoken" value="csrf_token_placeholder">
+<input type="hidden" name="csrfmiddlewaretoken" value="dummy_csrf_token">
+
                 </div>
             </div>
         </main>
@@ -421,6 +412,7 @@ function deleteTag(tagId, tagName) {
         }
     </script>
 
+    
     
 </body>
 </html>

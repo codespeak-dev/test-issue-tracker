@@ -57,22 +57,12 @@
         <main>
             <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
                 <!-- Messages -->
-                bg-blue-50 border border-blue-200 p-4 mb-4">
-                                <div class="flex">
-                                    <div class="ml-3">
-                                        <p class="text-sm text-blue-800">
-                                            
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                    </div>
                 
 
                 <!-- Page content -->
                 <div class="px-4 py-6 sm:px-0">
-                    <div class="sm:flex sm:items-center">
+                    
+<div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
         <h1 class="text-base font-semibold leading-6 text-gray-900">Create Tag</h1>
     </div>
@@ -81,14 +71,22 @@
 <div class="mt-8">
     <div class="max-w-md">
         <form method="post" class="space-y-6">
-            <input type="hidden" name="csrfmiddlewaretoken" value="csrf_token_placeholder">
+            <input type="hidden" name="csrfmiddlewaretoken" value="dummy_csrf_token">
             
             <div>
                 <label for="id_name" class="block text-sm font-medium leading-6 text-gray-900">
                     Tag Name
                 </label>
                 <div class="mt-2">
-                    <__main__.create_mock_context.<locals>.MockObject object at 0x104873990>
+                    {'id_for_label': 'id_name', 'errors': ['This field is required.', 'Tag with this name already exists.']}
+                    
+                        <div class="mt-2">
+                            
+                                <p class="text-sm text-red-600">This field is required.</p>
+                            
+                                <p class="text-sm text-red-600">Tag with this name already exists.</p>
+                            
+                        </div>
                     
                 </div>
                 <p class="mt-2 text-sm text-gray-500">Choose a descriptive name for your tag.</p>
@@ -99,7 +97,7 @@
                     Color
                 </label>
                 <div class="mt-2 flex items-center space-x-3">
-                    <__main__.create_mock_context.<locals>.MockObject object at 0x104873b10>
+                    {'id_for_label': 'id_color', 'value': '#6B7280', 'errors': []}
                     <div class="flex items-center">
                         <span class="text-sm text-gray-500">Preview:</span>
                         <span id="color-preview" class="ml-2 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white"
@@ -138,6 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+
                 </div>
             </div>
         </main>
@@ -209,6 +208,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     </script>
 
+    
     
 </body>
 </html>

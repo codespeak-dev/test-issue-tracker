@@ -57,22 +57,12 @@
         <main>
             <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
                 <!-- Messages -->
-                bg-blue-50 border border-blue-200 p-4 mb-4">
-                                <div class="flex">
-                                    <div class="ml-3">
-                                        <p class="text-sm text-blue-800">
-                                            
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                    </div>
                 
 
                 <!-- Page content -->
                 <div class="px-4 py-6 sm:px-0">
-                    <div class="sm:flex sm:items-center">
+                    
+<div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
         <h1 class="text-base font-semibold leading-6 text-gray-900">Issues</h1>
         <p class="mt-2 text-sm text-gray-700">A list of all issues in the system.</p>
@@ -110,25 +100,54 @@
         
         <!-- Tag Filter -->
         
+        <div class="flex flex-wrap gap-2 items-center">
+            <span class="text-sm font-medium text-gray-700">Filter by tags:</span>
+            
+                <label class="inline-flex items-center">
+                    <input type="checkbox" 
+                           name="tags" 
+                           value="1"
+                           
                            onchange="this.form.submit()"
                            class="rounded border-gray-300 text-primary-600 focus:ring-primary-500 mr-2">
                     <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white" 
-                          style="background-color: ;">
-                        
+                          style="background-color: #ef4444;">
+                        Bug
+                    </span>
+                </label>
+            
+                <label class="inline-flex items-center">
+                    <input type="checkbox" 
+                           name="tags" 
+                           value="2"
+                           
+                           onchange="this.form.submit()"
+                           class="rounded border-gray-300 text-primary-600 focus:ring-primary-500 mr-2">
+                    <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white" 
+                          style="background-color: #10b981;">
+                        Feature
+                    </span>
+                </label>
+            
+                <label class="inline-flex items-center">
+                    <input type="checkbox" 
+                           name="tags" 
+                           value="3"
+                           
+                           onchange="this.form.submit()"
+                           class="rounded border-gray-300 text-primary-600 focus:ring-primary-500 mr-2">
+                    <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white" 
+                          style="background-color: #8b5cf6;">
+                        UI
                     </span>
                 </label>
             
             
-        </div>
-        
     </form>
     
     <!-- Status Messages -->
     
             
-            
-                    
-                
             
         </div>
     
@@ -166,15 +185,15 @@
                                         <div>
                                             <a href="/issues/1/" 
                                                class="font-medium text-primary-600 hover:text-primary-500">
-                                                
+                                                Login page not responsive on mobile devices
                                             </a>
-                                            <div class="text-gray-500">#</div>
+                                            <div class="text-gray-500">#1</div>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5 bg-green-100 text-green-800">
-                                        
+                                    <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5 bg-gray-100 text-gray-800">
+                                        Open
                                     </span>
                                 </td>
                                 <td class="px-3 py-4 text-sm text-gray-500">
@@ -189,17 +208,17 @@
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
                                     <div class="flex items-center">
                                         <div>
-                                            <a href="/issues/1/" 
+                                            <a href="/issues/2/" 
                                                class="font-medium text-primary-600 hover:text-primary-500">
-                                                
+                                                Add dark mode theme support
                                             </a>
-                                            <div class="text-gray-500">#</div>
+                                            <div class="text-gray-500">#2</div>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5 bg-green-100 text-green-800">
-                                        
+                                    <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5 bg-gray-100 text-gray-800">
+                                        In Progress
                                     </span>
                                 </td>
                                 <td class="px-3 py-4 text-sm text-gray-500">
@@ -223,18 +242,12 @@
                     </tbody>
                 </table>
             
-                <div class="text-center py-12">
-                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <h3 class="mt-2 text-sm font-semibold text-gray-900">No issues</h3>
-                    <p class="mt-1 text-sm text-gray-500">Get started by creating a new issue.</p>
-                    
                 </div>
             
         </div>
     </div>
 </div>
+
                 </div>
             </div>
         </main>
@@ -306,6 +319,7 @@
         }
     </script>
 
+    
     
 </body>
 </html>

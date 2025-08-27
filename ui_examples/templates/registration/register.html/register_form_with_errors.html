@@ -57,22 +57,12 @@
         <main>
             <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
                 <!-- Messages -->
-                bg-blue-50 border border-blue-200 p-4 mb-4">
-                                <div class="flex">
-                                    <div class="ml-3">
-                                        <p class="text-sm text-blue-800">
-                                            
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                    </div>
                 
 
                 <!-- Page content -->
                 <div class="px-4 py-6 sm:px-0">
-                    <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+                    
+<div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
         <div class="text-center">
             <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
@@ -90,15 +80,17 @@
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <form method="post" class="space-y-6">
-                <input type="hidden" name="csrfmiddlewaretoken" value="csrf_token_placeholder">
+                <input type="hidden" name="csrfmiddlewaretoken" value="dummy_csrf_token">
                 
                 <div>
                     <label for="id_name" class="block text-sm font-medium text-gray-700">
                         Full name
                     </label>
                     <div class="mt-1">
-                        <__main__.create_mock_context.<locals>.MockObject object at 0x104827990>
+                        {'id_for_label': 'id_name', 'errors': ['This field is required.']}
                     </div>
+                    
+                        <p class="mt-2 text-sm text-red-600">This field is required.</p>
                     
                 </div>
 
@@ -107,8 +99,10 @@
                         Email address
                     </label>
                     <div class="mt-1">
-                        <__main__.create_mock_context.<locals>.MockObject object at 0x1048279d0>
+                        {'id_for_label': 'id_email', 'errors': ['An account with this email already exists. Please login instead.']}
                     </div>
+                    
+                        <p class="mt-2 text-sm text-red-600">An account with this email already exists. Please login instead.</p>
                     
                 </div>
 
@@ -139,6 +133,7 @@
         </div>
     </div>
 </div>
+
                 </div>
             </div>
         </main>
@@ -210,6 +205,7 @@
         }
     </script>
 
+    
     
 </body>
 </html>
