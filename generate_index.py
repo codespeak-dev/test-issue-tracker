@@ -17,16 +17,31 @@ def find_html_files(base_dir):
     
     return sorted(html_files)
 
+def get_category_from_path(file_path):
+    """Generate category from directory structure"""
+    parts = file_path.split('/')
+    
+    # Skip 'templates' if present (common Django structure)
+    if parts[0] == 'templates':
+        parts = parts[1:]
+    
+    if len(parts) <= 1:
+        return 'Root'
+    
+    # Join directory parts with '/' and capitalize, excluding the filename
+    category_parts = []
+    for part in parts[:-1]:  # Exclude filename
+        # Convert directory names to readable format
+        readable = part.replace('_', ' ').replace('.html', '').title()
+        category_parts.append(readable)
+    
+    return '/'.join(category_parts)
+
 def get_page_title(html_path, base_dir):
     """Generate a readable title for the HTML page"""
-    # Remove .html extension and convert path to readable title
-    title = html_path.replace('.html', '')
-    
-    # Replace slashes and underscores with spaces, capitalize words
-    title = title.replace('/', ' > ').replace('_', ' ')
-    title = ' '.join(word.capitalize() for word in title.split())
-    
-    return title
+    # Extract just the filename for the title
+    filename = html_path.split('/')[-1]
+    return filename.replace('.html', '').replace('_', ' ').title()
 
 def generate_index_html(base_dir):
     """Generate the HTML index page"""
@@ -77,14 +92,10 @@ def generate_index_html(base_dir):
             <nav class="pb-6">
 '''
     
-    # Group files by category (first part of path)
+    # Group files by category derived from directory structure
     categories = {}
     for file_path in html_files:
-        parts = file_path.split('/')
-        if len(parts) > 1:
-            category = parts[1]  # Skip 'templates'
-        else:
-            category = 'Root'
+        category = get_category_from_path(file_path)
         
         if category not in categories:
             categories[category] = []
@@ -94,14 +105,13 @@ def generate_index_html(base_dir):
     for category, files in categories.items():
         html_content += f'''
                 <div class="mb-4">
-                    <h3 class="px-4 py-2 text-sm font-semibold text-gray-600 uppercase tracking-wider">{category.replace('_', ' ').replace('.html', '').title()}</h3>
+                    <h3 class="px-4 py-2 text-sm font-semibold text-gray-600 uppercase tracking-wider">{category}</h3>
 '''
         
         for file_path in files:
-            title = get_page_title(file_path, base_dir)
-            # Remove the category part from title to avoid redundancy
-            if ' > ' in title:
-                title = ' > '.join(title.split(' > ')[2:])  # Skip 'Templates' and category
+            # Extract just the filename for the title (e.g., "normal_issue.html" -> "Normal Issue")
+            filename = file_path.split('/')[-1]
+            title = filename.replace('.html', '').replace('_', ' ').title()
             
             # Use the full relative path from the web root
             full_path = f"ui_examples_new/{file_path}"
