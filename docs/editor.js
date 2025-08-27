@@ -83,6 +83,12 @@
         openEditor(currentHighlighted);
     }
     
+    function isPlainText(element) {
+        const htmlContent = element.innerHTML.trim();
+        const textContent = element.textContent.trim();
+        return htmlContent === textContent && !/<[^>]*>/.test(htmlContent);
+    }
+    
     function openEditor(element) {
         closeEditor();
         
@@ -90,30 +96,72 @@
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
         
-        currentEditor = document.createElement('textarea');
-        currentEditor.value = element.innerHTML;
-        currentEditor.style.cssText = `
-            position: absolute;
-            top: ${rect.top + scrollTop}px;
-            left: ${rect.left + scrollLeft}px;
-            width: ${rect.width}px;
-            height: ${rect.height}px;
-            font-family: 'Courier New', Consolas, monospace;
-            font-size: 12px;
-            border: 3px solid #007bff;
-            border-radius: 4px;
-            background: #fff;
-            z-index: 9999;
-            resize: none;
-            outline: none;
-            padding: 8px;
-            box-sizing: border-box;
-        `;
+        const isPlainTextContent = isPlainText(element);
+        
+        if (isPlainTextContent) {
+            const computedStyle = window.getComputedStyle(element);
+            
+            currentEditor = document.createElement('textarea');
+            currentEditor.value = element.textContent;
+            
+            currentEditor.style.cssText = `
+                position: absolute;
+                top: ${rect.top + scrollTop}px;
+                left: ${rect.left + scrollLeft}px;
+                width: ${rect.width}px;
+                height: ${rect.height}px;
+                font-family: ${computedStyle.fontFamily};
+                font-size: ${computedStyle.fontSize};
+                font-weight: ${computedStyle.fontWeight};
+                font-style: ${computedStyle.fontStyle};
+                line-height: ${computedStyle.lineHeight};
+                color: ${computedStyle.color};
+                background: transparent;
+                border: 3px solid #007bff;
+                border-radius: 4px;
+                z-index: 9999;
+                resize: none;
+                outline: none;
+                padding: ${computedStyle.paddingTop} ${computedStyle.paddingRight} ${computedStyle.paddingBottom} ${computedStyle.paddingLeft};
+                margin: 0;
+                box-sizing: border-box;
+                text-align: ${computedStyle.textAlign};
+                text-decoration: ${computedStyle.textDecoration};
+                letter-spacing: ${computedStyle.letterSpacing};
+                word-spacing: ${computedStyle.wordSpacing};
+                text-transform: ${computedStyle.textTransform};
+                overflow: hidden;
+            `;
+        } else {
+            currentEditor = document.createElement('textarea');
+            currentEditor.value = element.innerHTML;
+            currentEditor.style.cssText = `
+                position: absolute;
+                top: ${rect.top + scrollTop}px;
+                left: ${rect.left + scrollLeft}px;
+                width: ${rect.width}px;
+                height: ${rect.height}px;
+                font-family: 'Courier New', Consolas, monospace;
+                font-size: 12px;
+                border: 3px solid #007bff;
+                border-radius: 4px;
+                background: #fff;
+                z-index: 9999;
+                resize: none;
+                outline: none;
+                padding: 8px;
+                box-sizing: border-box;
+            `;
+        }
         
         const targetElement = element;
         
         currentEditor.addEventListener('blur', function() {
-            targetElement.innerHTML = currentEditor.value;
+            if (isPlainTextContent) {
+                targetElement.textContent = currentEditor.value;
+            } else {
+                targetElement.innerHTML = currentEditor.value;
+            }
             closeEditor();
         });
         
@@ -121,7 +169,11 @@
             if (e.key === 'Escape') {
                 closeEditor();
             } else if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
-                targetElement.innerHTML = currentEditor.value;
+                if (isPlainTextContent) {
+                    targetElement.textContent = currentEditor.value;
+                } else {
+                    targetElement.innerHTML = currentEditor.value;
+                }
                 closeEditor();
             }
         });
