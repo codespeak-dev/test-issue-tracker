@@ -84,7 +84,7 @@
             <input type="hidden" name="csrfmiddlewaretoken" value="&lt;input type=&quot;hidden&quot; name=&quot;csrfmiddlewaretoken&quot; value=&quot;mock-csrf-token-12345&quot; /&gt;">
             
             <div>
-                <label for="" class="block text-sm font-medium leading-6 text-gray-900">
+                <label for="id_name" class="block text-sm font-medium leading-6 text-gray-900">
                     Tag Name
                 </label>
                 <div class="mt-2">
@@ -95,7 +95,7 @@
             </div>
 
             <div>
-                <label for="" class="block text-sm font-medium leading-6 text-gray-900">
+                <label for="id_color" class="block text-sm font-medium leading-6 text-gray-900">
                     Color
                 </label>
                 <div class="mt-2 flex items-center space-x-3">
@@ -128,7 +128,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const colorInput = document.getElementById('');
+    const colorInput = document.getElementById('id_color');
     const preview = document.getElementById('color-preview');
     
     if (colorInput && preview) {

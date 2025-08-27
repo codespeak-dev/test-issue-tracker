@@ -103,6 +103,34 @@ class MockTags:
         return len(self.all_data) > 0
 
 
+class MockFormField:
+    """Mock form field that provides Django form field interface."""
+    def __init__(self, field_name, field_html, errors=None, value=None):
+        self.field_name = field_name
+        self.field_html = mark_safe(field_html)
+        self.errors = errors or []
+        self._value = value
+        # Extract ID from HTML for id_for_label
+        import re
+        id_match = re.search(r'id="([^"]*)"', field_html)
+        self._id = id_match.group(1) if id_match else f"id_{field_name}"
+        
+        # Extract value from HTML if not provided
+        if value is None:
+            value_match = re.search(r'value="([^"]*)"', field_html)
+            self._value = value_match.group(1) if value_match else ""
+    
+    def __str__(self):
+        return self.field_html
+        
+    @property
+    def id_for_label(self):
+        return self._id
+        
+    def value(self):
+        return self._value
+
+
 def mock_url(name, *args, **kwargs):
     """Mock URL function that generates placeholder URLs."""
     url_patterns = {
@@ -168,11 +196,17 @@ class DjangoTemplateRenderer:
             elif key == 'issue' and isinstance(value, dict):
                 context[key] = MockModel(value)
             elif key in ['form', 'comment_form'] and isinstance(value, dict):
-                # Handle form data - keep as dict but mark HTML fields as safe
+                # Handle form data - create mock form fields for better Django compatibility
                 form_data = {}
                 for field_name, field_value in value.items():
-                    if isinstance(field_value, str) and '<' in field_value:
-                        form_data[field_name] = mark_safe(field_value)
+                    if field_name.endswith('_errors'):
+                        # Keep error lists as-is
+                        form_data[field_name] = field_value
+                    elif isinstance(field_value, str) and '<' in field_value:
+                        # Create MockFormField for HTML form fields
+                        errors_key = f"{field_name}_errors"
+                        errors = value.get(errors_key, [])
+                        form_data[field_name] = MockFormField(field_name, field_value, errors)
                     else:
                         form_data[field_name] = field_value
                 context[key] = form_data
