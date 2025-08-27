@@ -82,10 +82,20 @@ def evaluate_condition(condition, context):
             # Fall back to old format
             errors = get_nested_value(context, condition, [])
         return bool(errors) and len(errors) > 0
-    elif 'and issue.author == user' in condition:
+    elif 'issue.author == user' in condition:
         issue_author_id = get_nested_value(context, 'issue.author.id')
         user_id = get_nested_value(context, 'user.id')
-        return issue_author_id and user_id and issue_author_id == user_id
+        is_author = issue_author_id and user_id and issue_author_id == user_id
+        
+        # Handle complex conditions
+        if condition == 'issue.is_deleted and issue.author == user':
+            is_deleted = bool(get_nested_value(context, 'issue.is_deleted'))
+            return is_deleted and is_author
+        elif condition == 'not issue.is_deleted and issue.author == user':
+            is_deleted = bool(get_nested_value(context, 'issue.is_deleted'))
+            return not is_deleted and is_author
+        else:
+            return is_author
     elif 'and comment.author == user' in condition:
         return False  # Simplify for now
     elif '==' in condition:
@@ -118,6 +128,76 @@ def process_for_loop(content, loop_var, iterable_path, context, empty_content=''
             result += loop_result
     
     return result
+
+
+def process_nested_conditionals(template_content, context):
+    """Process nested conditionals properly by finding matching if/endif pairs"""
+    import re
+    
+    # Find all if statements
+    if_matches = []
+    for match in re.finditer(r'{%\s*if\s+([^%]+?)\s*%}', template_content):
+        if_matches.append((match.start(), match.end(), match.group(1)))
+    
+    if not if_matches:
+        return template_content
+    
+    # Process from the innermost (rightmost) if statements first
+    if_matches.reverse()
+    
+    processed_content = template_content
+    
+    for if_start, if_end, condition in if_matches:
+        # Find the matching endif for this if
+        pos = if_end
+        if_count = 1
+        else_pos = None
+        
+        while pos < len(processed_content) and if_count > 0:
+            # Look for next if, else, or endif
+            if_match = re.search(r'{%\s*(if|else|endif)\s*[^%]*%}', processed_content[pos:])
+            if not if_match:
+                break
+                
+            abs_pos = pos + if_match.start()
+            tag_type = if_match.group(1)
+            
+            if tag_type == 'if':
+                if_count += 1
+            elif tag_type == 'endif':
+                if_count -= 1
+                if if_count == 0:
+                    # Found matching endif
+                    endif_start = abs_pos
+                    endif_end = pos + if_match.end()
+                    
+                    # Extract content between if and endif
+                    if_content = processed_content[if_end:endif_start]
+                    else_content = ''
+                    
+                    # Handle else clause
+                    if else_pos is not None:
+                        if_content = processed_content[if_end:else_pos]
+                        else_content = processed_content[else_pos:endif_start]
+                    
+                    # Evaluate condition and replace entire if block
+                    if evaluate_condition(condition, context):
+                        replacement = if_content
+                    else:
+                        replacement = else_content
+                    
+                    # Replace the entire if block
+                    before = processed_content[:if_start]
+                    after = processed_content[endif_end:]
+                    processed_content = before + replacement + after
+                    break
+            elif tag_type == 'else' and if_count == 1:
+                # This else belongs to our current if
+                else_pos = abs_pos + len('{%') + len(if_match.group(0)) - len('%}')
+            
+            pos = pos + if_match.end()
+    
+    return processed_content
 
 
 def render_template_content(template_content, context):
@@ -167,23 +247,12 @@ def render_template_content(template_content, context):
         template_content = re.sub(for_pattern, replace_for, template_content, flags=re.DOTALL)
         iteration += 1
     
-    # Process {% if %} conditionals
+    # Process {% if %} conditionals with proper nesting support
     max_iterations = 10
     iteration = 0
     while re.search(r'{%\s*if\s+[^%]+\s*%}', template_content) and iteration < max_iterations:
-        if_pattern = r'{%\s*if\s+([^%]+?)\s*%}(.*?)(?:{%\s*else\s*%}(.*?))?{%\s*endif\s*%}'
-        
-        def replace_if(match):
-            condition = match.group(1)
-            if_content = match.group(2)
-            else_content = match.group(3) or ''
-            
-            if evaluate_condition(condition, context):
-                return if_content
-            else:
-                return else_content
-        
-        template_content = re.sub(if_pattern, replace_if, template_content, flags=re.DOTALL)
+        # Find the outermost if block that doesn't contain other if blocks
+        template_content = process_nested_conditionals(template_content, context)
         iteration += 1
     
     # Handle variable substitution {{ variable }}

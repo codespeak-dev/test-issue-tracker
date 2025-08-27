@@ -3,6 +3,7 @@
 This Django app has 
 - models in @issues/models.py, 
 - views in @issues/views.py, 
+- forms in @issues/forms.py,
 - and templates in @templates/. 
 
 Your overall task is to help me render every state of this app's UI as a self-contained HTML file. 
@@ -42,11 +43,38 @@ foreach template_path in state_descriptions
         </output_spec>
         Take the names of variables from the template. Also, look at @issues/views.py to see how these inputs are formed.
         This data must be for illustrative purposes only. Just an example. You can come up with plausible values for all fields.
+        
+        IMPORTANT: For Django forms, provide rendered HTML form elements, not form metadata. Templates expect `{{ form.field }}` to render as actual HTML input/textarea/select elements, not as JSON objects with field properties. For example:
+        - `"summary": "<input type=\"text\" name=\"summary\" class=\"form-classes\" placeholder=\"Brief summary\" required id=\"id_summary\">"` 
+        - NOT `"summary": {"id_for_label": "id_summary", "errors": []}`
+        
+        For forms with errors, include both the HTML elements (with error styling like red borders) AND separate error arrays:
+        - `"field_name": "<input class=\"border-red-300\" ...>"`
+        - `"field_name_errors": ["This field is required."]`
+        
+        Also ensure all user objects include a "name" field, not just authentication status.
+        Look at forms in @issues/forms.py to get the necessary fields and layout parameters (styles, etc).
 </todo>
 
 <todo index="3" inputs="state_descriptions, state_inputs">
 Instantiate the templates from state_descriptions with the inputs from state_inputs.
 For each template_path, for each state_name, generate a HTML file `{output_dir}/{template_path}/{state_name}.html` with the rendered template. Use inputs from `{output_dir}/{template_path}/{state_name}.json` and the template in {template_path}.
+
+IMPORTANT: Create a template renderer that properly handles Django template syntax:
+- `{% extends %}` and `{% block %}` for template inheritance
+- `{% if %}...{% else %}...{% endif %}` conditionals with proper evaluation
+- `{% for %}...{% empty %}...{% endfor %}` loops with context handling
+- `{{ variable|filter }}` with common filters like `|length`, `|date`, `|safe`, `|truncatechars`
+- `{% url 'name' param %}` URL generation
+- `{% csrf_token %}` CSRF token inclusion
+
+Use the JSON data directly without creating mock Python objects - modern template engines can work with plain JSON/dict structures.
+
+For form error handling, support both:
+- `{% if form.field.errors %}` checking for errors
+- `{{ form.field.errors.0 }}` displaying first error message
+
+Ensure the renderer handles nested data access like `issue.author.name`, `comments|length`, and `issue.tags.all`.
 
 If template instantiation fails, fix the inputs and try again.
 </todo>
@@ -54,3 +82,20 @@ If template instantiation fails, fix the inputs and try again.
 <ignore type="comment">
 Generate one JSON file with example data that corresponds to the DB structure from @issues/models.py. This data should be structured in such a way that templates can access it in the same way they access the models. 
 </ignore>
+
+## Validation and Testing
+
+After generating all HTML files, validate the output by:
+
+1. **Check for broken layouts**: Look for incomplete HTML tags, missing form elements, or raw JSON/template syntax in the output
+2. **Verify form rendering**: Ensure forms show actual `<input>`, `<textarea>`, `<select>` elements, not metadata objects
+3. **Test all states**: Make sure each UI state demonstrates the intended functionality (empty states, error states, populated states)
+4. **Inspect user interactions**: Verify buttons, links, and form actions are properly rendered
+5. **Review data consistency**: Check that related data (like issue authors, assignees, tags) displays correctly across templates
+
+Common issues to watch for:
+- `{'id_for_label': 'field', 'errors': []}` instead of actual form HTML
+- Missing user names (showing "Hello, !" instead of "Hello, John!")
+- Showing object references instead of numbers
+- Empty or malformed conditional blocks
+- Incomplete loops (missing `{% empty %}` handling)
