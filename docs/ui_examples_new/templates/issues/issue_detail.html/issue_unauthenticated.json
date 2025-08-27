@@ -1,0 +1,66 @@
+{
+  "user": {
+    "is_authenticated": false,
+    "name": "",
+    "is_staff": false
+  },
+  "issue": {
+    "id": 1,
+    "pk": 1,
+    "summary": "Login page not loading properly on mobile devices",
+    "description": "When accessing the login page from mobile browsers, the page fails to load completely.",
+    "status": {
+      "name": "Open",
+      "is_open": true
+    },
+    "author": {
+      "name": "Alice Cooper"
+    },
+    "assignee": {
+      "name": "Bob Wilson"
+    },
+    "created_at": "2024-01-10T09:15:00Z",
+    "updated_at": "2024-01-15T10:30:00Z",
+    "deleted_at": null,
+    "is_deleted": false,
+    "tags": {
+      "all": [
+        {
+          "name": "Bug",
+          "color": "#dc2626"
+        },
+        {
+          "name": "High Priority",
+          "color": "#ea580c"
+        }
+      ],
+      "exists": true
+    },
+    "description_html": "<p>When accessing the login page from mobile browsers, the page fails to load completely.</p>"
+  },
+  "comments": [
+    {
+      "id": 1,
+      "author": {
+        "name": "Bob Wilson"
+      },
+      "content": "I've started investigating this issue.",
+      "content_html": "<p>I've started investigating this issue.</p>",
+      "created_at": "2024-01-12T14:20:00Z",
+      "updated_at": "2024-01-12T14:20:00Z"
+    }
+  ],
+  "comment_form": null,
+  "edit_history": [
+    {
+      "editor": {
+        "name": "Alice Cooper"
+      },
+      "field_name": "Status",
+      "old_value": "New",
+      "new_value": "Open",
+      "edited_at": "2024-01-11T10:20:00Z"
+    }
+  ],
+  "messages": []
+}

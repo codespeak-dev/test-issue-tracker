@@ -1,0 +1,16 @@
+{
+  "user": {
+    "is_authenticated": true,
+    "name": "John Smith",
+    "is_staff": false
+  },
+  "form": {
+    "name": "<input type=\"text\" name=\"name\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500\" placeholder=\"Tag name (e.g., \\\"Bug\\\", \\\"Feature\\\", \\\"High Priority\\\")\" required id=\"id_name\">",
+    "name_errors": [],
+    "color": "<input type=\"color\" name=\"color\" value=\"#6B7280\" class=\"mt-1 block w-16 h-10 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500\" id=\"id_color\">",
+    "color_errors": []
+  },
+  "title": "Create Tag",
+  "tag": null,
+  "messages": []
+}

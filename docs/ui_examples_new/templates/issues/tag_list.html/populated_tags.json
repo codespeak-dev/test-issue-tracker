@@ -1,0 +1,73 @@
+{
+  "user": {
+    "is_authenticated": true,
+    "name": "John Smith",
+    "is_staff": false
+  },
+  "tags": [
+    {
+      "id": 1,
+      "pk": 1,
+      "name": "Bug",
+      "color": "#dc2626",
+      "issues": {
+        "count": 8
+      }
+    },
+    {
+      "id": 2,
+      "pk": 2,
+      "name": "Feature",
+      "color": "#2563eb",
+      "issues": {
+        "count": 12
+      }
+    },
+    {
+      "id": 3,
+      "pk": 3,
+      "name": "High Priority",
+      "color": "#ea580c",
+      "issues": {
+        "count": 3
+      }
+    },
+    {
+      "id": 4,
+      "pk": 4,
+      "name": "UI/UX",
+      "color": "#7c3aed",
+      "issues": {
+        "count": 5
+      }
+    },
+    {
+      "id": 5,
+      "pk": 5,
+      "name": "Backend",
+      "color": "#059669",
+      "issues": {
+        "count": 7
+      }
+    },
+    {
+      "id": 6,
+      "pk": 6,
+      "name": "Documentation",
+      "color": "#0891b2",
+      "issues": {
+        "count": 2
+      }
+    },
+    {
+      "id": 7,
+      "pk": 7,
+      "name": "Testing",
+      "color": "#7c2d12",
+      "issues": {
+        "count": 1
+      }
+    }
+  ],
+  "messages": []
+}

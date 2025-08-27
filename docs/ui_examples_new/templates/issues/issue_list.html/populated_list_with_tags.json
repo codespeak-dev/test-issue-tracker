@@ -1,0 +1,151 @@
+{
+  "user": {
+    "is_authenticated": true,
+    "name": "John Smith",
+    "is_staff": false
+  },
+  "issues": [
+    {
+      "id": 1,
+      "pk": 1,
+      "summary": "Login page not loading properly",
+      "status": {
+        "name": "Open",
+        "is_open": true
+      },
+      "author": {
+        "name": "Alice Cooper"
+      },
+      "updated_at": "2024-01-15T10:30:00Z",
+      "tags": {
+        "all": [
+          {
+            "name": "Bug",
+            "color": "#dc2626"
+          },
+          {
+            "name": "High Priority",
+            "color": "#ea580c"
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "pk": 2,
+      "summary": "Add dark mode support",
+      "status": {
+        "name": "In Progress",
+        "is_open": true
+      },
+      "author": {
+        "name": "Bob Wilson"
+      },
+      "updated_at": "2024-01-14T15:45:00Z",
+      "tags": {
+        "all": [
+          {
+            "name": "Feature",
+            "color": "#2563eb"
+          },
+          {
+            "name": "UI/UX",
+            "color": "#7c3aed"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "pk": 3,
+      "summary": "Database connection timeout",
+      "status": {
+        "name": "Closed",
+        "is_open": false
+      },
+      "author": {
+        "name": "Charlie Davis"
+      },
+      "updated_at": "2024-01-13T09:20:00Z",
+      "tags": {
+        "all": [
+          {
+            "name": "Bug",
+            "color": "#dc2626"
+          },
+          {
+            "name": "Backend",
+            "color": "#059669"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "pk": 4,
+      "summary": "Implement user notifications",
+      "status": {
+        "name": "Open",
+        "is_open": true
+      },
+      "author": {
+        "name": "Diana Prince"
+      },
+      "updated_at": "2024-01-12T14:10:00Z",
+      "tags": {
+        "all": [
+          {
+            "name": "Feature",
+            "color": "#2563eb"
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "pk": 5,
+      "summary": "Performance optimization for large datasets",
+      "status": {
+        "name": "Open",
+        "is_open": true
+      },
+      "author": {
+        "name": "Eve Adams"
+      },
+      "updated_at": "2024-01-11T11:55:00Z",
+      "tags": {
+        "all": []
+      }
+    }
+  ],
+  "search_query": "",
+  "selected_tags": [],
+  "all_tags": [
+    {
+      "id": 1,
+      "name": "Bug",
+      "color": "#dc2626"
+    },
+    {
+      "id": 2,
+      "name": "Feature",
+      "color": "#2563eb"
+    },
+    {
+      "id": 3,
+      "name": "High Priority",
+      "color": "#ea580c"
+    },
+    {
+      "id": 4,
+      "name": "UI/UX",
+      "color": "#7c3aed"
+    },
+    {
+      "id": 5,
+      "name": "Backend",
+      "color": "#059669"
+    }
+  ],
+  "messages": []
+}

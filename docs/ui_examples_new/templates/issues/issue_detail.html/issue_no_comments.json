@@ -1,0 +1,46 @@
+{
+  "user": {
+    "is_authenticated": true,
+    "name": "John Smith",
+    "is_staff": false
+  },
+  "issue": {
+    "id": 8,
+    "pk": 8,
+    "summary": "Add export functionality for issue reports",
+    "description": "Users should be able to export issue lists to CSV or Excel format for external reporting and analysis.\n\n**Requirements:**\n- Support CSV and Excel formats\n- Include all visible columns from the issue list\n- Apply current filters to export\n- Add export button to issue list page",
+    "status": {
+      "name": "Open",
+      "is_open": true
+    },
+    "author": {
+      "name": "Diana Prince"
+    },
+    "assignee": null,
+    "created_at": "2024-01-16T14:00:00Z",
+    "updated_at": "2024-01-16T14:00:00Z",
+    "deleted_at": null,
+    "is_deleted": false,
+    "tags": {
+      "all": [
+        {
+          "name": "Feature",
+          "color": "#2563eb"
+        },
+        {
+          "name": "Enhancement",
+          "color": "#059669"
+        }
+      ],
+      "exists": true
+    },
+    "description_html": "<p>Users should be able to export issue lists to CSV or Excel format for external reporting and analysis.</p>\n<p><strong>Requirements:</strong></p>\n<ul>\n<li>Support CSV and Excel formats</li>\n<li>Include all visible columns from the issue list</li>\n<li>Apply current filters to export</li>\n<li>Add export button to issue list page</li>\n</ul>"
+  },
+  "comments": [],
+  "comment_form": {
+    "content": "<textarea name=\"content\" cols=\"40\" rows=\"4\" placeholder=\"Add a comment (Markdown supported)\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500\" required id=\"id_content\"></textarea>",
+    "content_errors": []
+  },
+  "edit_history": [],
+  "messages": []
+}

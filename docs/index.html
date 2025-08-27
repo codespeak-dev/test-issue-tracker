@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Examples Index</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .sidebar-item:hover {
+            background-color: #f3f4f6;
+        }
+        .sidebar-item.active {
+            background-color: #dbeafe;
+            border-left: 4px solid #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 h-screen overflow-hidden">
+    <div class="flex h-full">
+        <!-- Sidebar -->
+        <div class="w-80 bg-white shadow-lg overflow-y-auto">
+            <div class="p-6 bg-blue-600 text-white">
+                <h1 class="text-xl font-bold">UI Examples</h1>
+                <p class="text-sm text-blue-100 mt-1">26 pages</p>
+            </div>
+            
+            <div class="p-4">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Search pages..." 
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+            </div>
+            
+            <nav class="pb-6">
+
+                <div class="mb-4">
+                    <h3 class="px-4 py-2 text-sm font-semibold text-gray-600 uppercase tracking-wider">Base</h3>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/base.html/authenticated_user.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/base.html/authenticated_user.html"
+                       data-title="authenticated user">
+                        <div class="font-medium">Authenticated User</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/base.html/authenticated_user.html</div>
+                    </a>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/base.html/unauthenticated.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/base.html/unauthenticated.html"
+                       data-title="unauthenticated">
+                        <div class="font-medium">Unauthenticated</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/base.html/unauthenticated.html</div>
+                    </a>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/base.html/with_error_messages.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/base.html/with_error_messages.html"
+                       data-title="with error messages">
+                        <div class="font-medium">With Error Messages</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/base.html/with_error_messages.html</div>
+                    </a>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/base.html/with_success_messages.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/base.html/with_success_messages.html"
+                       data-title="with success messages">
+                        <div class="font-medium">With Success Messages</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/base.html/with_success_messages.html</div>
+                    </a>
+                </div>
+                <div class="mb-4">
+                    <h3 class="px-4 py-2 text-sm font-semibold text-gray-600 uppercase tracking-wider">Issues/Issue Detail</h3>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/issues/issue_detail.html/deleted_issue.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/issues/issue_detail.html/deleted_issue.html"
+                       data-title="deleted issue">
+                        <div class="font-medium">Deleted Issue</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/issues/issue_detail.html/deleted_issue.html</div>
+                    </a>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/issues/issue_detail.html/issue_no_comments.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/issues/issue_detail.html/issue_no_comments.html"
+                       data-title="issue no comments">
+                        <div class="font-medium">Issue No Comments</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/issues/issue_detail.html/issue_no_comments.html</div>
+                    </a>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/issues/issue_detail.html/issue_unauthenticated.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/issues/issue_detail.html/issue_unauthenticated.html"
+                       data-title="issue unauthenticated">
+                        <div class="font-medium">Issue Unauthenticated</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/issues/issue_detail.html/issue_unauthenticated.html</div>
+                    </a>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/issues/issue_detail.html/normal_issue.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/issues/issue_detail.html/normal_issue.html"
+                       data-title="normal issue">
+                        <div class="font-medium">Normal Issue</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/issues/issue_detail.html/normal_issue.html</div>
+                    </a>
+                </div>
+                <div class="mb-4">
+                    <h3 class="px-4 py-2 text-sm font-semibold text-gray-600 uppercase tracking-wider">Issues/Issue Form</h3>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/issues/issue_form.html/create_form.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/issues/issue_form.html/create_form.html"
+                       data-title="create form">
+                        <div class="font-medium">Create Form</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/issues/issue_form.html/create_form.html</div>
+                    </a>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/issues/issue_form.html/edit_form.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/issues/issue_form.html/edit_form.html"
+                       data-title="edit form">
+                        <div class="font-medium">Edit Form</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/issues/issue_form.html/edit_form.html</div>
+                    </a>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/issues/issue_form.html/form_with_errors.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/issues/issue_form.html/form_with_errors.html"
+                       data-title="form with errors">
+                        <div class="font-medium">Form With Errors</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/issues/issue_form.html/form_with_errors.html</div>
+                    </a>
+                </div>
+                <div class="mb-4">
+                    <h3 class="px-4 py-2 text-sm font-semibold text-gray-600 uppercase tracking-wider">Issues/Issue List</h3>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/issues/issue_list.html/empty_list_authenticated.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/issues/issue_list.html/empty_list_authenticated.html"
+                       data-title="empty list authenticated">
+                        <div class="font-medium">Empty List Authenticated</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/issues/issue_list.html/empty_list_authenticated.html</div>
+                    </a>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/issues/issue_list.html/empty_list_unauthenticated.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/issues/issue_list.html/empty_list_unauthenticated.html"
+                       data-title="empty list unauthenticated">
+                        <div class="font-medium">Empty List Unauthenticated</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/issues/issue_list.html/empty_list_unauthenticated.html</div>
+                    </a>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/issues/issue_list.html/filtered_by_tags.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/issues/issue_list.html/filtered_by_tags.html"
+                       data-title="filtered by tags">
+                        <div class="font-medium">Filtered By Tags</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/issues/issue_list.html/filtered_by_tags.html</div>
+                    </a>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/issues/issue_list.html/populated_list_with_tags.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/issues/issue_list.html/populated_list_with_tags.html"
+                       data-title="populated list with tags">
+                        <div class="font-medium">Populated List With Tags</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/issues/issue_list.html/populated_list_with_tags.html</div>
+                    </a>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/issues/issue_list.html/search_results.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/issues/issue_list.html/search_results.html"
+                       data-title="search results">
+                        <div class="font-medium">Search Results</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/issues/issue_list.html/search_results.html</div>
+                    </a>
+                </div>
+                <div class="mb-4">
+                    <h3 class="px-4 py-2 text-sm font-semibold text-gray-600 uppercase tracking-wider">Issues/Settings</h3>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/issues/settings.html/empty_settings.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/issues/settings.html/empty_settings.html"
+                       data-title="empty settings">
+                        <div class="font-medium">Empty Settings</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/issues/settings.html/empty_settings.html</div>
+                    </a>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/issues/settings.html/populated_settings.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/issues/settings.html/populated_settings.html"
+                       data-title="populated settings">
+                        <div class="font-medium">Populated Settings</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/issues/settings.html/populated_settings.html</div>
+                    </a>
+                </div>
+                <div class="mb-4">
+                    <h3 class="px-4 py-2 text-sm font-semibold text-gray-600 uppercase tracking-wider">Issues/Tag Form</h3>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/issues/tag_form.html/create_tag.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/issues/tag_form.html/create_tag.html"
+                       data-title="create tag">
+                        <div class="font-medium">Create Tag</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/issues/tag_form.html/create_tag.html</div>
+                    </a>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/issues/tag_form.html/edit_tag.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/issues/tag_form.html/edit_tag.html"
+                       data-title="edit tag">
+                        <div class="font-medium">Edit Tag</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/issues/tag_form.html/edit_tag.html</div>
+                    </a>
+                </div>
+                <div class="mb-4">
+                    <h3 class="px-4 py-2 text-sm font-semibold text-gray-600 uppercase tracking-wider">Issues/Tag List</h3>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/issues/tag_list.html/empty_tags.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/issues/tag_list.html/empty_tags.html"
+                       data-title="empty tags">
+                        <div class="font-medium">Empty Tags</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/issues/tag_list.html/empty_tags.html</div>
+                    </a>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/issues/tag_list.html/populated_tags.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/issues/tag_list.html/populated_tags.html"
+                       data-title="populated tags">
+                        <div class="font-medium">Populated Tags</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/issues/tag_list.html/populated_tags.html</div>
+                    </a>
+                </div>
+                <div class="mb-4">
+                    <h3 class="px-4 py-2 text-sm font-semibold text-gray-600 uppercase tracking-wider">Registration/Login</h3>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/registration/login.html/empty_form.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/registration/login.html/empty_form.html"
+                       data-title="empty form">
+                        <div class="font-medium">Empty Form</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/registration/login.html/empty_form.html</div>
+                    </a>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/registration/login.html/form_with_errors.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/registration/login.html/form_with_errors.html"
+                       data-title="form with errors">
+                        <div class="font-medium">Form With Errors</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/registration/login.html/form_with_errors.html</div>
+                    </a>
+                </div>
+                <div class="mb-4">
+                    <h3 class="px-4 py-2 text-sm font-semibold text-gray-600 uppercase tracking-wider">Registration/Register</h3>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/registration/register.html/empty_form.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/registration/register.html/empty_form.html"
+                       data-title="empty form">
+                        <div class="font-medium">Empty Form</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/registration/register.html/empty_form.html</div>
+                    </a>
+
+                    <a href="#" 
+                       onclick="loadPage('ui_examples_new/templates/registration/register.html/form_with_errors.html')" 
+                       class="sidebar-item block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors duration-200 border-l-4 border-transparent"
+                       data-path="templates/registration/register.html/form_with_errors.html"
+                       data-title="form with errors">
+                        <div class="font-medium">Form With Errors</div>
+                        <div class="text-xs text-gray-500 mt-1">templates/registration/register.html/form_with_errors.html</div>
+                    </a>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- Main content area -->
+        <div class="flex-1 flex flex-col">
+            <header class="bg-white shadow-sm border-b px-6 py-4">
+                <h2 id="currentPageTitle" class="text-xl font-semibold text-gray-800">Select a page to preview</h2>
+                <p id="currentPagePath" class="text-sm text-gray-500 mt-1"></p>
+            </header>
+            
+            <main class="flex-1 p-6">
+                <div class="h-full bg-white rounded-lg shadow-sm border">
+                    <iframe 
+                        id="previewFrame" 
+                        src="" 
+                        class="w-full h-full rounded-lg"
+                        frameborder="0">
+                    </iframe>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <script>
+        function loadPage(encodedPath) {
+            const path = decodeURIComponent(encodedPath);
+            const iframe = document.getElementById('previewFrame');
+            const titleElement = document.getElementById('currentPageTitle');
+            const pathElement = document.getElementById('currentPagePath');
+            
+            // Update iframe source
+            iframe.src = path;
+            
+            // Update header
+            const title = getPageTitle(path);
+            titleElement.textContent = title;
+            pathElement.textContent = path;
+            
+            // Update active state
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            const activeItem = document.querySelector(`[onclick="loadPage('${encodedPath}')"]`);
+            if (activeItem) {
+                activeItem.classList.add('active');
+            }
+        }
+        
+        function getPageTitle(path) {
+            return path.replace('.html', '').replace(/\//g, ' > ').replace(/_/g, ' ')
+                .split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        }
+        
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const items = document.querySelectorAll('.sidebar-item');
+            
+            items.forEach(item => {
+                const path = item.getAttribute('data-path') || '';
+                const title = item.getAttribute('data-title') || '';
+                const shouldShow = path.includes(searchTerm) || title.includes(searchTerm);
+                
+                if (shouldShow) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+        
+        // Load first page by default
+        window.addEventListener('load', function() {
+            loadPage('ui_examples_new/templates/base.html/authenticated_user.html');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+{
+  "user": {
+    "is_authenticated": true,
+    "name": "John Smith",
+    "is_staff": false
+  },
+  "issues": [
+    {
+      "id": 1,
+      "pk": 1,
+      "summary": "Login page bug with authentication",
+      "status": {
+        "name": "Open",
+        "is_open": true
+      },
+      "author": {
+        "name": "Alice Cooper"
+      },
+      "updated_at": "2024-01-15T10:30:00Z",
+      "tags": {
+        "all": [
+          {
+            "name": "Bug",
+            "color": "#dc2626"
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "pk": 6,
+      "summary": "Registration bug with email validation",
+      "status": {
+        "name": "In Progress",
+        "is_open": true
+      },
+      "author": {
+        "name": "Frank Miller"
+      },
+      "updated_at": "2024-01-14T12:20:00Z",
+      "tags": {
+        "all": [
+          {
+            "name": "Bug",
+            "color": "#dc2626"
+          },
+          {
+            "name": "High Priority",
+            "color": "#ea580c"
+          }
+        ]
+      }
+    }
+  ],
+  "search_query": "bug",
+  "selected_tags": [],
+  "all_tags": [
+    {
+      "id": 1,
+      "name": "Bug",
+      "color": "#dc2626"
+    },
+    {
+      "id": 2,
+      "name": "Feature",
+      "color": "#2563eb"
+    },
+    {
+      "id": 3,
+      "name": "High Priority",
+      "color": "#ea580c"
+    }
+  ],
+  "messages": []
+}

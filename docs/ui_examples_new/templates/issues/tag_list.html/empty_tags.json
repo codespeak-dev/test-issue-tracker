@@ -1,0 +1,9 @@
+{
+  "user": {
+    "is_authenticated": true,
+    "name": "John Smith",
+    "is_staff": false
+  },
+  "tags": [],
+  "messages": []
+}

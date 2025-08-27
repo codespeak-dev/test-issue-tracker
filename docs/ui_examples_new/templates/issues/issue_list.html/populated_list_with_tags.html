@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issues - Bugger Issue Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="h-full">
+    <div class="min-h-full">
+        <!-- Navigation -->
+        <nav class="bg-white shadow">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex h-16 justify-between">
+                    <div class="flex">
+                        <div class="flex flex-shrink-0 items-center">
+                            <a href="/" class="text-xl font-bold text-primary-600">🐛 Bugger</a>
+                        </div>
+                        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                            <a href="/" 
+                               class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                                Issues
+                            </a>
+                            
+                                <a href="/issue/new/" 
+                                   class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                                    New Issue
+                                </a>
+                                <a href="/tags/" 
+                                   class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                                    Tags
+                                </a>
+                                
+                            
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        
+                            <span class="text-sm text-gray-700">Hello, John Smith!</span>
+                            <a href="/logout/" 
+                               class="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500">
+                                Log out
+                            </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <main>
+            <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+                <!-- Messages -->
+                
+
+                <!-- Page content -->
+                <div class="px-4 py-6 sm:px-0">
+                    
+<div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+        <h1 class="text-base font-semibold leading-6 text-gray-900">Issues</h1>
+        <p class="mt-2 text-sm text-gray-700">A list of all issues in the system.</p>
+    </div>
+    
+        <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+            <a href="/issue/new/" 
+               class="block rounded-md bg-primary-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary-500">
+                New Issue
+            </a>
+        </div>
+    
+</div>
+
+<!-- Search and Filter Form -->
+<div class="mt-6">
+    <form method="GET" class="space-y-4">
+        <!-- Search Input -->
+        <div class="flex gap-4 items-center">
+            <div class="flex-1 max-w-md">
+                <label for="search" class="sr-only">Search issues</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 20 20" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                    <input type="text" 
+                           name="search" 
+                           id="search"
+                           value=""
+                           placeholder="Search issues by summary or description..."
+                           class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                </div>
+            </div>
+            <button type="submit" 
+                    class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                Search
+            </button>
+            
+        </div>
+        
+        <!-- Tag Filter -->
+        
+        <div class="flex flex-wrap gap-2 items-center">
+            <span class="text-sm font-medium text-gray-700">Filter by tags:</span>
+            
+                <label class="inline-flex items-center">
+                    <input type="checkbox" 
+                           name="tags" 
+                           value="1"
+                           
+                           onchange="this.form.submit()"
+                           class="rounded border-gray-300 text-primary-600 focus:ring-primary-500 mr-2">
+                    <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white" 
+                          style="background-color: #dc2626;">
+                        Bug
+                    </span>
+                </label>
+            
+                <label class="inline-flex items-center">
+                    <input type="checkbox" 
+                           name="tags" 
+                           value="2"
+                           
+                           onchange="this.form.submit()"
+                           class="rounded border-gray-300 text-primary-600 focus:ring-primary-500 mr-2">
+                    <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white" 
+                          style="background-color: #2563eb;">
+                        Feature
+                    </span>
+                </label>
+            
+                <label class="inline-flex items-center">
+                    <input type="checkbox" 
+                           name="tags" 
+                           value="3"
+                           
+                           onchange="this.form.submit()"
+                           class="rounded border-gray-300 text-primary-600 focus:ring-primary-500 mr-2">
+                    <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white" 
+                          style="background-color: #ea580c;">
+                        High Priority
+                    </span>
+                </label>
+            
+                <label class="inline-flex items-center">
+                    <input type="checkbox" 
+                           name="tags" 
+                           value="4"
+                           
+                           onchange="this.form.submit()"
+                           class="rounded border-gray-300 text-primary-600 focus:ring-primary-500 mr-2">
+                    <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white" 
+                          style="background-color: #7c3aed;">
+                        UI/UX
+                    </span>
+                </label>
+            
+                <label class="inline-flex items-center">
+                    <input type="checkbox" 
+                           name="tags" 
+                           value="5"
+                           
+                           onchange="this.form.submit()"
+                           class="rounded border-gray-300 text-primary-600 focus:ring-primary-500 mr-2">
+                    <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white" 
+                          style="background-color: #059669;">
+                        Backend
+                    </span>
+                </label>
+            
+            
+                <a href="/tags/" 
+                   class="text-sm text-primary-600 hover:text-primary-500 ml-2">
+                    Manage Tags
+                </a>
+            
+        </div>
+        
+    </form>
+    
+    <!-- Status Messages -->
+    
+</div>
+
+<div class="mt-8 flow-root">
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+            
+                <table class="min-w-full divide-y divide-gray-300">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
+                                Summary
+                            </th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                Status
+                            </th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                Tags
+                            </th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                Author
+                            </th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                Updated
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        
+                            <tr class="hover:bg-gray-50">
+                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <a href="/issue/1/" 
+                                               class="font-medium text-primary-600 hover:text-primary-500">
+                                                Login page not loading properly
+                                            </a>
+                                            <div class="text-gray-500">#1</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5 bg-green-100 text-green-800">
+                                        Open
+                                    </span>
+                                </td>
+                                <td class="px-3 py-4 text-sm text-gray-500">
+                                    <div class="flex flex-wrap gap-1">
+                                        
+                                            <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium text-white" 
+                                                  style="background-color: #dc2626;">
+                                                Bug
+                                            </span>
+                                        
+                                            <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium text-white" 
+                                                  style="background-color: #ea580c;">
+                                                High Priority
+                                            </span>
+                                        
+                                    </div>
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    Alice Cooper
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    
+                                </td>
+                            </tr>
+                        
+                            <tr class="hover:bg-gray-50">
+                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <a href="/issue/2/" 
+                                               class="font-medium text-primary-600 hover:text-primary-500">
+                                                Add dark mode support
+                                            </a>
+                                            <div class="text-gray-500">#2</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5 bg-green-100 text-green-800">
+                                        In Progress
+                                    </span>
+                                </td>
+                                <td class="px-3 py-4 text-sm text-gray-500">
+                                    <div class="flex flex-wrap gap-1">
+                                        
+                                            <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium text-white" 
+                                                  style="background-color: #2563eb;">
+                                                Feature
+                                            </span>
+                                        
+                                            <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium text-white" 
+                                                  style="background-color: #7c3aed;">
+                                                UI/UX
+                                            </span>
+                                        
+                                    </div>
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    Bob Wilson
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    
+                                </td>
+                            </tr>
+                        
+                            <tr class="hover:bg-gray-50">
+                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <a href="/issue/3/" 
+                                               class="font-medium text-primary-600 hover:text-primary-500">
+                                                Database connection timeout
+                                            </a>
+                                            <div class="text-gray-500">#3</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5 bg-gray-100 text-gray-800">
+                                        Closed
+                                    </span>
+                                </td>
+                                <td class="px-3 py-4 text-sm text-gray-500">
+                                    <div class="flex flex-wrap gap-1">
+                                        
+                                            <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium text-white" 
+                                                  style="background-color: #dc2626;">
+                                                Bug
+                                            </span>
+                                        
+                                            <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium text-white" 
+                                                  style="background-color: #059669;">
+                                                Backend
+                                            </span>
+                                        
+                                    </div>
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    Charlie Davis
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    
+                                </td>
+                            </tr>
+                        
+                            <tr class="hover:bg-gray-50">
+                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <a href="/issue/4/" 
+                                               class="font-medium text-primary-600 hover:text-primary-500">
+                                                Implement user notifications
+                                            </a>
+                                            <div class="text-gray-500">#4</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5 bg-green-100 text-green-800">
+                                        Open
+                                    </span>
+                                </td>
+                                <td class="px-3 py-4 text-sm text-gray-500">
+                                    <div class="flex flex-wrap gap-1">
+                                        
+                                            <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium text-white" 
+                                                  style="background-color: #2563eb;">
+                                                Feature
+                                            </span>
+                                        
+                                    </div>
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    Diana Prince
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    
+                                </td>
+                            </tr>
+                        
+                            <tr class="hover:bg-gray-50">
+                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <a href="/issue/5/" 
+                                               class="font-medium text-primary-600 hover:text-primary-500">
+                                                Performance optimization for large datasets
+                                            </a>
+                                            <div class="text-gray-500">#5</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5 bg-green-100 text-green-800">
+                                        Open
+                                    </span>
+                                </td>
+                                <td class="px-3 py-4 text-sm text-gray-500">
+                                    <div class="flex flex-wrap gap-1">
+                                        
+                                            <span class="text-gray-400 text-xs">No tags</span>
+                                        
+                                    </div>
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    Eve Adams
+                                </td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    
+                                </td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+            
+        </div>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript for AJAX calls -->
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function deleteIssue(issueId) {
+            if (confirm('Are you sure you want to delete this issue? It can be restored later.')) {
+                fetch(`/issue/${issueId}/delete/`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken'),
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload(); // Reload to show deleted state
+                    } else {
+                        alert(data.error || 'Failed to delete issue');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to delete issue');
+                });
+            }
+        }
+
+        function restoreIssue(issueId) {
+            if (confirm('Are you sure you want to restore this issue?')) {
+                fetch(`/issue/${issueId}/restore/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken'),
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload(); // Reload to show restored state
+                    } else {
+                        alert(data.error || 'Failed to restore issue');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to restore issue');
+                });
+            }
+        }
+    </script>
+
+    
+    
+</body>
+</html>

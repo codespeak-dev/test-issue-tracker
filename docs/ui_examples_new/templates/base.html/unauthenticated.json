@@ -1,0 +1,9 @@
+{
+  "user": {
+    "is_authenticated": false,
+    "name": "",
+    "is_staff": false
+  },
+  "messages": [],
+  "content": "<h1>Welcome</h1><p>Please log in to access the issue tracker.</p>"
+}

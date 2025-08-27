@@ -1,0 +1,20 @@
+{
+  "user": {
+    "is_authenticated": true,
+    "name": "Admin User",
+    "is_staff": true
+  },
+  "form": {
+    "slack_bot_token": "<input type=\"password\" name=\"slack_bot_token\" value=\"xoxb-1234567890-1234567890-abcdefghijklmnopqrstuvwx\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500\" placeholder=\"xoxb-...\" id=\"id_slack_bot_token\">",
+    "slack_bot_token_errors": [],
+    "slack_channel_id": "<input type=\"text\" name=\"slack_channel_id\" value=\"C1234567890\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500\" placeholder=\"Channel ID or URL\" id=\"id_slack_channel_id\">",
+    "slack_channel_id_errors": [],
+    "github_access_token": "<input type=\"password\" name=\"github_access_token\" value=\"ghp_abcdefghijklmnopqrstuvwxyz1234567890\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500\" placeholder=\"ghp_...\" id=\"id_github_access_token\">",
+    "github_access_token_errors": [],
+    "github_repository_owner": "<input type=\"text\" name=\"github_repository_owner\" value=\"mycompany\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500\" placeholder=\"owner/organization\" id=\"id_github_repository_owner\">",
+    "github_repository_owner_errors": [],
+    "github_repository_name": "<input type=\"text\" name=\"github_repository_name\" value=\"issue-tracker\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500\" placeholder=\"repository-name\" id=\"id_github_repository_name\">",
+    "github_repository_name_errors": []
+  },
+  "messages": []
+}
