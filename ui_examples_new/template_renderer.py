@@ -107,13 +107,13 @@ class TemplateRenderer:
         # Process URL tags
         content = self._process_url_tags(content, context)
         
-        # Process for loops first (they handle conditionals internally)
-        content = self._process_for_loops(content, context)
+        # Process for loops first - they need to set up contexts for variables and conditionals
+        content = self._process_for_loops_simple(content, context)
         
-        # Process conditional blocks (for any remaining conditionals outside loops)
+        # Process any remaining conditional blocks outside loops
         content = self._process_conditionals(content, context)
         
-        # Process variables and filters
+        # Process any remaining variables outside loops
         content = self._process_variables(content, context)
         
         return content
@@ -178,8 +178,66 @@ class TemplateRenderer:
     
     def _process_for_loops(self, content: str, context: Dict[str, Any]) -> str:
         """Process {% for %} loops."""
+        processed_content = content
+        
         while True:
-            # Find innermost for loop
+            # Find innermost for loop that hasn't been processed yet
+            pattern = r'{%\s*for\s+(\w+)\s+in\s+([^%]+?)%}(.*?){%\s*endfor\s*%}'
+            match = re.search(pattern, processed_content, re.DOTALL)
+            
+            if not match:
+                break
+            
+            loop_var = match.group(1)
+            iterable_expr = match.group(2).strip()
+            loop_content = match.group(3)
+            
+            # Handle {% empty %} clause
+            empty_pattern = r'^(.*?){%\s*empty\s*%}(.*)$'
+            empty_match = re.search(empty_pattern, loop_content, re.DOTALL)
+            
+            if empty_match:
+                main_content = empty_match.group(1)
+                empty_content = empty_match.group(2)
+            else:
+                main_content = loop_content
+                empty_content = ''
+            
+            # Get iterable value
+            iterable = self._get_nested_value(context, iterable_expr)
+            
+            if not iterable or (hasattr(iterable, '__len__') and len(iterable) == 0):
+                replacement = empty_content
+            else:
+                # Render loop content for each item
+                rendered_items = []
+                for item in iterable:
+                    loop_context = context.copy()
+                    loop_context[loop_var] = item
+                    # Process template content within this specific loop context
+                    rendered_item = main_content
+                    
+                    # Only process nested elements within this item's content
+                    # Process nested for loops within this loop context
+                    rendered_item = self._process_for_loops(rendered_item, loop_context)
+                    # Process conditionals within this loop context  
+                    rendered_item = self._process_conditionals(rendered_item, loop_context)
+                    # Process variables within this loop context
+                    rendered_item = self._process_variables(rendered_item, loop_context)
+                    
+                    rendered_items.append(rendered_item)
+                replacement = ''.join(rendered_items)
+            
+            # Replace the matched loop with its rendered content
+            processed_content = processed_content[:match.start()] + replacement + processed_content[match.end():]
+        
+        return processed_content
+    
+    def _process_for_loops_final(self, content: str, context: Dict[str, Any]) -> str:
+        """Final processing of for loops after all other template processing is complete."""
+        # Process loops from outermost to innermost to avoid nesting issues
+        while True:
+            # Find any remaining for loop
             pattern = r'{%\s*for\s+(\w+)\s+in\s+([^%]+?)%}(.*?){%\s*endfor\s*%}'
             match = re.search(pattern, content, re.DOTALL)
             
@@ -212,15 +270,24 @@ class TemplateRenderer:
                 for item in iterable:
                     loop_context = context.copy()
                     loop_context[loop_var] = item
-                    # Process template content within loop context
+                    
+                    # Process this item's content completely
                     rendered_item = main_content
-                    # Process conditionals first within this loop context
+                    
+                    # Handle any conditionals within this context
                     rendered_item = self._process_conditionals(rendered_item, loop_context)
-                    # Process variables within this loop context
+                    
+                    # Handle variables within this context
                     rendered_item = self._process_variables(rendered_item, loop_context)
+                    
+                    # Recursively handle nested loops
+                    rendered_item = self._process_for_loops_final(rendered_item, loop_context)
+                    
                     rendered_items.append(rendered_item)
+                    
                 replacement = ''.join(rendered_items)
             
+            # Replace this loop with its rendered content
             content = content[:match.start()] + replacement + content[match.end():]
         
         return content
@@ -441,6 +508,64 @@ class TemplateRenderer:
             return str(value).lower()
         
         return value
+
+    def _process_for_loops_simple(self, content: str, context: Dict[str, Any]) -> str:
+        """Simple for loop processing that handles nesting correctly."""
+        while True:
+            # Find the FIRST for loop (not necessarily innermost)
+            pattern = r'{%\s*for\s+(\w+)\s+in\s+([^%]+?)%}(.*?){%\s*endfor\s*%}'
+            match = re.search(pattern, content, re.DOTALL)
+            
+            if not match:
+                break
+            
+            loop_var = match.group(1)
+            iterable_expr = match.group(2).strip()
+            loop_content = match.group(3)
+            
+            # Handle {% empty %} clause
+            empty_pattern = r'^(.*?){%\s*empty\s*%}(.*)$'
+            empty_match = re.search(empty_pattern, loop_content, re.DOTALL)
+            
+            if empty_match:
+                main_content = empty_match.group(1)
+                empty_content = empty_match.group(2)
+            else:
+                main_content = loop_content
+                empty_content = ''
+            
+            # Get iterable value
+            iterable = self._get_nested_value(context, iterable_expr)
+            
+            if not iterable or (hasattr(iterable, '__len__') and len(iterable) == 0):
+                replacement = empty_content
+            else:
+                # Render loop content for each item
+                rendered_items = []
+                for item in iterable:
+                    loop_context = context.copy()
+                    loop_context[loop_var] = item
+                    
+                    # Process this item's content step by step
+                    rendered_item = main_content
+                    
+                    # First handle variables (so they can be used in conditions)
+                    rendered_item = self._process_variables(rendered_item, loop_context)
+                    
+                    # Then handle conditionals
+                    rendered_item = self._process_conditionals(rendered_item, loop_context)
+                    
+                    # Then handle any nested loops recursively
+                    rendered_item = self._process_for_loops_simple(rendered_item, loop_context)
+                    
+                    rendered_items.append(rendered_item)
+                    
+                replacement = ''.join(rendered_items)
+            
+            # Replace this loop with its rendered content
+            content = content[:match.start()] + replacement + content[match.end():]
+        
+        return content
 
 
 def main():
