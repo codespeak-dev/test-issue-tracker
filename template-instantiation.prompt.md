@@ -1,4 +1,4 @@
-<var name="output_dir" value="ui_examples"/>
+<var name="output_dir" value="ui_examples_new"/>
 
 This Django app has 
 - models in @issues/models.py, 
@@ -60,7 +60,7 @@ foreach template_path in state_descriptions
 Instantiate the templates from state_descriptions with the inputs from state_inputs.
 For each template_path, for each state_name, generate a HTML file `{output_dir}/{template_path}/{state_name}.html` with the rendered template. Use inputs from `{output_dir}/{template_path}/{state_name}.json` and the template in {template_path}.
 
-IMPORTANT: Create a template renderer that properly handles Django template syntax:
+IMPORTANT: Create a template renderer that uses the Django template engine to render the templates. Make sure it handles:
 - `{% extends %}` and `{% block %}` for template inheritance
 - `{% if %}...{% else %}...{% endif %}` conditionals with proper evaluation
 - `{% for %}...{% empty %}...{% endfor %}` loops with context handling
@@ -99,3 +99,18 @@ Common issues to watch for:
 - Showing object references instead of numbers
 - Empty or malformed conditional blocks
 - Incomplete loops (missing `{% empty %}` handling)
+
+
+<ignore type="comment">
+Notes
+- designate representative states (lots of features on one screen)
+  - generate them first
+- reuse the rendering code
+- generate data for non-representative states from representative ones
+  - do this all in parallel
+- generate one big DB instance to play off of and then derive all the states' data from it
+- display a fancy map of previews: 
+  - a line per template/major state with previews of substates showing up as soon as they are generated
+  - reproduce the structure of the template dir?
+    - or maybe just the logic of the app?
+</ignore>

@@ -1,0 +1,18 @@
+{
+  "user": {
+    "is_authenticated": true,
+    "name": "Jane Doe",
+    "is_staff": true
+  },
+  "messages": [
+    {
+      "tags": "success",
+      "message": "Issue created successfully!"
+    },
+    {
+      "tags": "success", 
+      "message": "Settings saved successfully!"
+    }
+  ],
+  "content": "<h1>Dashboard</h1><p>Your operations completed successfully.</p>"
+}

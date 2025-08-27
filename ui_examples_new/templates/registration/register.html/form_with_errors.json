@@ -1,0 +1,14 @@
+{
+  "user": {
+    "is_authenticated": false,
+    "name": "",
+    "is_staff": false
+  },
+  "form": {
+    "name": "<input type=\"text\" name=\"name\" class=\"mt-1 block w-full rounded-md border-red-300 shadow-sm focus:border-red-500 focus:ring-red-500\" placeholder=\"Enter your full name\" required id=\"id_name\">",
+    "name_errors": ["This field is required."],
+    "email": "<input type=\"email\" name=\"email\" value=\"existing@example.com\" class=\"mt-1 block w-full rounded-md border-red-300 shadow-sm focus:border-red-500 focus:ring-red-500\" placeholder=\"Enter your email\" required id=\"id_email\">",
+    "email_errors": ["An account with this email already exists. Please login instead."]
+  },
+  "messages": []
+}

@@ -1,0 +1,12 @@
+{
+  "user": {
+    "is_authenticated": false,
+    "name": "",
+    "is_staff": false
+  },
+  "issues": [],
+  "search_query": "",
+  "selected_tags": [],
+  "all_tags": [],
+  "messages": []
+}

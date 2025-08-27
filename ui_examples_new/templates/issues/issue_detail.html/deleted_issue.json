@@ -1,0 +1,48 @@
+{
+  "user": {
+    "is_authenticated": true,
+    "name": "Alice Cooper",
+    "is_staff": false
+  },
+  "issue": {
+    "id": 7,
+    "pk": 7,
+    "summary": "Duplicate report - please ignore",
+    "description": "This was created by mistake and duplicates issue #3.",
+    "status": {
+      "name": "Closed",
+      "is_open": false
+    },
+    "author": {
+      "name": "Alice Cooper"
+    },
+    "assignee": null,
+    "created_at": "2024-01-08T15:30:00Z",
+    "updated_at": "2024-01-09T08:20:00Z",
+    "deleted_at": "2024-01-09T08:20:00Z",
+    "is_deleted": true,
+    "tags": {
+      "all": [],
+      "exists": false
+    },
+    "description_html": "<p>This was created by mistake and duplicates issue #3.</p>"
+  },
+  "comments": [
+    {
+      "id": 5,
+      "author": {
+        "name": "Alice Cooper"
+      },
+      "content": "Never mind, this is a duplicate of #3. Deleting this issue.",
+      "content_html": "<p>Never mind, this is a duplicate of #3. Deleting this issue.</p>",
+      "created_at": "2024-01-09T08:18:00Z",
+      "updated_at": "2024-01-09T08:18:00Z"
+    }
+  ],
+  "comment_form": {
+    "content": "<textarea name=\"content\" cols=\"40\" rows=\"4\" placeholder=\"Add a comment (Markdown supported)\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500\" required id=\"id_content\"></textarea>",
+    "content_errors": []
+  },
+  "edit_history": [],
+  "messages": []
+}

@@ -1,0 +1,22 @@
+{
+  "user": {
+    "is_authenticated": true,
+    "name": "John Smith",
+    "is_staff": false
+  },
+  "form": {
+    "summary": "<input type=\"text\" name=\"summary\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500\" placeholder=\"Brief summary of the issue\" required id=\"id_summary\">",
+    "summary_errors": [],
+    "description": "<textarea name=\"description\" cols=\"40\" rows=\"6\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500\" placeholder=\"Detailed description (Markdown supported)\" id=\"id_description\"></textarea>",
+    "description_errors": [],
+    "status": "<select name=\"status\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500\" required id=\"id_status\"><option value=\"1\" selected>Open</option><option value=\"2\">In Progress</option><option value=\"3\">Closed</option></select>",
+    "status_errors": [],
+    "assignee": "<select name=\"assignee\" class=\"mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500\" id=\"id_assignee\"><option value=\"\" selected>Unassigned</option><option value=\"1\">Alice Cooper</option><option value=\"2\">Bob Wilson</option><option value=\"3\">Charlie Davis</option></select>",
+    "assignee_errors": [],
+    "tags": "<ul class=\"space-y-2\" id=\"id_tags\"><li><label for=\"id_tags_0\"><input type=\"checkbox\" name=\"tags\" value=\"1\" class=\"\" id=\"id_tags_0\"> <span class=\"inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium text-white\" style=\"background-color: #dc2626;\">Bug</span></label></li><li><label for=\"id_tags_1\"><input type=\"checkbox\" name=\"tags\" value=\"2\" class=\"\" id=\"id_tags_1\"> <span class=\"inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium text-white\" style=\"background-color: #2563eb;\">Feature</span></label></li><li><label for=\"id_tags_2\"><input type=\"checkbox\" name=\"tags\" value=\"3\" class=\"\" id=\"id_tags_2\"> <span class=\"inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium text-white\" style=\"background-color: #ea580c;\">High Priority</span></label></li></ul>",
+    "tags_errors": []
+  },
+  "title": "Create Issue",
+  "issue": null,
+  "messages": []
+}

@@ -1,0 +1,18 @@
+{
+  "user": {
+    "is_authenticated": true,
+    "name": "Alex Johnson",
+    "is_staff": false
+  },
+  "messages": [
+    {
+      "tags": "error",
+      "message": "You can only delete your own issues."
+    },
+    {
+      "tags": "error",
+      "message": "Please fill in all required fields."
+    }
+  ],
+  "content": "<h1>Error</h1><p>Please correct the errors and try again.</p>"
+}

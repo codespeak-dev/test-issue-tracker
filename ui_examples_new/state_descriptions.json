@@ -1,0 +1,243 @@
+{
+  "templates/base.html": {
+    "authenticated_user": {
+      "description": "Base template with authenticated user",
+      "relevant_inputs": {
+        "user": "authenticated user object with name and is_staff properties",
+        "messages": "empty list or list of message objects with tags and text",
+        "content": "content block from child template"
+      }
+    },
+    "unauthenticated": {
+      "description": "Base template with anonymous user", 
+      "relevant_inputs": {
+        "user": "anonymous user object with is_authenticated=false",
+        "messages": "empty list or list of message objects",
+        "content": "content block from child template"
+      }
+    },
+    "with_success_messages": {
+      "description": "Base template with success messages",
+      "relevant_inputs": {
+        "user": "authenticated user object",
+        "messages": "list with success message objects",
+        "content": "content block from child template"
+      }
+    },
+    "with_error_messages": {
+      "description": "Base template with error messages",
+      "relevant_inputs": {
+        "user": "authenticated user object",
+        "messages": "list with error message objects",
+        "content": "content block from child template"
+      }
+    }
+  },
+  "templates/issues/issue_list.html": {
+    "empty_list_authenticated": {
+      "description": "Issue list with no issues, user authenticated",
+      "relevant_inputs": {
+        "user": "authenticated user object",
+        "issues": "empty list",
+        "search_query": "empty string",
+        "selected_tags": "empty list",
+        "all_tags": "empty list or list of tag objects"
+      }
+    },
+    "empty_list_unauthenticated": {
+      "description": "Issue list with no issues, user not authenticated",
+      "relevant_inputs": {
+        "user": "anonymous user object",
+        "issues": "empty list",
+        "search_query": "empty string",
+        "selected_tags": "empty list",
+        "all_tags": "empty list"
+      }
+    },
+    "populated_list_with_tags": {
+      "description": "Issue list with 5+ issues and tags, user authenticated",
+      "relevant_inputs": {
+        "user": "authenticated user object",
+        "issues": "list of 5+ issue objects with various statuses and tags",
+        "search_query": "empty string",
+        "selected_tags": "empty list",
+        "all_tags": "list of 5+ tag objects with different colors"
+      }
+    },
+    "search_results": {
+      "description": "Issue list showing search results",
+      "relevant_inputs": {
+        "user": "authenticated user object",
+        "issues": "filtered list of issues matching search",
+        "search_query": "search term like 'bug' or 'login'",
+        "selected_tags": "empty list",
+        "all_tags": "list of tag objects"
+      }
+    },
+    "filtered_by_tags": {
+      "description": "Issue list filtered by selected tags",
+      "relevant_inputs": {
+        "user": "authenticated user object",
+        "issues": "filtered list of issues with selected tags",
+        "search_query": "empty string",
+        "selected_tags": "list of tag IDs as strings",
+        "all_tags": "list of tag objects"
+      }
+    }
+  },
+  "templates/issues/issue_detail.html": {
+    "normal_issue": {
+      "description": "Regular issue detail view with comments and edit history",
+      "relevant_inputs": {
+        "user": "authenticated user object",
+        "issue": "issue object with status, tags, assignee, author, description",
+        "comments": "list of 3+ comment objects",
+        "comment_form": "CommentForm object",
+        "edit_history": "list of edit history objects"
+      }
+    },
+    "deleted_issue": {
+      "description": "Deleted issue detail view with restore option",
+      "relevant_inputs": {
+        "user": "authenticated user who is the author",
+        "issue": "issue object with deleted_at timestamp",
+        "comments": "list of comment objects",
+        "comment_form": "CommentForm object",
+        "edit_history": "list of edit history objects"
+      }
+    },
+    "issue_no_comments": {
+      "description": "Issue detail with no comments",
+      "relevant_inputs": {
+        "user": "authenticated user object",
+        "issue": "issue object with full details",
+        "comments": "empty list",
+        "comment_form": "CommentForm object",
+        "edit_history": "empty list"
+      }
+    },
+    "issue_unauthenticated": {
+      "description": "Issue detail viewed by anonymous user",
+      "relevant_inputs": {
+        "user": "anonymous user object",
+        "issue": "issue object with full details",
+        "comments": "list of comment objects",
+        "comment_form": "null",
+        "edit_history": "list of edit history objects"
+      }
+    }
+  },
+  "templates/issues/issue_form.html": {
+    "create_form": {
+      "description": "Create new issue form",
+      "relevant_inputs": {
+        "user": "authenticated user object",
+        "form": "IssueForm object with empty values",
+        "title": "Create Issue",
+        "issue": "null"
+      }
+    },
+    "edit_form": {
+      "description": "Edit existing issue form",
+      "relevant_inputs": {
+        "user": "authenticated user object",
+        "form": "IssueForm object populated with existing values",
+        "title": "Edit Issue", 
+        "issue": "existing issue object"
+      }
+    },
+    "form_with_errors": {
+      "description": "Form with validation errors",
+      "relevant_inputs": {
+        "user": "authenticated user object",
+        "form": "IssueForm object with errors",
+        "title": "Create Issue",
+        "issue": "null"
+      }
+    }
+  },
+  "templates/registration/login.html": {
+    "empty_form": {
+      "description": "Login form without errors",
+      "relevant_inputs": {
+        "user": "anonymous user object",
+        "form": "LoginForm object with empty email field"
+      }
+    },
+    "form_with_errors": {
+      "description": "Login form with validation errors",
+      "relevant_inputs": {
+        "user": "anonymous user object",
+        "form": "LoginForm object with email errors"
+      }
+    }
+  },
+  "templates/registration/register.html": {
+    "empty_form": {
+      "description": "Registration form without errors",
+      "relevant_inputs": {
+        "user": "anonymous user object",
+        "form": "RegisterForm object with empty name and email fields"
+      }
+    },
+    "form_with_errors": {
+      "description": "Registration form with validation errors",
+      "relevant_inputs": {
+        "user": "anonymous user object",
+        "form": "RegisterForm object with field errors"
+      }
+    }
+  },
+  "templates/issues/settings.html": {
+    "empty_settings": {
+      "description": "Settings form with empty values",
+      "relevant_inputs": {
+        "user": "authenticated staff user object",
+        "form": "SettingsForm object with empty integration fields"
+      }
+    },
+    "populated_settings": {
+      "description": "Settings form with existing values",
+      "relevant_inputs": {
+        "user": "authenticated staff user object", 
+        "form": "SettingsForm object populated with existing settings"
+      }
+    }
+  },
+  "templates/issues/tag_list.html": {
+    "empty_tags": {
+      "description": "Tag list with no tags",
+      "relevant_inputs": {
+        "user": "authenticated user object",
+        "tags": "empty list"
+      }
+    },
+    "populated_tags": {
+      "description": "Tag list with multiple tags",
+      "relevant_inputs": {
+        "user": "authenticated user object",
+        "tags": "list of 5+ tag objects with different colors and issue counts"
+      }
+    }
+  },
+  "templates/issues/tag_form.html": {
+    "create_tag": {
+      "description": "Create new tag form",
+      "relevant_inputs": {
+        "user": "authenticated user object",
+        "form": "TagForm object with empty values",
+        "title": "Create Tag",
+        "tag": "null"
+      }
+    },
+    "edit_tag": {
+      "description": "Edit existing tag form",
+      "relevant_inputs": {
+        "user": "authenticated user object",
+        "form": "TagForm object with existing values",
+        "title": "Edit Tag",
+        "tag": "existing tag object"
+      }
+    }
+  }
+}
