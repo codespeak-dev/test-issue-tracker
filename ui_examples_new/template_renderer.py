@@ -107,11 +107,11 @@ class TemplateRenderer:
         # Process URL tags
         content = self._process_url_tags(content, context)
         
-        # Process conditional blocks
-        content = self._process_conditionals(content, context)
-        
-        # Process for loops
+        # Process for loops first (they handle conditionals internally)
         content = self._process_for_loops(content, context)
+        
+        # Process conditional blocks (for any remaining conditionals outside loops)
+        content = self._process_conditionals(content, context)
         
         # Process variables and filters
         content = self._process_variables(content, context)
@@ -212,7 +212,12 @@ class TemplateRenderer:
                 for item in iterable:
                     loop_context = context.copy()
                     loop_context[loop_var] = item
-                    rendered_item = self._process_template(main_content, loop_context)
+                    # Process template content within loop context
+                    rendered_item = main_content
+                    # Process conditionals first within this loop context
+                    rendered_item = self._process_conditionals(rendered_item, loop_context)
+                    # Process variables within this loop context
+                    rendered_item = self._process_variables(rendered_item, loop_context)
                     rendered_items.append(rendered_item)
                 replacement = ''.join(rendered_items)
             
@@ -307,7 +312,19 @@ class TemplateRenderer:
         for op in comparison_ops:
             if op in condition:
                 left, right = condition.split(op, 1)
-                left_val = self._get_nested_value(context, left.strip())
+                left_expr = left.strip()
+                
+                # Handle filters on the left side
+                if '|' in left_expr:
+                    parts = left_expr.split('|')
+                    var_name = parts[0].strip()
+                    filters = [f.strip() for f in parts[1:]]
+                    left_val = self._get_nested_value(context, var_name)
+                    for filter_expr in filters:
+                        left_val = self._apply_filter(left_val, filter_expr)
+                else:
+                    left_val = self._get_nested_value(context, left_expr)
+                
                 right_val = self._parse_value(right.strip(), context)
                 
                 if op == '==':
@@ -315,7 +332,10 @@ class TemplateRenderer:
                 elif op == '!=':
                     return str(left_val) != str(right_val)
                 elif op == ' in ':
-                    return str(left_val) in (right_val if isinstance(right_val, (list, tuple)) else str(right_val))
+                    if isinstance(right_val, (list, tuple)):
+                        return str(left_val) in [str(item) for item in right_val]
+                    else:
+                        return str(left_val) in str(right_val)
                 elif op == '<':
                     return float(left_val or 0) < float(right_val or 0)
                 elif op == '>':
@@ -410,6 +430,8 @@ class TemplateRenderer:
                 except:
                     pass
         elif filter_name == 'stringformat':
+            if args == '"s"':
+                return str(value)
             return str(value)
         elif filter_name == 'default':
             return args if value is None or value == '' else value
