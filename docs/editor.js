@@ -36,12 +36,14 @@
         isEditMode = !isEditMode;
         
         if (isEditMode) {
+            editIcon.innerHTML = '💾';
             editIcon.style.background = '#007bff';
             editIcon.style.color = '#fff';
             document.addEventListener('mousemove', highlightElement);
             document.addEventListener('mouseleave', clearHighlight);
             document.addEventListener('click', handleElementClick);
         } else {
+            editIcon.innerHTML = '✏️';
             editIcon.style.background = '#fff';
             editIcon.style.color = '#333';
             document.removeEventListener('mousemove', highlightElement);
